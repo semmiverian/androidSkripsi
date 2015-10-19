@@ -2,7 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="30sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,4 +19,38 @@
         android:layout_marginLeft="28dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="29dp" />
+
+        <Button
+            android:layout_below="@+id/userLogin"
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Around Me"
+            android:textColor="#FFFFFF"
+            android:id="@+id/aroundme"
+            android:layout_marginTop="55dp"
+            android:background="@color/colorPrimaryDarkHome"/>
+        <Button
+            android:layout_below="@+id/userLogin"
+            android:layout_marginLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Career"
+            android:id="@+id/career"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="55dp"
+            android:background="@color/light_red"/>
+         <Button
+            android:layout_below="@+id/userLogin"
+            android:layout_alignParentRight="true"
+             android:layout_marginRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trading"
+             android:textColor="#FFFFFF"
+            android:id="@+id/trading"
+            android:layout_marginTop="55dp"
+             android:background="@color/blue"/>
+
+
 </RelativeLayout>

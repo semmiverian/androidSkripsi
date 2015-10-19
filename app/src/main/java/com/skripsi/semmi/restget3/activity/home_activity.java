@@ -8,6 +8,8 @@ import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,9 +19,10 @@ import com.skripsi.semmi.restget3.R;
 /**
  * Created by semmi on 15/10/2015.
  */
-public class home_activity extends AppCompatActivity {
+public class home_activity extends AppCompatActivity implements View.OnClickListener {
     public static final String  username="username";
     private TextView mUserLogin;
+    private Button mAroundMe;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,8 @@ public class home_activity extends AppCompatActivity {
                 mUserLogin.setText(getIntent().getExtras().getString(username));
             }
         }
+        mAroundMe= (Button) findViewById(R.id.aroundme);
+        mAroundMe.setOnClickListener(this);
     }
 
     @Override
@@ -42,7 +47,7 @@ public class home_activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
         switch (id){
-            case R.id.logout:
+            case R.id.action_logout:
                 logoutUser();
                 break;
         }
@@ -64,5 +69,15 @@ public class home_activity extends AppCompatActivity {
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.aroundme:
+                Intent intentAroundMe=new Intent(this,AroundMeActivity.class);
+                startActivity(intentAroundMe);
+                break;
+        }
     }
 }
