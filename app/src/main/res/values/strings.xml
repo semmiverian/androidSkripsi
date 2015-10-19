@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RestGet3</string>
+    <string name="api">http://semmiapi.esy.es/androidapi/api/</string>
+    <string name="register">Register</string>
+    <string name="login">login</string>
+    <string name="regisPage">Register</string>
+    <string name="LoginLabel">Login</string>
+    <string name="forgotText">Forgot Password?</string>
+    <string name="LoginNotif">You Are Login</string>
+    <string name="homePage">Home</string>
+    <string name="logoutItem">Logout</string>
+    <string name="passwordhint">Password</string>
+    <string name="usernamehint">Username</string>
+    <string name="forgotpass">Forgot Password</string>
+    <string name="TOS">Our Term Of Services</string>
+</resources>

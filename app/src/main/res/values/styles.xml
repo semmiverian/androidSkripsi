@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--Style buat tampilan register-->
+    <style name="RegisterTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryRegister</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkRegister</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--Style buat tampilan home-->
+    <style name="HomeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryHome</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkHome</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
