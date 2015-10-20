@@ -18,10 +18,10 @@
         android:label="@string/LoginLabel"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <!--masih pake API lama bekas testing awal-->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAFgwiQoOf6nGsZztRhM6pS2QGVP25cROI"/>
+            android:value="AIzaSyCGcu0sIOQfyp4MTAzdgk4x0v--8sGsuEE"/>
         <uses-feature
             android:glEsVersion="0x00020000"
             android:required="true"/>
