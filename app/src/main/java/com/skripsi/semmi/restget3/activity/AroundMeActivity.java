@@ -19,7 +19,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.skripsi.semmi.restget3.Interface.SaveUserLocationInterface;
+import com.skripsi.semmi.restget3.Model.SaveUserLocation;
 import com.skripsi.semmi.restget3.R;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 /**
@@ -36,7 +43,8 @@ public class AroundMeActivity extends FragmentActivity implements
     private LocationRequest mLocationRequest;
     private double currentLatitude;
     private  double currentLongitude;
-    private Location mLocation;
+    public static final String  username="";
+    private String usernameFromHome;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_around_me);
@@ -48,8 +56,13 @@ public class AroundMeActivity extends FragmentActivity implements
                 .addApi(LocationServices.API)
                 .build();
         requestLocation();
+        if(getIntent()!= null && getIntent().getExtras()!=null){
+            if(getIntent().getExtras().containsKey(username)){
+                usernameFromHome=getIntent().getExtras().getString(username);
+            }
+        }
     }
-
+    // fungsi untuk ambil lokasi High accuracy
     private void requestLocation() {
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -70,7 +83,7 @@ public class AroundMeActivity extends FragmentActivity implements
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        updateDataLocation();
     }
 
     @Override
@@ -95,7 +108,7 @@ public class AroundMeActivity extends FragmentActivity implements
         // Diskonek services ketika pause applikasi
         if (mGoogleApiClient.isConnected()) {
             // remove location services ketika pause
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
         }
     }
@@ -108,11 +121,12 @@ public class AroundMeActivity extends FragmentActivity implements
          // Kalau ga ada lokasi terakhir
         if(location==null){
             // Bakal nge define lokasi user sekarang
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest,this);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            updateDataLocation();
+
         }else{
-
             connnectTOMap(location);
-
+            updateDataLocation();
         }
     }
 
@@ -127,8 +141,10 @@ public class AroundMeActivity extends FragmentActivity implements
                 .position(latLng)
                 .title("I am here!");
         mMap.addMarker(options);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.moveCamera(CameraUpdateFactory.zoomBy(50f));
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        // set camera pake zoom
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+
     }
 
     @Override
@@ -155,8 +171,27 @@ public class AroundMeActivity extends FragmentActivity implements
     public void onLocationChanged(Location location) {
         // ketika lokasi user berubah isi fungsi disini
         connnectTOMap(location);
+        updateDataLocation();
     }
 
+    private void updateDataLocation() {
+        // fungsi ketika user pindah lokasi data lokasi user (long dan lat) di database akan dipindahkan
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        SaveUserLocationInterface saveUserLocationInterface=restAdapter.create(SaveUserLocationInterface.class);
+        saveUserLocationInterface.saveLocation(currentLatitude, currentLongitude, usernameFromHome, new Callback<SaveUserLocation>() {
+            @Override
+            public void success(SaveUserLocation saveUserLocation, Response response) {
+                Log.d("save",saveUserLocation.getKode());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("post Error","from Retrofit"+error.getMessage());
+            }
+        });
+    }
 
 
 }
