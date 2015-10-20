@@ -9,6 +9,6 @@ LOG 19-10-2015
 - Set Session ketika user udah login
 
 LOG 20-10-2015
--Tracking user Location
--Implement Maps on Android App
--Add Marker to Maps
+- Tracking user Location
+- Implement Maps on Android App
+- Add Marker to Maps
