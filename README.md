@@ -7,3 +7,8 @@ LOG 19-10-2015
 
 - Login Register,Forgot Password semua sudah berfungsi
 - Set Session ketika user udah login
+
+LOG 20-10-2015
+-Tracking user Location
+-Implement Maps on Android App
+-Add Marker to Maps
