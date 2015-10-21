@@ -16,12 +16,15 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.skripsi.semmi.restget3.Interface.SaveUserLocationInterface;
+import com.skripsi.semmi.restget3.Interface.ShowAllUserLocationInterface;
 import com.skripsi.semmi.restget3.Model.SaveUserLocation;
+import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -123,10 +126,12 @@ public class AroundMeActivity extends FragmentActivity implements
             // Bakal nge define lokasi user sekarang
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             updateDataLocation();
+            putAllUserMarker();
 
         }else{
             connnectTOMap(location);
             updateDataLocation();
+            putAllUserMarker();
         }
     }
 
@@ -145,6 +150,32 @@ public class AroundMeActivity extends FragmentActivity implements
         // set camera pake zoom
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
+    }
+
+    private void putAllUserMarker() {
+        // tampilin semua user lokasi di map yang ada
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        final ShowAllUserLocationInterface showAllUserLocation=restAdapter.create(ShowAllUserLocationInterface.class);
+        showAllUserLocation.getLocation(new Callback<List<ShowAllUserLocation>>() {
+            @Override
+            public void success(List<ShowAllUserLocation> showAllUserLocations, Response response) {
+                for(ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
+
+                        MarkerOptions options=new MarkerOptions()
+                                .position(new LatLng(showAllUserLocation1.getLatitude(),showAllUserLocation1.getLongitude()))
+                                .title(showAllUserLocation1.getUsername());
+                        mMap.addMarker(options);
+                    Log.d("get Marker", "berhasil GET");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("get Error","from Retrofit"+error.getMessage());
+            }
+        });
     }
 
     @Override
@@ -172,6 +203,7 @@ public class AroundMeActivity extends FragmentActivity implements
         // ketika lokasi user berubah isi fungsi disini
         connnectTOMap(location);
         updateDataLocation();
+        putAllUserMarker();
     }
 
     private void updateDataLocation() {

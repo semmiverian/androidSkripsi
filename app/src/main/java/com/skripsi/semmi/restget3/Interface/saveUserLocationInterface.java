@@ -14,4 +14,5 @@ public interface SaveUserLocationInterface {
     @Multipart
     @POST("/savelocation.php")
     void saveLocation(@Part("Latitude") Double latitude,@Part("Longitude") Double longtitude,@Part("username") String username, Callback<SaveUserLocation> callback);
+
 }
