@@ -1,5 +1,6 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.skripsi.semmi.restget3.Interface.SaveUserLocationInterface;
 import com.skripsi.semmi.restget3.Interface.ShowAllUserLocationInterface;
@@ -24,6 +26,7 @@ import com.skripsi.semmi.restget3.Model.SaveUserLocation;
 import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
@@ -161,12 +164,28 @@ public class AroundMeActivity extends FragmentActivity implements
         showAllUserLocation.getLocation(new Callback<List<ShowAllUserLocation>>() {
             @Override
             public void success(List<ShowAllUserLocation> showAllUserLocations, Response response) {
-                for(ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
 
+                for(final ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
+                    if(showAllUserLocation1.getLatitude()!=0 || showAllUserLocation1.getLongitude()!=0){
                         MarkerOptions options=new MarkerOptions()
                                 .position(new LatLng(showAllUserLocation1.getLatitude(),showAllUserLocation1.getLongitude()))
                                 .title(showAllUserLocation1.getUsername());
                         mMap.addMarker(options);
+                        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(Marker marker) {
+                                String markerTitle=marker.getTitle();
+                                if(markerTitle.equals(showAllUserLocation1.getUsername())){
+                                    Intent intent1 = new Intent(AroundMeActivity.this, home_activity.class);
+                                    intent1.putExtra(ProfileActivity.username, markerTitle);
+                                    startActivity(intent1);
+                                }
+
+                                // false berarti ga dipake coding yang disini
+                                return true;
+                            }
+                        });
+                    }
                     Log.d("get Marker", "berhasil GET");
                 }
             }

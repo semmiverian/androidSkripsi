@@ -58,6 +58,15 @@
         <activity android:name=".activity.AroundMeActivity"
             android:label="@string/aroundme"
             android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activity.ProfileActivity"
+            android:theme="@style/RegisterTheme"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>
