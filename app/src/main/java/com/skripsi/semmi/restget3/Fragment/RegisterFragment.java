@@ -47,10 +47,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.simple_register_page, container, false);
         mButton= (Button) view.findViewById(R.id.btnRegister);
-        mUsername= (EditText) view.findViewById(R.id.username);
-        mDob= (EditText) view.findViewById(R.id.dob);
-        mEmail= (EditText) view.findViewById(R.id.email);
-        mName= (EditText) view.findViewById(R.id.name);
+        mUsername= (EditText) view.findViewById(R.id.usernameRegis);
+        mDob= (EditText) view.findViewById(R.id.dobRegis);
+        mEmail= (EditText) view.findViewById(R.id.emailRegis);
+        mName= (EditText) view.findViewById(R.id.nameRegis);
         mCheckBox= (CheckBox) view.findViewById(R.id.checkBoxTOS);
         mButton.setOnClickListener(this);
         return view;
@@ -65,15 +65,13 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         dob=mDob.getText().toString();
         email=mEmail.getText().toString();
         name=mName.getText().toString();
-        if(!mCheckBox.isSelected()|| username.equals("") || dob.equals("")||email.equals("")||name.equals("")){
+        if(!mCheckBox.isSelected()&& username.equals("") && dob.equals("")&&email.equals("")&&name.equals("")){
                 Toast.makeText(getActivity(),"Isi semua field dan check TOS",Toast.LENGTH_SHORT).show();
         }
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-
         RegisterApiInterface registerApiInterface=restAdapter.create(RegisterApiInterface.class);
-
         registerApiInterface.postRegister(username,dob,email, name,new Callback<Register>() {
             @Override
             public void success(Register register, Response response) {

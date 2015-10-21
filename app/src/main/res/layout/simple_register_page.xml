@@ -16,7 +16,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
+        android:id="@+id/usernameRegis"
         android:hint="Username"/>
     </LinearLayout>
     <LinearLayout
@@ -33,7 +33,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
+        android:id="@+id/nameRegis"
         android:hint="Name"/>
     </LinearLayout>
 
@@ -50,7 +50,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dob"
+            android:id="@+id/dobRegis"
             android:inputType="number" />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
+            android:id="@+id/emailRegis"
             android:hint="Email"
             android:inputType="textEmailAddress" />
     </LinearLayout>

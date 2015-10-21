@@ -23,6 +23,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     public static final String  username="username";
     private TextView mUserLogin;
     private Button mAroundMe;
+    private String usernameExtra;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         if(getIntent()!= null && getIntent().getExtras()!=null){
             if(getIntent().getExtras().containsKey(username)){
                 mUserLogin.setText(getIntent().getExtras().getString(username));
+                usernameExtra=mUserLogin.getText().toString();
             }
         }
         mAroundMe= (Button) findViewById(R.id.aroundme);
@@ -76,6 +78,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.aroundme:
                 Intent intentAroundMe=new Intent(this,AroundMeActivity.class);
+                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
                 startActivity(intentAroundMe);
                 break;
         }
