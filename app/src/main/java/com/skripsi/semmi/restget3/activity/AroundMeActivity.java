@@ -17,6 +17,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -160,31 +161,21 @@ public class AroundMeActivity extends FragmentActivity implements
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        final ShowAllUserLocationInterface showAllUserLocation=restAdapter.create(ShowAllUserLocationInterface.class);
+         ShowAllUserLocationInterface showAllUserLocation=restAdapter.create(ShowAllUserLocationInterface.class);
         showAllUserLocation.getLocation(new Callback<List<ShowAllUserLocation>>() {
             @Override
             public void success(List<ShowAllUserLocation> showAllUserLocations, Response response) {
 
-                for(final ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
+                for( ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
+                    // muncul di map kalau lokasi nya ga 0 atau null
                     if(showAllUserLocation1.getLatitude()!=0 || showAllUserLocation1.getLongitude()!=0){
                         MarkerOptions options=new MarkerOptions()
                                 .position(new LatLng(showAllUserLocation1.getLatitude(),showAllUserLocation1.getLongitude()))
-                                .title(showAllUserLocation1.getUsername());
-                        mMap.addMarker(options);
-                        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                            @Override
-                            public boolean onMarkerClick(Marker marker) {
-                                String markerTitle=marker.getTitle();
-                                if(markerTitle.equals(showAllUserLocation1.getUsername())){
-                                    Intent intent1 = new Intent(AroundMeActivity.this, home_activity.class);
-                                    intent1.putExtra(ProfileActivity.username, markerTitle);
-                                    startActivity(intent1);
-                                }
+                                .title(showAllUserLocation1.getUsername())
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_user));
 
-                                // false berarti ga dipake coding yang disini
-                                return true;
-                            }
-                        });
+                        mMap.addMarker(options);
+
                     }
                     Log.d("get Marker", "berhasil GET");
                 }
