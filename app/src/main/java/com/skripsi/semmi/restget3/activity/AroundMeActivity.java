@@ -6,6 +6,7 @@ import android.location.Location;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -39,7 +40,7 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 19/10/2015.
  */
-public class AroundMeActivity extends FragmentActivity implements
+public class AroundMeActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {

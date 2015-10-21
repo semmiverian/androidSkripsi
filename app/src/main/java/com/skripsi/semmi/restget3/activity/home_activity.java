@@ -52,11 +52,20 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             case R.id.action_logout:
                 logoutUser();
                 break;
+            case R.id.action_profile:
+                showUserProfile();
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void showUserProfile() {
+        // fungsi untuk melihat user profile
+        Intent intentProfile=new Intent(this,ProfileActivity.class);
+        startActivity(intentProfile);
+    }
+
     private void logoutUser() {
+        // Hilangkan session yang di simpern di mobile jadi harus login lagi kalau mau masuk ke app
         SharedPreferences sharedPreferences=getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.remove("usernameSession");
@@ -67,6 +76,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
+        // fungsi ketika user ketik back maka akan ke home bukan balik ke tampilan login
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
