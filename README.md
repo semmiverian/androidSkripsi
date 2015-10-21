@@ -12,7 +12,6 @@ LOG 20-10-2015
 - Tracking user Location
 - Implement Maps on Android App
 - Add Marker to Maps
-- 
 
 LOG 21-10-2015
 - Save user latest location to the database
