@@ -60,6 +60,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.action_profile:
                 showUserProfile();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

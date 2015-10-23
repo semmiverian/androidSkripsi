@@ -31,6 +31,7 @@ public class UserProfileFragment extends Fragment {
         mStatus= (TextView) view.findViewById(R.id.usernameStatus);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         mUsername.setText(sharedPreferences.getString("usernameSession","Username" ));
+        mStatus.setText(sharedPreferences.getString("statusSession","Status"));
         return view;
     }
 }
