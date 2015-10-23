@@ -15,10 +15,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/UserProfileImage"
+        android:layout_toEndOf="@id/UserProfileImage"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30sp"/>
     <TextView
         android:id="@+id/usernameStatus"
+        android:layout_toRightOf="@+id/usernameProfile"
+        android:layout_toEndOf="@id/UserProfileImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernameProfile" />
