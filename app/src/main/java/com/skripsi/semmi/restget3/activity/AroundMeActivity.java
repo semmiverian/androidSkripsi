@@ -153,7 +153,7 @@ public class AroundMeActivity extends AppCompatActivity implements
         mMap.addMarker(options);
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         // set camera pake zoom
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 70));
 
     }
 
@@ -169,7 +169,7 @@ public class AroundMeActivity extends AppCompatActivity implements
 
                 for( ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
                     // muncul di map kalau lokasi nya ga 0 atau null
-                    if(showAllUserLocation1.getLatitude()!=0 || showAllUserLocation1.getLongitude()!=0){
+                    if(!usernameFromHome.equals(showAllUserLocation1.getUsername()) && showAllUserLocation1.getLatitude()!=0 && showAllUserLocation1.getLongitude()!=0 ){
                         MarkerOptions options=new MarkerOptions()
                                 .position(new LatLng(showAllUserLocation1.getLatitude(),showAllUserLocation1.getLongitude()))
                                 .title(showAllUserLocation1.getUsername())

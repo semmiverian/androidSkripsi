@@ -1,6 +1,7 @@
 package com.skripsi.semmi.restget3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,4 +25,12 @@ public class MainActivity extends AppCompatActivity  {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, LoginFragment.getInstance()).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        // fungsi ketika user ketik back maka akan ke home bukan balik ke tampilan login
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
 }

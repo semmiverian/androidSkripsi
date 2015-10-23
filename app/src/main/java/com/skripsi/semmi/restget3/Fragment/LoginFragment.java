@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mPassword= (EditText) view.findViewById(R.id.password);
         mForgotPass= (TextView) view.findViewById(R.id.forgotGo);
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-
+        // kalau udah pernah login ga usah masuk ke tampilan login lagi
         if(sharedPreferences.getString("usernameSession",null)!= null){
             Intent intent1 = new Intent(getActivity(), home_activity.class);
             intent1.putExtra(home_activity.username, sharedPreferences.getString("usernameSession",null));
@@ -91,14 +91,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     public void success(Login login, Response response) {
                         // Log.d("sukses",""+login.getKode());
                         if(login.getKode().equals("4")) {
+                            // kalau sukses bakal simpen kaya season ke device
                             editor=sharedPreferences.edit();
                             editor.putString("usernameSession",login.getUsername());
+                            editor.putString("statusSession",login.getStatus());
                             editor.apply();
                             Intent intent1 = new Intent(getActivity(), home_activity.class);
                             intent1.putExtra(home_activity.username, login.getUsername());
+                            intent1.putExtra(home_activity.status, login.getStatus());
                             startActivity(intent1);
                         }else{
-                             Toast.makeText(getActivity(),"Error"+login.getStatus(),Toast.LENGTH_LONG).show();
+                             Toast.makeText(getActivity(),"Error"+login.getInfo(),Toast.LENGTH_LONG).show();
                         }
                     }
 

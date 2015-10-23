@@ -21,18 +21,24 @@ import com.skripsi.semmi.restget3.R;
  */
 public class home_activity extends AppCompatActivity implements View.OnClickListener {
     public static final String  username="username";
+    public static final String  status="status";
     private TextView mUserLogin;
+    private TextView mStatusLogin;
     private Button mAroundMe;
     private String usernameExtra;
+    private String statusExtra;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         mUserLogin= (TextView) findViewById(R.id.userLogin);
+        mStatusLogin= (TextView) findViewById(R.id.statusLogin);
+        // validasi dan ngambil data dari aktivitas login
         if(getIntent()!= null && getIntent().getExtras()!=null){
             if(getIntent().getExtras().containsKey(username)){
                 mUserLogin.setText(getIntent().getExtras().getString(username));
                 usernameExtra=mUserLogin.getText().toString();
+                mStatusLogin.setText(getIntent().getExtras().getString(status));
             }
         }
         mAroundMe= (Button) findViewById(R.id.aroundme);
@@ -69,6 +75,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         SharedPreferences sharedPreferences=getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.remove("usernameSession");
+        editor.remove("statusSession");
         editor.apply();
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);

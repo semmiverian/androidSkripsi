@@ -8,13 +8,15 @@ public class Login {
     private String password;
     private String kode;
     private String status;
+    private String info;
 
     public Login(){}
-    public Login(String username,String password,String kode,String status){
+    public Login(String username,String password,String kode,String status,String info){
         this.username=username;
         this.password=password;
         this.kode=kode;
         this.status=status;
+        this.info=info;
     }
     public String getUsername() {
         return username;
@@ -46,5 +48,13 @@ public class Login {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
