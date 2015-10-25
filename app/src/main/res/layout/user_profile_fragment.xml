@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/UserProfileImage"
@@ -18,7 +18,7 @@
         android:layout_toRightOf="@id/UserProfileImage"
         android:layout_toEndOf="@id/UserProfileImage"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"/>
+        android:textSize="35sp"/>
     <TextView
         android:id="@+id/usernameStatus"
         android:layout_toRightOf="@+id/usernameProfile"
@@ -26,4 +26,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernameProfile" />
+
+        <Button
+            android:id="@+id/messageButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/UserProfileImage"
+            android:background="@color/wallet_highlighted_text_holo_light"
+            android:text="@string/profileMessage"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+           />
+        <Button
+            android:id="@+id/changeProfileImage"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@color/wallet_holo_blue_light"
+            android:text="@string/ProfileImage"
+            android:layout_alignTop="@+id/messageButton"
+            android:layout_alignRight="@+id/usernameProfile"
+            android:layout_alignEnd="@+id/usernameProfile"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/messageButton"
+            android:text="@string/sellProduct"
+            android:textColor="@color/blue"
+            android:textSize="30sp"
+            android:id="@+id/textSell"/>
+        <GridView
+            android:id="@+id/gridSale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textSell"
+            android:numColumns="1"/>
+
+
 </RelativeLayout>

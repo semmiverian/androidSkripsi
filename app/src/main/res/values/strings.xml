@@ -17,4 +17,7 @@
     <string name="aroundme">Around Me</string>
     <string name="profile">Youre Profile</string>
     <string name="avatarDefaultString">http://semmiapi.esy.es/androidapi/upload/usertes.png</string>
+    <string name="profileMessage">Message</string>
+    <string name="ProfileImage">Change Profile Image</string>
+    <string name="sellProduct">Sell Product</string>
 </resources>

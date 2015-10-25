@@ -77,6 +77,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.remove("usernameSession");
         editor.remove("statusSession");
+        editor.remove("imageSession");
         editor.apply();
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
