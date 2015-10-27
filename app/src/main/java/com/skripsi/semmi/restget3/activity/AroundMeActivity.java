@@ -153,8 +153,9 @@ public class AroundMeActivity extends AppCompatActivity implements
         mMap.addMarker(options);
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         // set camera pake zoom
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 70));
 
+        // kaya kalau setiap connect bakal set zoom terus kayak pas lagi di pinch out
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
     }
 
     private void putAllUserMarker() {

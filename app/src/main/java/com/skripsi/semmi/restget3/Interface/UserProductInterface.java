@@ -2,6 +2,8 @@ package com.skripsi.semmi.restget3.Interface;
 
 import com.skripsi.semmi.restget3.Model.Product;
 
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
@@ -13,6 +15,6 @@ import retrofit.http.Part;
 public interface UserProductInterface {
 
     @Multipart
-    @POST("/userProduct.php")
-    void getUserProduct(@Part("username") String username, Callback<Product> callback );
+    @POST("/retrieveProductByUser.php")
+    void getUserProduct(@Part("produkNama") String produkNama, Callback<List<Product>> callback );
 }

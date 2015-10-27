@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout  android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -26,44 +32,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernameProfile" />
-
-        <Button
-            android:id="@+id/messageButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/UserProfileImage"
-            android:background="@color/wallet_highlighted_text_holo_light"
-            android:text="@string/profileMessage"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-           />
-        <Button
-            android:id="@+id/changeProfileImage"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:background="@color/wallet_holo_blue_light"
-            android:text="@string/ProfileImage"
-            android:layout_alignTop="@+id/messageButton"
-            android:layout_alignRight="@+id/usernameProfile"
-            android:layout_alignEnd="@+id/usernameProfile"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
-
+</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/messageButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/wallet_highlighted_text_holo_light"
+                android:text="@string/profileMessage"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                />
+            <Button
+                android:id="@+id/changeProfileImage"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@color/wallet_holo_blue_light"
+                android:text="@string/ProfileImage"
+                android:layout_alignTop="@+id/messageButton"
+               android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/messageButton"
+                android:text="@string/sellProduct"
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:id="@+id/textSell"/>
+            <GridView
+                android:id="@+id/gridSale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textSell"
+                android:numColumns="1"
+                android:verticalSpacing="10dp"/>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/messageButton"
-            android:text="@string/sellProduct"
-            android:textColor="@color/blue"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Start Career"
+            android:textColor="@color/common_signin_btn_default_background"
             android:textSize="30sp"
-            android:id="@+id/textSell"/>
+            android:id="@+id/textCareer"/>
         <GridView
-            android:id="@+id/gridSale"
+            android:id="@+id/gridCareer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textSell"
-            android:numColumns="1"/>
+           android:layout_below="@+id/textCareer"
+            android:numColumns="1"
+            android:verticalSpacing="10dp"/>
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
