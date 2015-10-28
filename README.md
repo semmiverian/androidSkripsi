@@ -22,3 +22,8 @@ Log 24-10-2015
 - Marker map looping will not show if you are the one who login right know
 - Show default image when user click profile (Still not working 100 % )
 - Redesign User Profile interface
+
+Log 27-10-2015
+- Product sale by User List
+- Career start by User List
+
