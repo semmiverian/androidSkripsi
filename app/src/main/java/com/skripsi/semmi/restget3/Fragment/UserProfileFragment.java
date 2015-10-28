@@ -1,6 +1,7 @@
 package com.skripsi.semmi.restget3.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.UploadImageActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
 import com.skripsi.semmi.restget3.view.AnimatedExpandableListView;
@@ -36,7 +38,7 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 21/10/2015.
  */
-public class UserProfileFragment extends Fragment {
+public class UserProfileFragment extends Fragment implements View.OnClickListener {
     private TextView mUsername;
     private TextView mStatus;
     private ImageView mImageView;
@@ -60,6 +62,8 @@ public class UserProfileFragment extends Fragment {
         mUsername= (TextView) view.findViewById(R.id.usernameProfile);
         mStatus= (TextView) view.findViewById(R.id.usernameStatus);
         mImageView= (ImageView) view.findViewById(R.id.UserProfileImage);
+        mButton= (Button) view.findViewById(R.id.changeProfileImage);
+        mButton.setOnClickListener(this);
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         mUsername.setText(sharedPreferences.getString("usernameSession","Username" ).toUpperCase());
@@ -131,5 +135,15 @@ public class UserProfileFragment extends Fragment {
                 Log.d("post Error", "from Career Grid" + error.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.changeProfileImage:
+                Intent uploadImageIntent = new Intent(getActivity(), UploadImageActivity.class);
+                startActivity(uploadImageIntent);
+                break;
+        }
     }
 }

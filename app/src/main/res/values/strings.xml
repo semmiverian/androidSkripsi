@@ -20,4 +20,5 @@
     <string name="profileMessage">Message</string>
     <string name="ProfileImage">Update Image</string>
     <string name="sellProduct">Sell Product</string>
+    <string name="select_picture">selectPicture</string>
 </resources>
