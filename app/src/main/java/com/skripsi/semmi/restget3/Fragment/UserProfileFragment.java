@@ -17,9 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
+import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
+import com.skripsi.semmi.restget3.Interface.UserProfileInterface;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
+import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.UploadImageActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
@@ -48,7 +51,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private GridView mGridView2;
     private UserSaleAdapter mAdapater;
     private UserCareerAdapter mAdapater2;
-
+    private  String user;
     private  SharedPreferences sharedPreferences;
     public static UserProfileFragment getInstance(){
         UserProfileFragment fragment=new UserProfileFragment();
@@ -58,6 +61,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view=inflater.inflate(R.layout.user_profile_fragment, container, false);
         mUsername= (TextView) view.findViewById(R.id.usernameProfile);
         mStatus= (TextView) view.findViewById(R.id.usernameStatus);
@@ -67,11 +71,31 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         mUsername.setText(sharedPreferences.getString("usernameSession","Username" ).toUpperCase());
-        mStatus.setText(sharedPreferences.getString("statusSession","Status"));
-        imageLink=sharedPreferences.getString("imageSession",defaultImage);
-        Picasso.with(getContext())
-                .load(imageLink)
-                .into(mImageView);
+        mStatus.setText(sharedPreferences.getString("statusSession", "Status"));
+        user=sharedPreferences.getString("usernameSession","Username");
+        // set User profile tergantung foto yang dipilih user
+        RestAdapter restAdapter3=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        UserImageInterface userImageInterface=restAdapter3.create(UserImageInterface.class);
+        userImageInterface.getUserImage(user, new Callback<UserImage>() {
+            @Override
+            public void success(UserImage userImage, Response response) {
+                Log.d("sukses", "berhasil feed image");
+                imageLink = userImage.getImage();
+                Log.d("image", userImage.getImage());
+                Picasso.with(getContext())
+                        .load(imageLink)
+                        .into(mImageView);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("post Error", "feed image error" + error.getMessage());
+            }
+        });
+        // imageLink=sharedPreferences.getString("imageSession", defaultImage);
+
         return view;
     }
 
@@ -85,7 +109,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String user=sharedPreferences.getString("usernameSession","Username");
+        user=sharedPreferences.getString("usernameSession","Username");
         // REST untuk ambil produk yang di jual user
         mAdapater=new UserSaleAdapter(getContext(),1);
         mGridView.setAdapter(mAdapater);
@@ -128,6 +152,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 for(Career career:careers){
                     mAdapater2.add(career);
                 }
+                mAdapater2.notifyDataSetChanged();
             }
 
             @Override
