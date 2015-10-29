@@ -10,7 +10,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload Image"
+        android:text="Choose Image"
         android:id="@+id/UploadImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -27,4 +27,20 @@
         android:layout_alignLeft="@+id/UploadImage"
         android:layout_alignStart="@+id/UploadImage"
         android:layout_marginTop="45dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:id="@+id/postImage"
+        android:layout_alignBottom="@+id/UploadImage"
+        android:layout_toRightOf="@+id/previewImage"
+        android:layout_toEndOf="@+id/previewImage" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_above="@+id/postImage"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
