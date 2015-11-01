@@ -27,3 +27,7 @@ Log 27-10-2015
 - Product sale by User List
 - Career start by User List
 
+Log 29-10-2015
+- User Profile with Image Upload and Show are done
+- tag v.0.1.0 Released
+
