@@ -73,6 +73,10 @@
         <activity android:name=".activity.UploadImageActivity"
             android:label="Change Profile Picture"
             android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activity.CareerActivity"
+            android:label="Career List"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

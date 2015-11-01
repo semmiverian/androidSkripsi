@@ -25,6 +25,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private TextView mUserLogin;
     private TextView mStatusLogin;
     private Button mAroundMe;
+    private Button mCareer;
     private String usernameExtra;
     private String statusExtra;
     @Override
@@ -42,7 +43,9 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             }
         }
         mAroundMe= (Button) findViewById(R.id.aroundme);
+        mCareer= (Button) findViewById(R.id.careerButton);
         mAroundMe.setOnClickListener(this);
+        mCareer.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +103,13 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
                 startActivity(intentAroundMe);
                 break;
+            case R.id.careerButton:
+                Intent intentCareer=new Intent(this,CareerActivity.class);
+//                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
+                startActivity(intentCareer);
+                break;
         }
+
+
     }
 }
