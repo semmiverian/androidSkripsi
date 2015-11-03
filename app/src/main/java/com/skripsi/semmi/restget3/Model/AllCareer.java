@@ -7,47 +7,34 @@ import android.os.Parcelable;
  * Created by semmi on 01/11/2015.
  */
 public class AllCareer implements Parcelable {
-    private String nama;
-    private String detail;
-    private String image;
+    private String karirnama;
+    private String karirdetail;
+    private String karirImage;
+    private String karirCreate;
+    private String userName;
+    private String userImage;
 
     public AllCareer(){
 
     }
-    public AllCareer(String nama, String detail, String image){
-        this.nama=nama;
-        this.detail=detail;
-        this.image=image;
+    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage){
+        this.karirnama=karirnama;
+        this.karirdetail=karirdetail;
+        this.karirImage=karirImage;
+        this.karirCreate=karirCreate;
+        this.userName=userName;
+        this.userImage=userImage;
     }
 
     public AllCareer(Parcel source){
-        nama=source.readString();
-        detail=source.readString();
-        image=source.readString();
-    }
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
+        karirnama=source.readString();
+        karirdetail=source.readString();
+        karirImage=source.readString();
+        karirCreate=source.readString();
+        userName=source.readString();
+        userImage=source.readString();
     }
 
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     @Override
     public int describeContents() {
@@ -57,20 +44,32 @@ public class AllCareer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         applyDefaultValues();
-        dest.writeString(nama);
-        dest.writeString(detail);
-        dest.writeString(image);
+        dest.writeString(karirnama);
+        dest.writeString(karirdetail);
+        dest.writeString(karirImage);
+        dest.writeString(karirCreate);
+        dest.writeString(userName);
+        dest.writeString(userImage);
     }
 
     private void applyDefaultValues() {
-        if(nama==null){
-            nama="";
+        if(karirnama==null){
+            karirnama="";
         }
-        if(detail==null){
-            detail="";
+        if(karirdetail==null){
+            karirdetail="";
         }
-        if(image==null){
-            image="";
+        if(karirImage==null){
+            karirImage="";
+        }
+        if(karirCreate==null){
+            karirCreate="";
+        }
+        if(userName==null){
+            userName="";
+        }
+        if(userImage==null){
+            userImage="";
         }
     }
 
@@ -85,4 +84,53 @@ public class AllCareer implements Parcelable {
             return new AllCareer[size];
         }
     };
+
+
+      public String getKarirnama() {
+        return karirnama;
+    }
+
+    public void setKarirnama(String karirnama) {
+        this.karirnama = karirnama;
+    }
+
+    public String getKarirdetail() {
+        return karirdetail;
+    }
+
+    public void setKarirdetail(String karirdetail) {
+        this.karirdetail = karirdetail;
+    }
+
+    public String getKarirImage() {
+        return karirImage;
+    }
+
+    public void setKarirImage(String karirImage) {
+        this.karirImage = karirImage;
+    }
+
+    public String getKarirCreate() {
+        return karirCreate;
+    }
+
+    public void setKarirCreate(String karirCreate) {
+        this.karirCreate = karirCreate;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
 }

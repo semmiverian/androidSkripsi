@@ -26,13 +26,18 @@ public class CareerDetailActivity extends AppCompatActivity {
         TextView judul= (TextView) findViewById(R.id.careerJudul);
         TextView detail= (TextView) findViewById(R.id.carerDetail);
         ImageView gambar= (ImageView) findViewById(R.id.careerImage);
-
+        ImageView profilepict = (ImageView) findViewById(R.id.imageProfile);
+        TextView user = (TextView) findViewById(R.id.userNameCareer);
         //  ambil data dari server terus di tampilin
-        judul.setText(allCareer.getNama());
-        detail.setText(allCareer.getDetail());
+        judul.setText(allCareer.getKarirnama());
+        detail.setText(allCareer.getKarirdetail());
         Picasso.with(this)
-                .load(allCareer.getImage())
+                .load(allCareer.getKarirImage())
                 .into(gambar);
+        user.setText(allCareer.getUserName());
+        Picasso.with(this)
+                .load(allCareer.getUserImage())
+                .into(profilepict);
 
     }
 }

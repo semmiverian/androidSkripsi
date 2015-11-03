@@ -37,10 +37,10 @@ public class AllCareerAdapater extends ArrayAdapter<AllCareer> {
             holder= (ViewHolder) convertView.getTag();
         }
         // masukin data yang diambil biar bisa ditampilin di aplikasi
-        holder.judulCareer.setText(getItem(position).getNama());
-        holder.deskripsiCareer.setText(getItem(position).getDetail());
+        holder.judulCareer.setText(getItem(position).getKarirnama());
+        holder.deskripsiCareer.setText(getItem(position).getKarirdetail());
         Picasso.with(getContext())
-                .load(getItem(position).getImage())
+                .load(getItem(position).getKarirImage())
                 .into(holder.careerImage);
         return convertView;
     }

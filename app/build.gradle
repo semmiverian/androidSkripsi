@@ -28,4 +28,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:23.1.0'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 }

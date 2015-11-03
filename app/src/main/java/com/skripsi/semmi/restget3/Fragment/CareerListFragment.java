@@ -50,7 +50,7 @@ public class CareerListFragment extends ListFragment {
                     // parse data yang diambil dari server ke adapter
                     // dari adapter nanti bakal ditampilin ke aplikasi
                     mAdapater.add(allCareer);
-                    Log.d("Sukses",allCareer.getNama());
+                    Log.d("Sukses",allCareer.getKarirnama());
                 }
                 // pasang ini biar bisa nge detek kalau ada data yang berubah
                 mAdapater.notifyDataSetChanged();
