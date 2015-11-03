@@ -77,6 +77,9 @@
         <activity android:name=".activity.CareerActivity"
             android:label="Career List"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.CareerDetailActivity"
+            android:label="Career"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

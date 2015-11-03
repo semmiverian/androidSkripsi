@@ -21,7 +21,9 @@ public class AllCareer implements Parcelable {
     }
 
     public AllCareer(Parcel source){
-
+        nama=source.readString();
+        detail=source.readString();
+        image=source.readString();
     }
     public String getNama() {
         return nama;

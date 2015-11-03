@@ -2,6 +2,7 @@ package com.skripsi.semmi.restget3.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 
 import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
 import com.skripsi.semmi.restget3.R;
@@ -22,4 +23,11 @@ public class CareerActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, CareerListFragment.getInstance()).commit();
     }
 
+    // bikin aksi di action bar
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_career,menu);
+        return true;
+    }
 }
