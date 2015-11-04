@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
 
@@ -59,7 +61,25 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         int id=item.getItemId();
         switch (id){
             case R.id.action_logout:
-                logoutUser();
+                new MaterialDialog.Builder(this)
+                        .title("Logout")
+                        .content("Apa anda yakin ingin keluar")
+                        .positiveText("ya")
+                        .negativeText("tidak")
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                logoutUser();
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                materialDialog.dismiss();
+                            }
+                        })
+                        .show();
+
                 break;
             case R.id.action_profile:
                 showUserProfile();

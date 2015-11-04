@@ -80,6 +80,9 @@
         <activity android:name=".activity.CareerDetailActivity"
             android:label="Career"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.AddNewCareerActivity"
+            android:label="Add New Career"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

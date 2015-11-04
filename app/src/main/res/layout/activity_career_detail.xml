@@ -21,8 +21,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <com.github.siyamed.shapeimageview.CircularImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:id="@+id/imageProfile"
                         app:siBorderWidth="1dp"
                         app:siBorderColor="@color/colorPrimaryDarkRegister"/>
