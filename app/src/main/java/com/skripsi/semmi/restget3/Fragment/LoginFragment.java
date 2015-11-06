@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.LoginApiInterface;
 import com.skripsi.semmi.restget3.Model.Login;
 import com.skripsi.semmi.restget3.R;
@@ -36,6 +38,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private EditText mPassword;
     private TextView mForgotPass;
     private  SharedPreferences sharedPreferences;
+    private  MaterialDialog dialog;
     private SharedPreferences.Editor editor;
     public static LoginFragment getInstance(){
         LoginFragment fragment=new LoginFragment();
@@ -80,6 +83,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent, 102);
                 break;
             case R.id.loginGo:
+                // buat sebuah dialog bar biar bisa ngasih tau user apa yang sedang terjadi
+
+                 dialog = new MaterialDialog.Builder(getActivity())
+                        .title("Proses")
+                        .content("Connecting to server")
+                        .progress(true,0)
+                        .show();
                 String username=mUsername.getText().toString();
                 String password=mPassword.getText().toString();
                 RestAdapter restAdapter=new RestAdapter.Builder()
@@ -91,7 +101,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     public void success(Login login, Response response) {
                         // Log.d("sukses",""+login.getKode());
                         if(login.getKode().equals("4")) {
+//                             dialog.dismiss();
+
+                            dialog.setContent("Berhasil Log in");
                             // kalau sukses bakal simpen kaya season ke device
+
                             editor=sharedPreferences.edit();
                             editor.putString("usernameSession",login.getUsername());
                             editor.putString("statusSession",login.getStatus());
@@ -102,6 +116,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             intent1.putExtra(home_activity.status, login.getStatus());
                             startActivity(intent1);
                         }else{
+                            dialog.dismiss();
                              Toast.makeText(getActivity(),"Error"+login.getInfo(),Toast.LENGTH_LONG).show();
                         }
                     }

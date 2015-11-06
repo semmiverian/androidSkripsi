@@ -3,6 +3,7 @@ package com.skripsi.semmi.restget3.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private TextView mStatusLogin;
     private Button mAroundMe;
     private Button mCareer;
+    private Button mDummy;
     private String usernameExtra;
     private String statusExtra;
     @Override
@@ -46,8 +48,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         }
         mAroundMe= (Button) findViewById(R.id.aroundme);
         mCareer= (Button) findViewById(R.id.careerButton);
+        mDummy= (Button) findViewById(R.id.dummybutton);
         mAroundMe.setOnClickListener(this);
         mCareer.setOnClickListener(this);
+        mDummy.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +70,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                         .content("Apa anda yakin ingin keluar")
                         .positiveText("ya")
                         .negativeText("tidak")
+//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
@@ -128,8 +133,24 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 //                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
                 startActivity(intentCareer);
                 break;
+            case R.id.dummybutton:
+                progressBar();
+                break;
         }
 
 
     }
+
+    private void progressBar() {
+        // Create and show a non-indeterminate dialog with a max value of 150
+        // If the showMinMax parameter is true, a min/max ratio will be shown to the left of the seek bar.
+//        boolean showMinMax = true;
+        MaterialDialog dialog = new MaterialDialog.Builder(this)
+                .title("loading")
+                .content("sabar gan")
+                .progress(true,200)
+                .show();
+    }
+
+
 }

@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.RegisterApiInterface;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.Model.Register;
@@ -38,6 +39,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private String dob;
     private String email;
     private String name;
+    private MaterialDialog dialog;
     public static RegisterFragment getInstance(){
         RegisterFragment fragment=new RegisterFragment();
         return fragment;
@@ -60,14 +62,16 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
+        dialog = new MaterialDialog.Builder(getActivity())
+                .title("Proses")
+                .content("Connecting to server")
+                .progress(true,0)
+                .show();
         username=mUsername.getText().toString();
         dob=mDob.getText().toString();
         email=mEmail.getText().toString();
         name=mName.getText().toString();
-        if(!mCheckBox.isSelected()&& username.equals("") && dob.equals("")&&email.equals("")&&name.equals("")){
-                Toast.makeText(getActivity(),"Isi semua field dan check TOS",Toast.LENGTH_SHORT).show();
-        }
+
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -76,14 +80,22 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             @Override
             public void success(Register register, Response response) {
                //  Log.d("sukses","alhamdulillah");
-                if(register.getKode().equals("1")){
+                if(!mCheckBox.isSelected()&& username.equals("") && dob.equals("")&&email.equals("")&&name.equals("")){
+                    Toast.makeText(getActivity(),"Isi semua field dan check TOS",Toast.LENGTH_SHORT).show();
+                    dialog.setContent("Gagal Register");
+                    dialog.dismiss();
+                }
+                else if(register.getKode().equals("1")){
                     mUsername.setText("");
                     mDob.setText("");
                     mEmail.setText("");
                     mName.setText("");
+                    dialog.setContent("Gagal Register");
+                    dialog.dismiss();
                     Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();
                 }else{
                     Log.d("status",register.getStatus());
+                    dialog.setContent("Sukses Register");
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();

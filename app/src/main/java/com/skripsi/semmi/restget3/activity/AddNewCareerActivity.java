@@ -45,6 +45,7 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
     private Button submit;
     private int upload_code=1;
     private  Uri uri;
+    private  TypedFile typedFile;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -76,17 +77,22 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
             case R.id.submitNewCareer:
                 // ambil real path dari image yang dipilih
                 String imagePath=null;
-                Cursor cursor = this.getContentResolver().query(
-                        uri, null, null, null, null);
-                if (cursor == null) {
-                    imagePath = uri.getPath();
-                } else {
-                    cursor.moveToFirst();
-                    int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                    imagePath = cursor.getString(idx);
+                if(uri != null){
+                    Cursor cursor = this.getContentResolver().query(
+                            uri, null, null, null, null);
+                    if (cursor == null) {
+                        imagePath = uri.getPath();
+                    } else {
+                        cursor.moveToFirst();
+                        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                        imagePath = cursor.getString(idx);
+                    }
+                    typedFile=new TypedFile("multipart/form-data",new File(imagePath ));
+                }else{
+                    if(imagePath==null){
+                        typedFile=null;
+                    }
                 }
-
-                TypedFile typedFile=new TypedFile("multipart/form-data",new File(imagePath ));
                 String username=sharedPreferences.getString("usernameSession", "Username");
                 String judul=addJudulKarir.getText().toString();
                 String detail=addDeskKarir.getText().toString();
@@ -114,6 +120,9 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
         super.onActivityResult(requestCode, resultCode, data);
 
         uri=data.getData();
+        // kalau ga ada image yang dipilih bakal tampilin null
+        if(uri== null)
+            return;
         if(requestCode==upload_code){
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
