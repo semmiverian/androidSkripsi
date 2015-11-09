@@ -21,12 +21,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
+import com.skripsi.semmi.restget3.Interface.AllCareerInterface;
 import com.skripsi.semmi.restget3.Interface.NewCareerInterface;
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.NewCareer;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.adapter.AllCareerAdapater;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -47,6 +53,8 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
     private  Uri uri;
     private  TypedFile typedFile;
     private SharedPreferences sharedPreferences;
+    private  MaterialDialog dialog;
+    private AllCareerAdapater mAdapater;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +83,12 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
                 startActivityForResult(intent, upload_code);
                 break;
             case R.id.submitNewCareer:
+                // pasang dialog
+                 dialog = new MaterialDialog.Builder(this)
+                        .title("Proses")
+                        .content("Connecting to server")
+                        .progress(true,0)
+                        .show();
                 // ambil real path dari image yang dipilih
                 String imagePath=null;
                 if(uri != null){
@@ -89,10 +103,16 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
                     }
                     typedFile=new TypedFile("multipart/form-data",new File(imagePath ));
                 }else{
+                    // kalau ga ada gambar yang dipilih maka bakal set jadi null
+                    // gambar bakal dipasang gambar default yang sebelumnya udah di simpan di server
                     if(imagePath==null){
                         typedFile=null;
                     }
                 }
+
+                // define adapter
+                mAdapater=new AllCareerAdapater(this,0);
+
                 String username=sharedPreferences.getString("usernameSession", "Username");
                 String judul=addJudulKarir.getText().toString();
                 String detail=addDeskKarir.getText().toString();
@@ -103,7 +123,13 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
                 newCareerInterface.postCareer(username,judul,detail,typedFile,new Callback<NewCareer>() {
                     @Override
                     public void success(NewCareer newCareer, Response response) {
+                        dialog.setContent("Sukses Add Data");
                         Toast.makeText(AddNewCareerActivity.this,""+newCareer.getInfo(),Toast.LENGTH_SHORT).show();
+                        Intent intentCareer= new Intent(AddNewCareerActivity.this, CareerActivity.class);
+                        intentCareer.putExtra(CareerActivity.refresh_code, "3");
+                        startActivity(intentCareer);
+                        CareerListFragment clf =  new CareerListFragment();
+
                     }
 
                     @Override
@@ -115,9 +141,15 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+
+
 
         uri=data.getData();
         // kalau ga ada image yang dipilih bakal tampilin null
@@ -135,6 +167,10 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
 
     }
 
+
+
+    // Dont Bother this part
+    // Just a way to do something
     // ngambil nama data yang dipilih oleh user jika user menggunakan API diatas 19
     public static String getPath(final Context context, final Uri uri) {
 

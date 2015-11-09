@@ -30,6 +30,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private Button mAroundMe;
     private Button mCareer;
     private Button mDummy;
+    private Button allUser;
     private String usernameExtra;
     private String statusExtra;
     @Override
@@ -49,9 +50,11 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         mAroundMe= (Button) findViewById(R.id.aroundme);
         mCareer= (Button) findViewById(R.id.careerButton);
         mDummy= (Button) findViewById(R.id.dummybutton);
+        allUser= (Button) findViewById(R.id.allUserButton);
         mAroundMe.setOnClickListener(this);
         mCareer.setOnClickListener(this);
         mDummy.setOnClickListener(this);
+        allUser.setOnClickListener(this);
     }
 
     @Override
@@ -135,6 +138,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.dummybutton:
                 progressBar();
+                break;
+            case R.id.allUserButton:
+                Intent intentUser = new Intent(this, AllUserActivity.class);
+                startActivity(intentUser);
                 break;
         }
 

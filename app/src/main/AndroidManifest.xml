@@ -83,6 +83,9 @@
         <activity android:name=".activity.AddNewCareerActivity"
             android:label="Add New Career"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.AllUserActivity"
+            android:label="All User"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
