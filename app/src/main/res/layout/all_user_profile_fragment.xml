@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout  android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/UserProfileImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    <TextView
+        android:id="@+id/usernameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/UserProfileImage"
+        android:layout_toEndOf="@id/UserProfileImage"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="35sp"/>
+    <TextView
+        android:id="@+id/usernameStatus"
+        android:layout_toRightOf="@+id/usernameProfile"
+        android:layout_toEndOf="@id/UserProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameProfile" />
+</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/messageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/wallet_highlighted_text_holo_light"
+                android:text="@string/profileMessage"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/messageButton"
+                android:text="@string/sellProduct"
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:id="@+id/textSell"/>
+            <GridView
+                android:id="@+id/gridSale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textSell"
+                android:numColumns="1"
+                android:verticalSpacing="10dp"/>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Start Career"
+            android:textColor="@color/common_signin_btn_default_background"
+            android:textSize="30sp"
+            android:id="@+id/textCareer"/>
+        <GridView
+            android:id="@+id/gridCareer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_below="@+id/textCareer"
+            android:numColumns="1"
+            android:verticalSpacing="10dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

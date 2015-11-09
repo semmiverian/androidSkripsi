@@ -1,14 +1,18 @@
 package com.skripsi.semmi.restget3.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 import com.skripsi.semmi.restget3.Interface.AllUserInterface;
 import com.skripsi.semmi.restget3.Model.AllUser;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.AllUserProfile;
 import com.skripsi.semmi.restget3.adapter.AllUserAdapter;
 
 import java.util.List;
@@ -70,5 +74,13 @@ public class AllUserFragment extends ListFragment {
                 Log.d("get Error", "from Retrofit" + error.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent(getActivity(), AllUserProfile.class);
+        intent.putExtra(AllUserProfile.extra,mAdapter.getItem(position));
+        startActivity(intent);
     }
 }

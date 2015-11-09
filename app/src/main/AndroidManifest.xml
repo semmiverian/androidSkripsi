@@ -86,6 +86,10 @@
         <activity android:name=".activity.AllUserActivity"
             android:label="All User"
             android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activity.AllUserProfile"
+            android:label="User Profile"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
