@@ -110,6 +110,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             editor.putString("usernameSession",login.getUsername());
                             editor.putString("statusSession",login.getStatus());
                             editor.putString("imageSession",login.getImage());
+                            editor.putInt("idSession",login.getId());
                             editor.apply();
                             Intent intent1 = new Intent(getActivity(), home_activity.class);
                             intent1.putExtra(home_activity.username, login.getUsername());

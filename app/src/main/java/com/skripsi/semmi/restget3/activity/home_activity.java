@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +56,8 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         mCareer.setOnClickListener(this);
         mDummy.setOnClickListener(this);
         allUser.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -109,6 +112,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         editor.remove("usernameSession");
         editor.remove("statusSession");
         editor.remove("imageSession");
+        editor.remove("idSession");
         editor.apply();
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -10,15 +10,17 @@ public class Login {
     private String status;
     private String info;
     private String image;
+    private int id;
 
     public Login(){}
-    public Login(String username,String password,String kode,String status,String info,String image){
+    public Login(String username,String password,String kode,String status,String info,String image,int id){
         this.username=username;
         this.password=password;
         this.kode=kode;
         this.status=status;
         this.info=info;
         this.image=image;
+        this.id=id;
     }
     public String getUsername() {
         return username;
@@ -66,5 +68,14 @@ public class Login {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

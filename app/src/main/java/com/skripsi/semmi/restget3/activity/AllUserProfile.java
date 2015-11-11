@@ -1,10 +1,13 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,16 +36,17 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 09/11/2015.
  */
-public class AllUserProfile extends AppCompatActivity {
+public class AllUserProfile extends AppCompatActivity implements View.OnClickListener {
     private TextView mUsername;
     private TextView mStatus;
     private ImageView mImageView;
-
+    private Button mButton;
 
     private GridView mGridView;
     private GridView mGridView2;
     private UserSaleAdapter mAdapater;
     private UserCareerAdapter mAdapater2;
+    private int to_id;
     public static final String extra="extra";
     private String userName;
     private String userImage;
@@ -56,6 +60,8 @@ public class AllUserProfile extends AppCompatActivity {
         mImageView= (ImageView) findViewById(R.id.UserProfileImage);
         mGridView= (GridView) findViewById(R.id.gridSale);
         mGridView2= (GridView) findViewById(R.id.gridCareer);
+        mButton = (Button) findViewById(R.id.messageButton);
+
 
         // ambil data yang udah di parse dari list fragment
         AllUser allUser= getIntent().getExtras().getParcelable(extra);
@@ -66,9 +72,10 @@ public class AllUserProfile extends AppCompatActivity {
                 .load(allUser.getImage())
                 .into(mImageView);
         userName=allUser.getUsername();
+        to_id=allUser.getId();
         getUserProductInfo(userName);
         getCareerInfo(userName);
-
+        mButton.setOnClickListener(this);
 
     }
 
@@ -128,6 +135,15 @@ public class AllUserProfile extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.messageButton:
 
-
+                Intent intentMessage = new Intent(this, MessageActivity.class);
+                intentMessage.putExtra(MessageActivity.to_id,to_id);
+                startActivity(intentMessage);
+                break;
+        }
+    }
 }

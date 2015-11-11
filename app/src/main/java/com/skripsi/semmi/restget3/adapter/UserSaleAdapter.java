@@ -21,6 +21,7 @@ public class UserSaleAdapter extends ArrayAdapter<Product>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+
         if(convertView==null){
             holder = new ViewHolder();
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.sale_product_user,parent,false);

@@ -11,16 +11,18 @@ public class AllUser  implements Parcelable{
     private String image;
     private String nama;
     private String status;
+    private int id;
 
     public AllUser(){
 
     }
 
-    public AllUser(String username, String image, String nama, String status ){
+    public AllUser(String username, String image, String nama, String status, int id ){
         this.username= username;
         this.image = image;
         this.nama = nama;
         this.status= status;
+        this.id = id;
     }
 
     public AllUser(Parcel source){
@@ -28,6 +30,7 @@ public class AllUser  implements Parcelable{
         image=source.readString();
         nama=source.readString();
         status=source.readString();
+        id= source.readInt();
     }
 
     public String getUsername() {
@@ -74,6 +77,7 @@ public class AllUser  implements Parcelable{
         dest.writeString(image);
         dest.writeString(nama);
         dest.writeString(status);
+        dest.writeInt(id);
     }
 
     private void defaultValues() {
@@ -89,6 +93,7 @@ public class AllUser  implements Parcelable{
         if(status == null){
             status="";
         }
+
     }
 
     public static Creator<AllUser> CREATOR = new Creator<AllUser>() {
@@ -102,4 +107,12 @@ public class AllUser  implements Parcelable{
             return new AllUser[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
