@@ -13,8 +13,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.skripsi.semmi.restget3.Interface.PostMessageInterface;
 import com.skripsi.semmi.restget3.Interface.getMessageInterface;
 import com.skripsi.semmi.restget3.Model.Message;
+import com.skripsi.semmi.restget3.Model.PostMessage;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.MessageAdapter;
 
@@ -35,17 +37,18 @@ public class MessageActivity extends AppCompatActivity  {
     private Button buttonSend;
     private MessageAdapter mAdapater;
     private ArrayList<Message> mMessage;
-    private Handler handler = new Handler();
     public static final String to_id= "0";
     private int from_id;
     private SharedPreferences sharedPreferences;
+    private Handler handler;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         sharedPreferences=getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         from_id= sharedPreferences.getInt("idSession", 0);
-        mAdapater= new MessageAdapter(this,0,61);
+        int to_id_user= getIntent().getExtras().getInt(to_id);
+        mAdapater= new MessageAdapter(this,from_id);
         listView= (ListView) findViewById(R.id.listviewChat);
         listView.setAdapter(mAdapater);
         messageInput= (EditText) findViewById(R.id.messageInput);
@@ -58,27 +61,63 @@ public class MessageActivity extends AppCompatActivity  {
             }
         });
         receiveMessage();
+
+        handler = new Handler();
+        handler.postDelayed(runnable,1000);
     }
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            receiveMessage();
+            handler.postDelayed(this,1000);
+        }
+    };
 
 
 
     private void postMessage() {
-        // TODO: 10/11/2015  Send message to Server and Ask to refresh the list view
+        //   Send message to Server and Ask to refresh the list view
         if(!messageInput.getText().toString().equals("")){
+            //   Set some callback after post message
+            int to_id_user= getIntent().getExtras().getInt(to_id);
+            int from_id_user=sharedPreferences.getInt("idSession", 61);
             String messageContent = messageInput.getText().toString();
-            // TODO: 10/11/2015  PUT some Callback to retrofit with post method
+            RestAdapter restAdapter=new RestAdapter.Builder()
+                    .setEndpoint(getString(R.string.api))
+                    .build();
+            PostMessageInterface pmi = restAdapter.create(PostMessageInterface.class);
+            pmi.postMessage(from_id_user, to_id_user, messageContent, new Callback<PostMessage>() {
+                @Override
+                public void success(PostMessage postMessage, Response response) {
+                    // TODO: 11/11/2015 Notified the receiver when receiving a new message
+                    receiveMessage();
+                    messageInput.setText("");
+                    mAdapater.clear();
+                    Log.d("berhasil","post"+postMessage.getInfo());
+                }
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.d("message post Error", "from Retrofit" + error.getMessage());
+                }
+            });
+
         }else{
             Toast.makeText(this,"Empty Message",Toast.LENGTH_SHORT).show();
         }
-        receiveMessage();
+
     }
 
+
+
     private void receiveMessage() {
-        // TODO: 10/11/2015 Reset LISTVIEW with the latest data get from the server
+        // Ngambil data yang ada di server dengan syarat yang sudah ditentukan
+        // bakal nge reset data yang sudah ada di listview dengan barisan data yang baru
+
         if(getIntent()!= null && getIntent().getExtras()!=null){
             if(getIntent().getExtras().containsKey(to_id)){
                 int to_id_user= getIntent().getExtras().getInt(to_id);
-                int from_id_user=sharedPreferences.getInt("idSession", 61);
+                int from_id_user=sharedPreferences.getInt("idSession", 0);
                 Log.d("to_id", ""+getIntent().getExtras().getInt(to_id));
                 Log.d("from_id", String.valueOf(from_id_user));
                 RestAdapter restAdapter=new RestAdapter.Builder()
@@ -88,15 +127,18 @@ public class MessageActivity extends AppCompatActivity  {
                 gmi.getMessage(from_id_user, to_id_user, new Callback<List<Message>>() {
                     @Override
                     public void success(List<Message> messages, Response response) {
-
+                        mAdapater.clear();
                         for(Message message : messages){
-                            mAdapater.clear();
                             mAdapater.add(message);
                             mAdapater.notifyDataSetChanged();
                             listView.invalidate();
-                            Log.d("message",message.getPesan());
+                            // biar bisa nampilin data yang paling baru
+                            listView.setSelection(mAdapater.getCount() -1);
+//                            Log.d("message",message.getPesan());
+//                            Log.d("to Image",message.getTo_image());
+//                            Log.d("from Image",message.getFrom_image());
                         }
-                        Log.d("tag", "Not Doing Anything");
+
                     }
 
                     @Override

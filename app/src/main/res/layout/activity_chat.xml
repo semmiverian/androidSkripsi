@@ -8,6 +8,8 @@
         android:layout_height="wrap_content"
         android:transcriptMode="alwaysScroll"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="60dp"
+
        />
 
     <RelativeLayout

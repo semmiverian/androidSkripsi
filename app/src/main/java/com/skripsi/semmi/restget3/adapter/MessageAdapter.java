@@ -19,8 +19,8 @@ import com.squareup.picasso.Picasso;
 public class MessageAdapter extends ArrayAdapter<Message> {
     private int mUserID;
 
-    public MessageAdapter(Context context, int resource, int currentUserId ) {
-        super(context, resource, 0);
+    public MessageAdapter(Context context, int currentUserId) {
+        super(context, 0);
         mUserID=currentUserId;
 
     }
@@ -46,20 +46,24 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         // kalau user lain gambar kanan yang muncul
         // tempat message diatur kanan kiri tergantung user
         if(mUserID == getItem(position).getFrom_id()){
-            holder.receiveMessageImage.setVisibility(View.GONE);
-            holder.sendMessageImage.setVisibility(View.VISIBLE);
+            holder.receiveMessageImage.setVisibility(ImageView.GONE);
+            holder.sendMessageImage.setVisibility(ImageView.VISIBLE);
             holder.messageContent.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+
             Picasso.with(getContext())
                     .load(getItem(position).getFrom_image())
                     .into(holder.sendMessageImage);
-        }else{
-            holder.receiveMessageImage.setVisibility(View.VISIBLE);
-            holder.sendMessageImage.setVisibility(View.GONE);
+        }else {
+            holder.receiveMessageImage.setVisibility(ImageView.VISIBLE);
+            holder.sendMessageImage.setVisibility(ImageView.GONE);
             holder.messageContent.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-            Picasso.with(getContext())
-                    .load(getItem(position).getTo_image())
-                    .into(holder.receiveMessageImage);
+             Picasso.with(getContext())
+                     .load(getItem(position).getFrom_image())
+                     .into(holder.receiveMessageImage);
         }
+
+
+
             holder.messageContent.setText(getItem(position).getPesan());
         return convertView;
     }
