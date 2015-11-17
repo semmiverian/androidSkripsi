@@ -65,7 +65,9 @@
 
         <activity android:name=".activity.home_activity"
             android:label="@string/homePage"
-            android:theme="@style/HomeTheme"/>
+            android:theme="@style/HomeTheme"
+            android:clearTaskOnLaunch="true"
+            android:noHistory="true"/>
         <activity android:name=".activity.AroundMeActivity"
             android:label="@string/aroundme"
             android:theme="@style/AppTheme"/>
