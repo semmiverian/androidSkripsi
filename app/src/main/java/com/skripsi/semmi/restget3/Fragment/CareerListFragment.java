@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.AllCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
@@ -110,6 +112,18 @@ public class CareerListFragment extends ListFragment  {
             @Override
             public void failure(RetrofitError error) {
                 Log.d("get Error", "from Retrofit" + error.getMessage());
+                new MaterialDialog.Builder(getActivity())
+                        .title("Something went wrong")
+                        .content("Mohon maaf terjadi kesalahan pada penampilan data")
+                        .positiveText("Muat ulang")
+//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                getCareerData();
+                            }
+                        })
+                        .show();
             }
         });
     }
