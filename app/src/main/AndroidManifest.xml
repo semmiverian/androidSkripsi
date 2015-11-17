@@ -28,12 +28,23 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity android:name=".MainActivity" >
+
+        <activity android:name=".activity.SplashScreen"
+            android:label="Alumni Space"
+            android:theme="@style/SplashScreen"
+            android:clearTaskOnLaunch="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme"
+            android:clearTaskOnLaunch="true"
+            android:noHistory="true">
         </activity>
         <activity android:name=".activity.RegisterActivity"
             android:theme="@style/RegisterTheme"

@@ -22,4 +22,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkHome</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!--Style buat splash screen-->
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar"/>
 </resources>
