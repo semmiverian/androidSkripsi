@@ -43,8 +43,7 @@
 
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme"
-            android:clearTaskOnLaunch="true"
-            android:noHistory="true">
+            android:clearTaskOnLaunch="true">
         </activity>
         <activity android:name=".activity.RegisterActivity"
             android:theme="@style/RegisterTheme"
@@ -66,8 +65,7 @@
         <activity android:name=".activity.home_activity"
             android:label="@string/homePage"
             android:theme="@style/HomeTheme"
-            android:clearTaskOnLaunch="true"
-            android:noHistory="true"/>
+            android:clearTaskOnLaunch="true"/>
         <activity android:name=".activity.AroundMeActivity"
             android:label="@string/aroundme"
             android:theme="@style/AppTheme"/>

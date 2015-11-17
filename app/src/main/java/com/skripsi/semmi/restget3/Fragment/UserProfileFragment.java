@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
@@ -53,6 +55,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private UserCareerAdapter mAdapater2;
     private  String user;
     private  SharedPreferences sharedPreferences;
+    private int flag=0;
     public static UserProfileFragment getInstance(){
         UserProfileFragment fragment=new UserProfileFragment();
         return fragment;
@@ -70,30 +73,15 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         mButton.setOnClickListener(this);
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-        mUsername.setText(sharedPreferences.getString("usernameSession","Username" ).toUpperCase());
+        mUsername.setText(sharedPreferences.getString("usernameSession", "Username").toUpperCase());
         mStatus.setText(sharedPreferences.getString("statusSession", "Status"));
         user=sharedPreferences.getString("usernameSession","Username");
-        // set User profile tergantung foto yang dipilih user
-        RestAdapter restAdapter3=new RestAdapter.Builder()
-                .setEndpoint(getString(R.string.api))
-                .build();
-        UserImageInterface userImageInterface=restAdapter3.create(UserImageInterface.class);
-        userImageInterface.getUserImage(user, new Callback<UserImage>() {
-            @Override
-            public void success(UserImage userImage, Response response) {
-                Log.d("sukses", "berhasil feed image");
-                imageLink = userImage.getImage();
-                Log.d("image", userImage.getImage());
-                Picasso.with(getContext())
-                        .load(imageLink)
-                        .into(mImageView);
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("post Error", "feed image error" + error.getMessage());
-            }
-        });
+
+        // set User profile tergantung foto yang dipilih user
+        getUserImage();
+
+        cekFlag();
         // imageLink=sharedPreferences.getString("imageSession", defaultImage);
 
         return view;
@@ -110,34 +98,41 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         user=sharedPreferences.getString("usernameSession","Username");
-        // REST untuk ambil produk yang di jual user
         mAdapater=new UserSaleAdapter(getContext(),1);
         mGridView.setAdapter(mAdapater);
-        RestAdapter restAdapter=new RestAdapter.Builder()
-                .setEndpoint(getString(R.string.api))
-                .build();
-        UserProductInterface userProductInterface=restAdapter.create(UserProductInterface.class);
-        userProductInterface.getUserProduct(user, new Callback<List<Product>>() {
-                    @Override
-                    public void success(List<Product> products, Response response) {
-                        Log.d("berhasil catch", "berhasil gan");
-                        if(products == null  || products.isEmpty()){
-                            Toast.makeText(getActivity(),"Ga ada Produk yang di Jual",Toast.LENGTH_SHORT).show();
-                        }
-                        for(Product product:products){
-                            mAdapater.add(product);
-                        }
-                        mAdapater.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.d("post Error", "from Retrofit" + error.getMessage());
-                    }
-                });
-        // REST untuk ambil karir yang di mulai oleh user
         mAdapater2=new UserCareerAdapter(getContext(),2);
         mGridView2.setAdapter(mAdapater2);
+        getUserProduct();
+        getUserCareer();
+        cekFlag();
+    }
+
+    private void cekFlag() {
+        if(flag > 0){
+            new MaterialDialog.Builder(getActivity())
+                    .title("Something went wrong")
+                    .content("Mohon maaf terjadi kesalahan pada penampilan data")
+                    .positiveText("Muat ulang")
+//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                            refreshData();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void refreshData() {
+            getUserImage();
+            getUserProduct();
+            getUserCareer();
+    }
+
+    private void getUserCareer() {
+        // REST untuk ambil karir yang di mulai oleh user
+
         RestAdapter restAdapter2=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -158,6 +153,60 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             @Override
             public void failure(RetrofitError error) {
                 Log.d("post Error", "from Career Grid" + error.getMessage());
+                flag= flag+1;
+            }
+        });
+    }
+
+    private void getUserProduct() {
+        // REST untuk ambil produk yang di jual user
+
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        UserProductInterface userProductInterface=restAdapter.create(UserProductInterface.class);
+        userProductInterface.getUserProduct(user, new Callback<List<Product>>() {
+            @Override
+            public void success(List<Product> products, Response response) {
+                Log.d("berhasil catch", "berhasil gan");
+                if(products == null  || products.isEmpty()){
+                    Toast.makeText(getActivity(),"Ga ada Produk yang di Jual",Toast.LENGTH_SHORT).show();
+                }
+                for(Product product:products){
+                    mAdapater.add(product);
+                }
+                mAdapater.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("post Error", "from Retrofit" + error.getMessage());
+                flag= flag+1;
+            }
+        });
+    }
+
+    // ambil data image user
+    private void getUserImage() {
+        RestAdapter restAdapter3=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        UserImageInterface userImageInterface=restAdapter3.create(UserImageInterface.class);
+        userImageInterface.getUserImage(user, new Callback<UserImage>() {
+            @Override
+            public void success(UserImage userImage, Response response) {
+                Log.d("sukses", "berhasil feed image");
+                imageLink = userImage.getImage();
+                Log.d("image", userImage.getImage());
+                Picasso.with(getContext())
+                        .load(imageLink)
+                        .into(mImageView);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("post Error", "feed image error" + error.getMessage());
+                flag= flag+1;
             }
         });
     }
@@ -171,4 +220,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
+
+
 }
