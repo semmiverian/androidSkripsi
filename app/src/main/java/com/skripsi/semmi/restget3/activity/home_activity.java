@@ -32,6 +32,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private Button mCareer;
     private Button mDummy;
     private Button allUser;
+    private Button product;
     private String usernameExtra;
     private String statusExtra;
     @Override
@@ -52,10 +53,12 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         mCareer= (Button) findViewById(R.id.careerButton);
         mDummy= (Button) findViewById(R.id.dummybutton);
         allUser= (Button) findViewById(R.id.allUserButton);
+        product = (Button) findViewById(R.id.trading);
         mAroundMe.setOnClickListener(this);
         mCareer.setOnClickListener(this);
         mDummy.setOnClickListener(this);
         allUser.setOnClickListener(this);
+        product.setOnClickListener(this);
 
 
     }
@@ -147,6 +150,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             case R.id.allUserButton:
                 Intent intentUser = new Intent(this, AllUserActivity.class);
                 startActivity(intentUser);
+                break;
+            case R.id.trading:
+                Intent intentTrading = new Intent(this , AllProductActivity.class);
+                startActivity(intentTrading);
                 break;
         }
 

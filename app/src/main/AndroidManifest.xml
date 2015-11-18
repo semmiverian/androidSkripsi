@@ -108,6 +108,10 @@
         <activity android:name=".activity.MessageActivity"
             android:label="MEssage"
             android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activity.AllProductActivity"
+            android:label="MEssage"
+            android:theme="@style/GoogleCard"/>
     </application>
 
 </manifest>

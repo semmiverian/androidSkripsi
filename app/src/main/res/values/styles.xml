@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
+
     </style>
     <!--Style buat tampilan register-->
     <style name="RegisterTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -25,4 +26,13 @@
 
     <!--Style buat splash screen-->
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+    <!-- Style buat Google Card di Product -->
+    <style name="GoogleCard" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/grey_300</item>
+    </style>
 </resources>

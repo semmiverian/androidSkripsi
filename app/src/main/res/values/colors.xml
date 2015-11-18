@@ -9,4 +9,9 @@
     <color name="colorPrimaryDarkHome">#673AB7</color>
     <color name="light_red">#D81B60</color>
     <color name="blue">#82B1FF</color>
+    <color name="gray_100">#f4f5f5</color>
+    <color name="grey_400">#bdbcbc</color>
+    <color name="grey_200">#eeeeee</color>
+    <color name="grey_300">#e0e0e0</color>
+    <color name="blue_grey_300">#8fa4ad</color>
 </resources>
