@@ -5,6 +5,8 @@ import android.content.IntentSender;
 import android.location.Location;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +30,7 @@ import com.skripsi.semmi.restget3.Model.SaveUserLocation;
 import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,6 +56,9 @@ public class AroundMeActivity extends AppCompatActivity implements
     private  double currentLongitude;
     public static final String  username="";
     private String usernameFromHome;
+    private CoordinatorLayout coordinatorLayout;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_around_me);
@@ -69,6 +75,8 @@ public class AroundMeActivity extends AppCompatActivity implements
                 usernameFromHome=getIntent().getExtras().getString(username);
             }
         }
+
+        coordinatorLayout= (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
     }
     // fungsi untuk ambil lokasi High accuracy
     private void requestLocation() {
@@ -151,6 +159,9 @@ public class AroundMeActivity extends AppCompatActivity implements
                 .position(latLng)
                 .title("I am here!");
         mMap.addMarker(options);
+
+
+
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         // set camera pake zoom
 
@@ -167,7 +178,7 @@ public class AroundMeActivity extends AppCompatActivity implements
         showAllUserLocation.getLocation(new Callback<List<ShowAllUserLocation>>() {
             @Override
             public void success(List<ShowAllUserLocation> showAllUserLocations, Response response) {
-
+                List<Marker> markers = new ArrayList<Marker>();
                 for( ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
                     // muncul di map kalau lokasi nya ga 0 atau null
                     if(!usernameFromHome.equals(showAllUserLocation1.getUsername()) && showAllUserLocation1.getLatitude()!=0 && showAllUserLocation1.getLongitude()!=0 ){
@@ -176,10 +187,24 @@ public class AroundMeActivity extends AppCompatActivity implements
                                 .title(showAllUserLocation1.getUsername())
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_user));
 
-                        mMap.addMarker(options);
-
+                        Marker marker = mMap.addMarker(options);
+                        markers.add(marker);
                     }
+                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+                            // TODO: 18/11/2015 Start snackbar with the detail of user
+                            // TODO: 18/11/2015 Go to the representative user profile when the user hit the marker
+                            // TODO: 19/11/2015 Show user name and image when snackbar shown
+                            Snackbar snackbar = Snackbar.make(coordinatorLayout, marker.getTitle(),Snackbar.LENGTH_INDEFINITE);
+                            snackbar.show();
+
+                            Log.d("marker",marker.getTitle());
+                            return true;
+                        }
+                    });
                     Log.d("get Marker", "berhasil GET");
+
                 }
             }
 
