@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,6 +27,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.skripsi.semmi.restget3.Interface.SaveUserLocationInterface;
 import com.skripsi.semmi.restget3.Interface.ShowAllUserLocationInterface;
+import com.skripsi.semmi.restget3.Interface.UserProfileFromAroundMe;
+import com.skripsi.semmi.restget3.Model.AllUser;
 import com.skripsi.semmi.restget3.Model.SaveUserLocation;
 import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
@@ -57,7 +60,6 @@ public class AroundMeActivity extends AppCompatActivity implements
     public static final String  username="";
     private String usernameFromHome;
     private CoordinatorLayout coordinatorLayout;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,13 +195,35 @@ public class AroundMeActivity extends AppCompatActivity implements
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-                            // TODO: 18/11/2015 Start snackbar with the detail of user
-                            // TODO: 18/11/2015 Go to the representative user profile when the user hit the marker
-                            // TODO: 19/11/2015 Show user name and image when snackbar shown
-                            Snackbar snackbar = Snackbar.make(coordinatorLayout, marker.getTitle(),Snackbar.LENGTH_INDEFINITE);
-                            snackbar.show();
+                            //  Start snackbar with the detail of user
+                            // Show user name and image when snackbar shown
+                            // TODO Right now only show the username and the action to go to their representative profile
+                              final String usernameMarker =marker.getTitle();
+                            Snackbar snackbar = Snackbar.make(coordinatorLayout,marker.getTitle() ,Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Profile", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            // todo start intent to user profile here
 
-                            Log.d("marker",marker.getTitle());
+                                            RestAdapter restAdapter = new RestAdapter.Builder()
+                                                    .setEndpoint(getString(R.string.api))
+                                                    .build();
+                                            UserProfileFromAroundMe upfa = restAdapter.create(UserProfileFromAroundMe.class);
+                                            upfa.fetchUser(usernameMarker, new Callback<AllUser>() {
+                                                @Override
+                                                public void success(AllUser allUser, Response response) {
+                                                    Log.d("retrofit",allUser.getUsername());
+                                                }
+
+                                                @Override
+                                                public void failure(RetrofitError error) {
+                                                    Log.d("marker Error",  error.getMessage());
+                                                }
+                                            });
+                                        }
+                                    });
+                            snackbar.show();
+//                            Log.d("marker",marker.getTitle());
                             return true;
                         }
                     });

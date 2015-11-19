@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.skripsi.semmi.restget3.activity.AroundMeActivity"
-    android:id="@+id/coordinatorLayout">
+    android:id="@+id/coordinatorLayout"
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
