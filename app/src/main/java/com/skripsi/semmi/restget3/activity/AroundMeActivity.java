@@ -3,18 +3,15 @@ package com.skripsi.semmi.restget3.activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
-
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -34,7 +31,6 @@ import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
@@ -203,7 +199,7 @@ public class AroundMeActivity extends AppCompatActivity implements
                                     .setAction("Profile", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            // todo start intent to user profile here
+
 
                                             RestAdapter restAdapter = new RestAdapter.Builder()
                                                     .setEndpoint(getString(R.string.api))
@@ -212,7 +208,15 @@ public class AroundMeActivity extends AppCompatActivity implements
                                             upfa.fetchUser(usernameMarker, new Callback<AllUser>() {
                                                 @Override
                                                 public void success(AllUser allUser, Response response) {
-                                                    Log.d("retrofit",allUser.getUsername());
+                                                    //  start intent to user profile here
+                                                    Log.d("retrofit", allUser.getUsername());
+                                                    Intent userProfileIntent = new Intent(AroundMeActivity.this, UserProfileFromAroundMeActivity.class);
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername,allUser.getUsername());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage,allUser.getImage());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraStatus,allUser.getStatus());
+                                                    userProfileIntent.putExtra("IDValue",allUser.getId());
+                                                    startActivity(userProfileIntent);
+
                                                 }
 
                                                 @Override
