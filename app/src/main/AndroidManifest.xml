@@ -113,7 +113,10 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.AllProductActivity"
-            android:label="MEssage"
+            android:label="All Produk"
+            android:theme="@style/GoogleCard"/>
+        <activity android:name=".activity.ProductDetailActivity"
+            android:label="Produk"
             android:theme="@style/GoogleCard"/>
     </application>
 

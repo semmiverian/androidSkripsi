@@ -1,12 +1,15 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -40,6 +43,8 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         mAdapter= new AllProductAdapter(this,0);
         fetchProductData();
 
+
+        // define design
         listView = (ListView) findViewById(R.id.ProductListView);
 
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(mAdapter);
@@ -52,7 +57,6 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         listView.setClipToPadding(false);
         listView.setDivider(null);
         Resources r = getResources();
-
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 8, r.getDisplayMetrics());
         listView.setDividerHeight(px);
@@ -64,6 +68,16 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         listView.setAdapter(swingBottomInAnimationAdapter);
 
+        // define on click listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent ProdukDetailIntent = new Intent (AllProductActivity.this, ProductDetailActivity.class);
+                ProdukDetailIntent.putExtra(ProductDetailActivity.extra, mAdapter.getItem(position));
+                startActivity(ProdukDetailIntent);
+                Log.d("onClick",""+position);
+            }
+        });
     }
 
     private void fetchProductData() {
