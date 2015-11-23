@@ -118,6 +118,9 @@
         <activity android:name=".activity.ProductDetailActivity"
             android:label="Produk"
             android:theme="@style/GoogleCard"/>
+        <activity android:name=".activity.AddNewProdukActivity"
+            android:label="Add New Product"
+            android:theme="@style/GoogleCard"/>
     </application>
 
 </manifest>

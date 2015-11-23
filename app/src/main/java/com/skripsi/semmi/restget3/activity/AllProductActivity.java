@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -32,10 +33,13 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 17/11/2015.
  */
-public class AllProductActivity extends AppCompatActivity implements OnDismissCallback {
+public class AllProductActivity extends AppCompatActivity implements OnDismissCallback, View.OnClickListener {
     private AllProductAdapter mAdapter;
     private ListView listView;
     private static final int INITIAL_DELAY_MILLIS = 300;
+    public static String refresh_code="1";
+    private FloatingActionButton mFloatingActionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,6 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
 
         // define design
         listView = (ListView) findViewById(R.id.ProductListView);
-
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(mAdapter);
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
@@ -67,6 +70,10 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         listView.setPadding(px, px, px, px);
         listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         listView.setAdapter(swingBottomInAnimationAdapter);
+
+        //fab related code
+        mFloatingActionButton= (FloatingActionButton) findViewById(R.id.fab);
+        mFloatingActionButton.setOnClickListener(this);
 
         // define on click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -124,5 +131,26 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
     public void onDismiss(@NonNull final ViewGroup listView,
                           @NonNull final int[] reverseSortedPositions) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab :
+                    addNewProduct();
+                break;
+        }
+    }
+
+    private void addNewProduct() {
+        Intent newProduct = new Intent(this, AddNewProdukActivity.class);
+        startActivity(newProduct);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent backIntent = new Intent(this,home_activity.class);
+        startActivity(backIntent);
     }
 }
