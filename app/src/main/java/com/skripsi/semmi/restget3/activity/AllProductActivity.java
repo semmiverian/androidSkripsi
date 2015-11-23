@@ -1,13 +1,17 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +23,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 import com.skripsi.semmi.restget3.Interface.AllProductInterface;
+import com.skripsi.semmi.restget3.Interface.SearchProductInterface;
 import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.AllProductAdapter;
@@ -44,6 +49,8 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
+        // pengen nge cek setiap kali create bakal di invalidate dlu list view nya
+        listView.invalidate();
         mAdapter= new AllProductAdapter(this,0);
         fetchProductData();
 
@@ -152,5 +159,62 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         super.onBackPressed();
         Intent backIntent = new Intent(this,home_activity.class);
         startActivity(backIntent);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_product, menu);
+        // Search related code
+        // TODO find how to create button back after search
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search_product));
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                // pengennya kalau di close bakal balik fetch semua datanya lagi
+                listView.invalidate();
+                fetchProductData();
+                return true;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("search", query);
+                //  add call to server to respond the query
+                showSearchResult(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
+    }
+
+    private void showSearchResult(String query) {
+        // bikin method buat tampilin list view baru ketika search di lakukan
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        SearchProductInterface spi = restAdapter.create(SearchProductInterface.class);
+        spi.fetchSearch(query, new Callback<List<AllProduct>>() {
+            @Override
+            public void success(List<AllProduct> allProducts, Response response) {
+                // TODO SET adapter to reset LIST VIEW
+                listView.invalidate();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("query Error", "from Retrofit" + error.getMessage());
+
+            }
+        });
     }
 }
