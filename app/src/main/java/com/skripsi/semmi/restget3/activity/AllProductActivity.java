@@ -113,6 +113,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
                 for(AllProduct allProduct : allProducts){
                     mAdapter.add(allProduct);
                 }
+                listView.invalidate();
                 listView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 
@@ -166,7 +167,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
     }
 
 
-
+    // Search Action
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_product, menu);

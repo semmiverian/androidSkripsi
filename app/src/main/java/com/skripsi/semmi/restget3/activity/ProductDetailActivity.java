@@ -101,6 +101,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void goToUserProfile(String username) {
+        // TODO if the user who logged in click  the profile need to go to the user profile page instead of user profile for other user
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
