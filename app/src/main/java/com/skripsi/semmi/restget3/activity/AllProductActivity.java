@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -50,7 +51,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
         // pengen nge cek setiap kali create bakal di invalidate dlu list view nya
-        listView.invalidate();
+
         mAdapter= new AllProductAdapter(this,0);
         fetchProductData();
 
@@ -102,6 +103,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         allProductInterface.getProduct(new Callback<List<AllProduct>>() {
             @Override
             public void success(List<AllProduct> allProducts, Response response) {
+                listView.invalidate();
                 if(allProducts == null || allProducts.isEmpty()){
                     return;
                 }
@@ -176,6 +178,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
             public boolean onClose() {
                 // pengennya kalau di close bakal balik fetch semua datanya lagi
                 listView.invalidate();
+                mAdapter.clear();
                 fetchProductData();
                 return true;
             }
@@ -197,17 +200,29 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         return true;
     }
 
-    private void showSearchResult(String query) {
+    private void showSearchResult(String querySearch) {
         // bikin method buat tampilin list view baru ketika search di lakukan
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
+        final String query = querySearch;
         SearchProductInterface spi = restAdapter.create(SearchProductInterface.class);
-        spi.fetchSearch(query, new Callback<List<AllProduct>>() {
+        spi.fetchSearch(querySearch, new Callback<List<AllProduct>>() {
             @Override
             public void success(List<AllProduct> allProducts, Response response) {
                 // TODO SET adapter to reset LIST VIEW
+                Log.d("query",query);
                 listView.invalidate();
+                mAdapter.clear();
+                if(allProducts == null || allProducts.isEmpty()){
+                    Toast.makeText(AllProductActivity.this, "Tidak ada barang dengan query tersebut", Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(AllProductActivity.this, "Ada data dengan " +query, Toast.LENGTH_LONG).show();
+                for(AllProduct allProduct : allProducts){
+                    mAdapter.add(allProduct);
+                }
+                listView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
