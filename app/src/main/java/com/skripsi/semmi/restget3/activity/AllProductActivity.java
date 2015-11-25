@@ -93,8 +93,10 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
                 Log.d("onClick",""+position);
             }
         });
+
     }
 
+    // Ambil data produk dari server
     private void fetchProductData() {
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
@@ -103,7 +105,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         allProductInterface.getProduct(new Callback<List<AllProduct>>() {
             @Override
             public void success(List<AllProduct> allProducts, Response response) {
-                listView.invalidate();
+
                 if(allProducts == null || allProducts.isEmpty()){
                     return;
                 }
