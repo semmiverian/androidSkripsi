@@ -35,4 +35,6 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowBackground">@color/grey_300</item>
     </style>
+
+
 </resources>

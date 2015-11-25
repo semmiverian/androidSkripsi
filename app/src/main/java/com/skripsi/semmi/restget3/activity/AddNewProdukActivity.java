@@ -44,6 +44,8 @@ import retrofit.mime.TypedFile;
 public class AddNewProdukActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView addJudulProduk;
     private TextView addDeskProduk;
+    private TextView addKontakEmail;
+    private TextView addKontakTelepon;
     private Button addImageProduk;
     private ImageView previewImageUpload;
     private Button submit;
@@ -61,6 +63,8 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
         // define xml file biar bisa di pasang logik
         addJudulProduk= (TextView) findViewById(R.id.addJudulProduk);
         addDeskProduk= (TextView) findViewById(R.id.addDeskProduk);
+        addKontakEmail = (TextView) findViewById(R.id.addKontakEmail);
+        addKontakTelepon = (TextView) findViewById(R.id.addKontakTelepon);
         addImageProduk= (Button) findViewById(R.id.addImageProduk);
         previewImageUpload= (ImageView) findViewById(R.id.previewImageUpload);
         submit= (Button) findViewById(R.id.submitNewProduk);
@@ -114,12 +118,13 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
                 String username=sharedPreferences.getString("usernameSession", "Username");
                 String judul=addJudulProduk.getText().toString();
                 String detail=addDeskProduk.getText().toString();
-
+                String email=addKontakEmail.getText().toString();
+                String telepon =addKontakTelepon.getText().toString();
                 RestAdapter restAdapter=new RestAdapter.Builder()
                         .setEndpoint(getString(R.string.api))
                         .build();
                 NewProductInterface newProductInterface=restAdapter.create(NewProductInterface.class);
-                newProductInterface.postProduk(username, judul, detail, typedFile, new Callback<NewProduk>() {
+                newProductInterface.postProduk(username, judul, detail, typedFile,email,telepon, new Callback<NewProduk>() {
                     @Override
                     public void success(NewProduk newProduk, Response response) {
                         dialog.setContent("Sukses Add Data");

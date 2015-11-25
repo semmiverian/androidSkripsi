@@ -15,5 +15,5 @@ import retrofit.mime.TypedFile;
 public interface NewProductInterface {
     @Multipart
     @POST("/addNewProduk.php")
-    void postProduk(@Part("username") String username, @Part("judul") String judul, @Part("detail") String detail, @Part("image") TypedFile image, Callback<NewProduk> callback);
+    void postProduk(@Part("username") String username, @Part("judul") String judul, @Part("detail") String detail, @Part("image") TypedFile image,@Part("email") String email, @Part("telepon") String telepon, Callback<NewProduk> callback);
 }

@@ -14,17 +14,21 @@ public class AllProduct implements Parcelable {
     private String produkCreate;
     private String userName;
     private String userImage;
+    private String produkEmail;
+    private String produkTelepon;
 
 
     public AllProduct(){}
 
-    public AllProduct(String produknama, String produkdetail, String produkImage, String produkCreate , String userName , String userImage){
+    public AllProduct(String produknama, String produkdetail, String produkImage, String produkCreate , String userName , String userImage, String produkEmail, String produkTelepon){
         this.produknama = produknama;
         this.produkdetail= produkdetail;
         this.produkImage = produkImage;
         this.produkCreate = produkCreate;
         this.userName = userName;
         this.userImage = userImage;
+        this.produkEmail = produkEmail;
+        this.produkTelepon = produkTelepon;
     }
 
     public AllProduct(Parcel source){
@@ -34,6 +38,9 @@ public class AllProduct implements Parcelable {
         produkCreate= source.readString();
         userName= source.readString();
         userImage= source.readString();
+        produkEmail = source.readString();
+        produkTelepon = source.readString();
+
     }
 
     public String getProduknama() {
@@ -98,6 +105,8 @@ public class AllProduct implements Parcelable {
         dest.writeString(produkCreate);
         dest.writeString(userName);
         dest.writeString(userImage);
+        dest.writeString(produkEmail);
+        dest.writeString(produkTelepon);
 
     }
 
@@ -120,6 +129,12 @@ public class AllProduct implements Parcelable {
         if(userImage==null){
             userImage="";
         }
+        if(produkEmail == null){
+            produkEmail ="not available";
+        }
+        if(produkTelepon == null){
+            produkTelepon = "not available";
+        }
     }
 
     public static  Creator<AllProduct> CREATOR = new Creator<AllProduct>() {
@@ -133,4 +148,20 @@ public class AllProduct implements Parcelable {
             return new AllProduct[size];
         }
     };
+
+    public String getProdukEmail() {
+        return produkEmail;
+    }
+
+    public void setProdukEmail(String produkEmail) {
+        this.produkEmail = produkEmail;
+    }
+
+    public String getProdukTelepon() {
+        return produkTelepon;
+    }
+
+    public void setProdukTelepon(String produkTelepon) {
+        this.produkTelepon = produkTelepon;
+    }
 }
