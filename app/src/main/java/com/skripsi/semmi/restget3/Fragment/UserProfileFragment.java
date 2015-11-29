@@ -22,6 +22,7 @@ import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Interface.UserProfileInterface;
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.Model.UserImage;
@@ -137,23 +138,24 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
-        userCareerInterface.getCareer(user, new Callback<List<Career>>() {
+        userCareerInterface.getCareer(user, new Callback<List<AllCareer>>() {
             @Override
-            public void success(List<Career> careers, Response response) {
-                Log.d("berhasil catch", "berhasil gan daru career");
-                if(careers==null || careers.isEmpty() ){
-                    Toast.makeText(getActivity(),"Ga ada Career  yang di pasang",Toast.LENGTH_SHORT).show();
+            public void success(List<AllCareer> allCareers, Response response) {
+                if (allCareers == null || allCareers.isEmpty()) {
+                    Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
                 }
-                for(Career career:careers){
-                    mAdapater2.add(career);
+                for (AllCareer allCareer : allCareers) {
+                    mAdapater2.add(allCareer);
+                    Log.d("careerTest", allCareer.getKarirnama());
                 }
-                mAdapater2.notifyDataSetChanged();
+                mAdapater.notifyDataSetChanged();
+
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("post Error", "from Career Grid" + error.getMessage());
-                flag= flag+1;
+                Log.d("post Error", "from Career " + error.getMessage());
+
             }
         });
     }

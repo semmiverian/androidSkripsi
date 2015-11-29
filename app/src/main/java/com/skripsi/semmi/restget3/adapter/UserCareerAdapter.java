@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
@@ -15,7 +16,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by semmi on 27/10/2015.
  */
-public class UserCareerAdapter extends ArrayAdapter<Career> {
+public class UserCareerAdapter extends ArrayAdapter<AllCareer> {
     public UserCareerAdapter(Context context, int resource) {
         super(context, resource);
     }
@@ -32,7 +33,7 @@ public class UserCareerAdapter extends ArrayAdapter<Career> {
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.nama.setText(getItem(position).getKarirNama());
+        holder.nama.setText(getItem(position).getKarirnama());
         Picasso.with(getContext())
                 .load(getItem(position).getKarirImage())
                 .into(holder.image);

@@ -1,8 +1,10 @@
 package com.skripsi.semmi.restget3.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.ProductDetailActivity;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
 
 import java.util.List;
@@ -72,6 +76,13 @@ public class UserProfileProductListFragment extends Fragment {
         gridView.setPadding(px, px, px, px);
         gridView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         gridView.setAdapter(mAdapater);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     private void fetchUserProduct() {

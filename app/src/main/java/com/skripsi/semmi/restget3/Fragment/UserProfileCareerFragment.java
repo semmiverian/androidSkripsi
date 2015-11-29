@@ -1,9 +1,12 @@
 package com.skripsi.semmi.restget3.Fragment;
 
+import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,14 +14,19 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.CareerDetailActivity;
+import com.skripsi.semmi.restget3.activity.ProductDetailActivity;
+import com.skripsi.semmi.restget3.activity.UserProfileNewActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 
 import java.util.List;
@@ -59,7 +67,7 @@ public class UserProfileCareerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mAdapater = new UserCareerAdapter(this.getContext(),0);
+        mAdapater = new UserCareerAdapter(getActivity(),0);
         fetchUserCareer();
 
         // Design listview yang akan tampil
@@ -76,8 +84,19 @@ public class UserProfileCareerFragment extends Fragment {
         listView.setPadding(px, px, px, px);
         listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         listView.setAdapter(mAdapater);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent CareerDetailIntent= new Intent(getActivity(),CareerDetailActivity.class);
+                // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
+                CareerDetailIntent.putExtra(CareerDetailActivity.EXTRA,mAdapater.getItem(position));
+                startActivity(CareerDetailIntent);
+            }
+        });
 
     }
+
+
 
     // fungsi untuk mengambil data career dari server
     private void fetchUserCareer() {
@@ -86,18 +105,39 @@ public class UserProfileCareerFragment extends Fragment {
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
-        userCareerInterface.getCareer(user, new Callback<List<Career>>() {
+//        userCareerInterface.getCareer(user, new Callback<List<Career>>() {
+//            @Override
+//            public void success(List<AllCareer> careers, Response response) {
+//                Log.d("berhasil catch", "berhasil gan daru career");
+//                if (careers == null || careers.isEmpty()) {
+//                    Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
+//                }
+//                for ( career : careers) {
+//                    mAdapater.add(career);
+//                    Log.d("careerTest",career.getKarirNama());
+//                }
+//                mAdapater.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                Log.d("post Error", "from Career " + error.getMessage());
+//                showFailureDialog();
+//            }
+//        });
+
+        userCareerInterface.getCareer(user, new Callback<List<AllCareer>>() {
             @Override
-            public void success(List<Career> careers, Response response) {
-                Log.d("berhasil catch", "berhasil gan daru career");
-                if (careers == null || careers.isEmpty()) {
+            public void success(List<AllCareer> allCareers, Response response) {
+                if (allCareers == null || allCareers.isEmpty()) {
                     Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
                 }
-                for (Career career : careers) {
-                    mAdapater.add(career);
-                    Log.d("careerTest",career.getKarirNama());
+                for (AllCareer allCareer : allCareers) {
+                    mAdapater.add(allCareer);
+                    Log.d("careerTest",allCareer.getKarirnama());
                 }
                 mAdapater.notifyDataSetChanged();
+
             }
 
             @Override

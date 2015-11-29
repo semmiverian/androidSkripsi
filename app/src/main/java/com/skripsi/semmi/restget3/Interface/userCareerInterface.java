@@ -1,5 +1,6 @@
 package com.skripsi.semmi.restget3.Interface;
 
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.Career;
 
 import java.util.List;
@@ -15,5 +16,5 @@ import retrofit.http.Part;
 public interface UserCareerInterface {
     @POST("/retrieveUserCareer.php")
     @Multipart
-    void getCareer(@Part("karirNama") String karirnama, Callback<List<Career>> callback);
+    void getCareer(@Part("karirNama") String karirnama, Callback<List<AllCareer>> callback);
 }

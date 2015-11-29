@@ -23,7 +23,7 @@ import retrofit.client.Response;
  * Created by semmi on 03/11/2015.
  */
 public class CareerDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String extra="extra";
+    public static final String EXTRA="extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_career_detail);
 
         // ambil data yang udah di parse
-        AllCareer allCareer=getIntent().getExtras().getParcelable(extra);
+        AllCareer allCareer=getIntent().getExtras().getParcelable(EXTRA);
         // define objek yang di xml
         TextView judul= (TextView) findViewById(R.id.careerJudul);
         TextView detail= (TextView) findViewById(R.id.carerDetail);
@@ -57,7 +57,7 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        AllCareer allCareer=getIntent().getExtras().getParcelable(extra);
+        AllCareer allCareer=getIntent().getExtras().getParcelable(EXTRA);
         String username = allCareer.getUserName();
         switch ( v.getId()){
             case R.id.imageProfile:

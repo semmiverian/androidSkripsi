@@ -136,7 +136,7 @@ public class CareerListFragment extends ListFragment  {
         // buat intent untuk menampilkan detail user
         Intent CareerDetailIntent= new Intent(getActivity(),CareerDetailActivity.class);
         // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
-        CareerDetailIntent.putExtra(CareerDetailActivity.extra,mAdapater.getItem(position));
+        CareerDetailIntent.putExtra(CareerDetailActivity.EXTRA,mAdapater.getItem(position));
         startActivity(CareerDetailIntent);
     }
 

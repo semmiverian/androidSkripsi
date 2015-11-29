@@ -65,6 +65,8 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
         return view;
     }
 
+
+    // Ngambil avatar user dari server
     private void fetchUserImage() {
         RestAdapter restAdapter3=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))

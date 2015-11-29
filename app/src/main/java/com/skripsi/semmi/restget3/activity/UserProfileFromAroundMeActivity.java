@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
+import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
@@ -89,22 +90,24 @@ public class UserProfileFromAroundMeActivity extends AppCompatActivity implement
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
-        userCareerInterface.getCareer(username, new Callback<List<Career>>() {
+        userCareerInterface.getCareer(username, new Callback<List<AllCareer>>() {
             @Override
-            public void success(List<Career> careers, Response response) {
-                Log.d("berhasil catch", "berhasil gan daru career");
-                if (careers == null || careers.isEmpty()) {
+            public void success(List<AllCareer> allCareers, Response response) {
+                if (allCareers == null || allCareers.isEmpty()) {
                     Toast.makeText(UserProfileFromAroundMeActivity.this, "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
                 }
-                for (Career career : careers) {
-                    mAdapater2.add(career);
+                for (AllCareer allCareer : allCareers) {
+                    mAdapater2.add(allCareer);
+                    Log.d("careerTest", allCareer.getKarirnama());
                 }
-                mAdapater2.notifyDataSetChanged();
+                mAdapater.notifyDataSetChanged();
+
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("post Error", "from Career Grid" + error.getMessage());
+                Log.d("post Error", "from Career " + error.getMessage());
+
             }
         });
     }
