@@ -121,6 +121,9 @@
         <activity android:name=".activity.AddNewProdukActivity"
             android:label="Add New Product"
             android:theme="@style/GoogleCard"/>
+
+        <activity android:name=".activity.UserProfileNewActivity"
+            android:theme="@style/MyMaterialTheme"/>
     </application>
 
 </manifest>

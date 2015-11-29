@@ -82,5 +82,15 @@
         android:layout_toRightOf="@+id/userLogin"
         android:layout_toEndOf="@+id/userLogin" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Profile Beta"
+        android:id="@+id/userProfileBeta"
+        android:layout_below="@+id/allUserButton"
+        android:layout_toLeftOf="@+id/trading"
+        android:layout_toStartOf="@+id/trading"
+        android:layout_marginTop="40dp" />
+
 
 </RelativeLayout>
