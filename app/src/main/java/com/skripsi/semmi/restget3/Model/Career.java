@@ -5,12 +5,14 @@ package com.skripsi.semmi.restget3.Model;
  */
 public class Career {
     private String karirNama;
+    private String karirImage;
 
     public Career(){
 
     }
-    public Career(String karirNama){
+    public Career(String karirNama, String karirImage){
         this.karirNama=karirNama;
+        this.karirImage = karirImage;
     }
 
     public String getKarirNama() {
@@ -19,5 +21,13 @@ public class Career {
 
     public void setKarirNama(String karirNama) {
         this.karirNama = karirNama;
+    }
+
+    public String getKarirImage() {
+        return karirImage;
+    }
+
+    public void setKarirImage(String karirImage) {
+        this.karirImage = karirImage;
     }
 }

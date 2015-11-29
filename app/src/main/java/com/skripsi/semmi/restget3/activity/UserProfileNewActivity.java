@@ -27,7 +27,7 @@ public class UserProfileNewActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tabs Testing");
+        getSupportActionBar().setTitle(R.string.user_profile);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
