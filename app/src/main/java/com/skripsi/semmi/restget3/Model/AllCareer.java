@@ -13,17 +13,19 @@ public class AllCareer implements Parcelable {
     private String karirCreate;
     private String userName;
     private String userImage;
+    private String karirId;
 
     public AllCareer(){
 
     }
-    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage){
+    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage, String karirId){
         this.karirnama=karirnama;
         this.karirdetail=karirdetail;
         this.karirImage=karirImage;
         this.karirCreate=karirCreate;
         this.userName=userName;
         this.userImage=userImage;
+        this.karirId=karirId;
     }
 
     public AllCareer(Parcel source){
@@ -33,6 +35,7 @@ public class AllCareer implements Parcelable {
         karirCreate=source.readString();
         userName=source.readString();
         userImage=source.readString();
+        karirId=source.readString();
     }
 
 
@@ -50,6 +53,7 @@ public class AllCareer implements Parcelable {
         dest.writeString(karirCreate);
         dest.writeString(userName);
         dest.writeString(userImage);
+        dest.writeString(karirId);
     }
 
     private void applyDefaultValues() {
@@ -70,6 +74,9 @@ public class AllCareer implements Parcelable {
         }
         if(userImage==null){
             userImage="";
+        }
+        if(karirId==null){
+            karirId="";
         }
     }
 
@@ -132,5 +139,13 @@ public class AllCareer implements Parcelable {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public String getKarirId() {
+        return karirId;
+    }
+
+    public void setKarirId(String karirId) {
+        this.karirId = karirId;
     }
 }

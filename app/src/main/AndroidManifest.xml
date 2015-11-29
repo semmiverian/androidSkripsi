@@ -124,6 +124,10 @@
 
         <activity android:name=".activity.UserProfileNewActivity"
             android:theme="@style/MyMaterialTheme"/>
+
+        <activity android:name=".activity.UserCareerDetailActivity"
+            android:label="Customize Career"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@ import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.CareerDetailActivity;
 import com.skripsi.semmi.restget3.activity.ProductDetailActivity;
+import com.skripsi.semmi.restget3.activity.UserCareerDetailActivity;
 import com.skripsi.semmi.restget3.activity.UserProfileNewActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 
@@ -87,9 +88,9 @@ public class UserProfileCareerFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent CareerDetailIntent= new Intent(getActivity(),CareerDetailActivity.class);
+                Intent CareerDetailIntent= new Intent(getActivity(),UserCareerDetailActivity.class);
                 // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
-                CareerDetailIntent.putExtra(CareerDetailActivity.EXTRA,mAdapater.getItem(position));
+                CareerDetailIntent.putExtra(UserCareerDetailActivity.extra,mAdapater.getItem(position));
                 startActivity(CareerDetailIntent);
             }
         });
@@ -105,27 +106,6 @@ public class UserProfileCareerFragment extends Fragment {
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
-//        userCareerInterface.getCareer(user, new Callback<List<Career>>() {
-//            @Override
-//            public void success(List<AllCareer> careers, Response response) {
-//                Log.d("berhasil catch", "berhasil gan daru career");
-//                if (careers == null || careers.isEmpty()) {
-//                    Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
-//                }
-//                for ( career : careers) {
-//                    mAdapater.add(career);
-//                    Log.d("careerTest",career.getKarirNama());
-//                }
-//                mAdapater.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Log.d("post Error", "from Career " + error.getMessage());
-//                showFailureDialog();
-//            }
-//        });
-
         userCareerInterface.getCareer(user, new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {
