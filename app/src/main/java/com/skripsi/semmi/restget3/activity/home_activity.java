@@ -18,12 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by semmi on 15/10/2015.
@@ -39,8 +41,14 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private Button allUser;
     private Button product;
     private Button userProfileBeta;
+    private ImageView userImage;
     private String usernameExtra;
     private String statusExtra;
+    private String imageUserLink;
+    private SharedPreferences sharedPreferences;
+    private TextView navigationName;
+    private TextView navigationStatus;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,18 +67,25 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 mStatusLogin.setText(getIntent().getExtras().getString(status));
             }
         }
+
+        // find ID code
         mAroundMe= (Button) findViewById(R.id.aroundme);
         mCareer= (Button) findViewById(R.id.careerButton);
         mDummy= (Button) findViewById(R.id.dummybutton);
         allUser= (Button) findViewById(R.id.allUserButton);
         product = (Button) findViewById(R.id.trading);
         userProfileBeta = (Button) findViewById(R.id.userProfileBeta);
+
+
+
+        // on click listener
         mAroundMe.setOnClickListener(this);
         mCareer.setOnClickListener(this);
         mDummy.setOnClickListener(this);
         allUser.setOnClickListener(this);
         product.setOnClickListener(this);
         userProfileBeta.setOnClickListener(this);
+
 
 
 
@@ -83,6 +98,25 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // define data from navigation header
+        View headerLayout = navigationView.getHeaderView(0);
+        userImage = (ImageView) headerLayout.findViewById(R.id.userImageNavigation);
+        navigationName = (TextView) headerLayout.findViewById(R.id.namaUser);
+        navigationStatus = (TextView) headerLayout.findViewById(R.id.statusUser);
+        loadUserData();
+    }
+
+    private void loadUserData() {
+        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        imageUserLink=sharedPreferences.getString("imageSession", "image");
+        String nama = sharedPreferences.getString("usernameSession", "username");
+        String status = sharedPreferences.getString("statusSession", "status");
+        navigationName.setText(nama);
+        navigationStatus.setText(status);
+        Picasso.with(this)
+                .load(imageUserLink)
+                .into(userImage);
     }
 
     @Override
