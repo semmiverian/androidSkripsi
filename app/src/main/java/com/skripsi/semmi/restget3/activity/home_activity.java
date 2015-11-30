@@ -6,7 +6,12 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +28,7 @@ import com.skripsi.semmi.restget3.R;
 /**
  * Created by semmi on 15/10/2015.
  */
-public class home_activity extends AppCompatActivity implements View.OnClickListener {
+public class home_activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     public static final String  username="username";
     public static final String  status="status";
     private TextView mUserLogin;
@@ -40,6 +45,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Content responding code
         mUserLogin= (TextView) findViewById(R.id.userLogin);
         mStatusLogin= (TextView) findViewById(R.id.statusLogin);
         // validasi dan ngambil data dari aktivitas login
@@ -64,6 +73,16 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         userProfileBeta.setOnClickListener(this);
 
 
+
+        // Drawer layout responding code
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerMainLayout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -77,32 +96,39 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         int id=item.getItemId();
         switch (id){
             case R.id.action_logout:
-                new MaterialDialog.Builder(this)
-                        .title("Logout")
-                        .content("Apa anda yakin ingin keluar")
-                        .positiveText("ya")
-                        .negativeText("tidak")
-//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
-                                logoutUser();
-                            }
-                        })
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
-                                materialDialog.dismiss();
-                            }
-                        })
-                        .show();
-
+                logoutConfirmationDialog();
                 break;
             case R.id.action_profile:
                 showUserProfile();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logoutConfirmationDialog() {
+        new MaterialDialog.Builder(this)
+                .title("Logout")
+                .content("Apa anda yakin ingin keluar")
+                .positiveText("ya")
+                .negativeText("tidak")
+//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                        logoutUser();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                        materialDialog.dismiss();
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerMainLayout);
+                        drawer.openDrawer(GravityCompat.START);
+                    }
+                })
+                .show();
+
+
     }
 
     private void showUserProfile() {
@@ -179,4 +205,24 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     }
 
 
+    // fungsi ketika drawer di click
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+         int id = item.getItemId();
+
+        if (id == R.id.nav_user_setting) {
+            // Handle the camera action
+        } else if (id == R.id.nav_career) {
+
+        } else if (id == R.id.nav_product) {
+
+        }else if(id == R.id.nav_logout){
+            logoutConfirmationDialog();
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerMainLayout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

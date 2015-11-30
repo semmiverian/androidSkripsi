@@ -1,5 +1,6 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -41,5 +42,11 @@ public class UserProfileNewActivity extends AppCompatActivity {
         mAdapter.addFragment(new UserProfileCareerFragment(), "Career");
         mAdapter.addFragment(new UserProfileProductListFragment(), "Produk");
         viewPager.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(this, home_activity.class);
+        startActivity(a);
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+        <item android:id="@+id/nav_user_setting" android:icon="@android:drawable/ic_menu_preferences"
+            android:title="@string/userSetting" />
+        <item android:id="@+id/nav_career" android:icon="@android:drawable/ic_menu_compass"
+            android:title="@string/UserCareer" />
+        <item android:id="@+id/nav_product" android:icon="@android:drawable/ic_menu_share"
+            android:title="@string/userProduct" />
+    </group>
+
+    <item android:title="Logout">
+        <menu>
+            <item android:id="@+id/nav_logout" android:icon="@android:drawable/ic_menu_more"
+                android:title="@string/userLogout" />
+        </menu>
+    </item>
+
+</menu>
