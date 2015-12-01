@@ -23,6 +23,9 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Fragment.HomeFragment;
+import com.skripsi.semmi.restget3.Fragment.LoginFragment;
+import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
@@ -55,36 +58,36 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.home_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        displayFirstFragment();
         // Content responding code
-        mUserLogin= (TextView) findViewById(R.id.userLogin);
-        mStatusLogin= (TextView) findViewById(R.id.statusLogin);
+//        mUserLogin= (TextView) findViewById(R.id.userLogin);
+//        mStatusLogin= (TextView) findViewById(R.id.statusLogin);
         // validasi dan ngambil data dari aktivitas login
-        if(getIntent()!= null && getIntent().getExtras()!=null){
-            if(getIntent().getExtras().containsKey(username)){
-                mUserLogin.setText(getIntent().getExtras().getString(username));
-                usernameExtra=mUserLogin.getText().toString();
-                mStatusLogin.setText(getIntent().getExtras().getString(status));
-            }
-        }
+//        if(getIntent()!= null && getIntent().getExtras()!=null){
+//            if(getIntent().getExtras().containsKey(username)){
+//                mUserLogin.setText(getIntent().getExtras().getString(username));
+//                usernameExtra=mUserLogin.getText().toString();
+//                mStatusLogin.setText(getIntent().getExtras().getString(status));
+//            }
+//        }
 
         // find ID code
-        mAroundMe= (Button) findViewById(R.id.aroundme);
-        mCareer= (Button) findViewById(R.id.careerButton);
-        mDummy= (Button) findViewById(R.id.dummybutton);
-        allUser= (Button) findViewById(R.id.allUserButton);
-        product = (Button) findViewById(R.id.trading);
-        userProfileBeta = (Button) findViewById(R.id.userProfileBeta);
+//        mAroundMe= (Button) findViewById(R.id.aroundme);
+//        mCareer= (Button) findViewById(R.id.careerButton);
+//        mDummy= (Button) findViewById(R.id.dummybutton);
+//        allUser= (Button) findViewById(R.id.allUserButton);
+//        product = (Button) findViewById(R.id.trading);
+//        userProfileBeta = (Button) findViewById(R.id.userProfileBeta);
 
 
 
         // on click listener
-        mAroundMe.setOnClickListener(this);
-        mCareer.setOnClickListener(this);
-        mDummy.setOnClickListener(this);
-        allUser.setOnClickListener(this);
-        product.setOnClickListener(this);
-        userProfileBeta.setOnClickListener(this);
+//        mAroundMe.setOnClickListener(this);
+//        mCareer.setOnClickListener(this);
+//        mDummy.setOnClickListener(this);
+//        allUser.setOnClickListener(this);
+//        product.setOnClickListener(this);
+//        userProfileBeta.setOnClickListener(this);
 
 
 
@@ -107,6 +110,12 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         loadUserData();
     }
 
+    private void displayFirstFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
+    }
+
+
+    // Seting header content dynamically here
     private void loadUserData() {
         sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         imageUserLink=sharedPreferences.getString("imageSession", "image");
@@ -119,25 +128,25 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 .into(userImage);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_home, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id=item.getItemId();
-        switch (id){
-            case R.id.action_logout:
-                logoutConfirmationDialog();
-                break;
-            case R.id.action_profile:
-                showUserProfile();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id=item.getItemId();
+//        switch (id){
+//            case R.id.action_logout:
+//                logoutConfirmationDialog();
+//                break;
+//            case R.id.action_profile:
+//                showUserProfile();
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void logoutConfirmationDialog() {
         new MaterialDialog.Builder(this)
@@ -196,33 +205,33 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.aroundme:
-                Intent intentAroundMe=new Intent(this,AroundMeActivity.class);
-                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
-                startActivity(intentAroundMe);
-                break;
-            case R.id.careerButton:
-                Intent intentCareer=new Intent(this,CareerActivity.class);
+//        switch (v.getId()) {
+//            case R.id.aroundme:
+//                Intent intentAroundMe=new Intent(this,AroundMeActivity.class);
 //                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
-                startActivity(intentCareer);
-                break;
-            case R.id.dummybutton:
-                progressBar();
-                break;
-            case R.id.allUserButton:
-                Intent intentUser = new Intent(this, AllUserActivity.class);
-                startActivity(intentUser);
-                break;
-            case R.id.trading:
-                Intent intentTrading = new Intent(this , AllProductActivity.class);
-                startActivity(intentTrading);
-                break;
-            case R.id.userProfileBeta:
-                Intent userProfileBetaIntent = new Intent(this, UserProfileNewActivity.class);
-                startActivity(userProfileBetaIntent);
-                break;
-        }
+//                startActivity(intentAroundMe);
+//                break;
+//            case R.id.careerButton:
+//                Intent intentCareer=new Intent(this,CareerActivity.class);
+////                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
+//                startActivity(intentCareer);
+//                break;
+//            case R.id.dummybutton:
+//                progressBar();
+//                break;
+//            case R.id.allUserButton:
+//                Intent intentUser = new Intent(this, AllUserActivity.class);
+//                startActivity(intentUser);
+//                break;
+//            case R.id.trading:
+//                Intent intentTrading = new Intent(this , AllProductActivity.class);
+//                startActivity(intentTrading);
+//                break;
+//            case R.id.userProfileBeta:
+//                Intent userProfileBetaIntent = new Intent(this, UserProfileNewActivity.class);
+//                startActivity(userProfileBetaIntent);
+//                break;
+//        }
 
 
     }
@@ -243,18 +252,19 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
          int id = item.getItemId();
-
-        if (id == R.id.nav_user_setting) {
-            // Handle the camera action
+        if(id == R.id.nav_home){
+            displayFirstFragment();
+        }else if (id == R.id.nav_user_setting) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
         } else if (id == R.id.nav_career) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
         } else if (id == R.id.nav_product) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
         }else if(id == R.id.nav_logout){
             logoutConfirmationDialog();
-
         }
-
+        item.setChecked(true);
+        setTitle(item.getTitle());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerMainLayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

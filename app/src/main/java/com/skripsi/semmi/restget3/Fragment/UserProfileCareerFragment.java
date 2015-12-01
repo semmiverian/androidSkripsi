@@ -48,7 +48,10 @@ public class UserProfileCareerFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private static final int INITIAL_DELAY_MILLIS = 300;
 
-    public UserProfileCareerFragment(){}
+    public static UserProfileCareerFragment getInstance(){
+        UserProfileCareerFragment fragment=new UserProfileCareerFragment();
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

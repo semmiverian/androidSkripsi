@@ -29,4 +29,5 @@
     <string name="userSetting">User Profile</string>
     <string name="userProduct">produk</string>
     <string name="userLogout">Logout</string>
+    <string name="userHome">Home</string>
 </resources>
