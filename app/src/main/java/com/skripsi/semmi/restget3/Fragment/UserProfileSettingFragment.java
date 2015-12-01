@@ -40,7 +40,10 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
     private SharedPreferences sharedPreferences;
     private Button mButton;
 
-    public UserProfileSettingFragment(){}
+    public static  UserProfileSettingFragment getInstance(){
+        UserProfileSettingFragment fragment = new UserProfileSettingFragment();
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

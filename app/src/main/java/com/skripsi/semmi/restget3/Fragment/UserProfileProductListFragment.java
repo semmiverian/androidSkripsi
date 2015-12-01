@@ -42,7 +42,10 @@ public class UserProfileProductListFragment extends Fragment {
     private  String user;
     private SharedPreferences sharedPreferences;
 
-    public UserProfileProductListFragment(){}
+    public static UserProfileProductListFragment getInstance(){
+        UserProfileProductListFragment fragment = new UserProfileProductListFragment();
+        return fragment;
+    }
 
 
     @Override

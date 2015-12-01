@@ -5,6 +5,7 @@
 
 
     <GridView
+        android:layout_marginTop="@dimen/margin_top_navigation"
         android:id="@+id/UserProductGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -68,6 +68,8 @@ public class UserProfileCareerFragment extends Fragment {
         return view;
     }
 
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -146,5 +148,7 @@ public class UserProfileCareerFragment extends Fragment {
                 })
                 .show();
     }
+
+
 
 }

@@ -55,7 +55,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mStatusLogin= (TextView) view.findViewById(R.id.statusLogin);
         mAroundMe= (Button) view.findViewById(R.id.aroundme);
         mCareer= (Button) view.findViewById(R.id.careerButton);
-        mDummy= (Button) view.findViewById(R.id.dummybutton);
         allUser= (Button) view.findViewById(R.id.allUserButton);
         product = (Button) view.findViewById(R.id.trading);
         userProfileBeta = (Button) view.findViewById(R.id.userProfileBeta);

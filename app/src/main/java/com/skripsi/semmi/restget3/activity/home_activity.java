@@ -26,6 +26,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.HomeFragment;
 import com.skripsi.semmi.restget3.Fragment.LoginFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
+import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
+import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
@@ -101,7 +103,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.getMenu().getItem(0).setChecked(true);
         // define data from navigation header
         View headerLayout = navigationView.getHeaderView(0);
         userImage = (ImageView) headerLayout.findViewById(R.id.userImageNavigation);
@@ -195,12 +197,13 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        finish();
+
         // fungsi ketika user ketik back maka akan ke home bukan balik ke tampilan login
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
+        finish();
     }
 
     @Override
@@ -255,11 +258,11 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         if(id == R.id.nav_home){
             displayFirstFragment();
         }else if (id == R.id.nav_user_setting) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileSettingFragment.getInstance()).commit();
         } else if (id == R.id.nav_career) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
         } else if (id == R.id.nav_product) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileProductListFragment.getInstance()).commit();
         }else if(id == R.id.nav_logout){
             logoutConfirmationDialog();
         }
