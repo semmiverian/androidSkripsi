@@ -90,15 +90,7 @@ public class UserProfileCareerFragment extends Fragment {
         listView.setPadding(px, px, px, px);
         listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         listView.setAdapter(mAdapater);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent CareerDetailIntent= new Intent(getActivity(),UserCareerDetailActivity.class);
-                // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
-                CareerDetailIntent.putExtra(UserCareerDetailActivity.extra,mAdapater.getItem(position));
-                startActivity(CareerDetailIntent);
-            }
-        });
+
 
     }
 
@@ -116,11 +108,25 @@ public class UserProfileCareerFragment extends Fragment {
             public void success(List<AllCareer> allCareers, Response response) {
                 if (allCareers == null || allCareers.isEmpty()) {
                     Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
+                   String kosong = "kosong";
+                    String noneImage ="http://i.imgur.com/0hi2ZKN.png";
+                    AllCareer noCareer = new AllCareer(kosong,kosong,noneImage,kosong,kosong,kosong,kosong);
+                    mAdapater.add(noCareer);
+                    return;
                 }
                 for (AllCareer allCareer : allCareers) {
                     mAdapater.add(allCareer);
                     Log.d("careerTest",allCareer.getKarirnama());
                 }
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent CareerDetailIntent= new Intent(getActivity(),UserCareerDetailActivity.class);
+                        // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
+                        CareerDetailIntent.putExtra(UserCareerDetailActivity.extra,mAdapater.getItem(position));
+                        startActivity(CareerDetailIntent);
+                    }
+                });
                 mAdapater.notifyDataSetChanged();
 
             }

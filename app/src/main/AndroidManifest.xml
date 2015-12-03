@@ -132,6 +132,9 @@
             android:label="Your Career"
             android:theme="@style/AppTheme"/>
 
+        <activity android:name=".activity.CareerEditActivity"
+            android:label="Edit Career"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

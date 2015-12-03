@@ -147,23 +147,23 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(resultCode == RESULT_OK){
+            uri=data.getData();
+            // kalau ga ada image yang dipilih bakal tampilin null
+            if(uri== null)
+                return;
 
-
-
-
-        uri=data.getData();
-        // kalau ga ada image yang dipilih bakal tampilin null
-        if(uri== null)
-            return;
-        if(requestCode==upload_code){
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                previewImageUpload.setImageBitmap(bitmap);
-                getPath(getApplicationContext(), uri);
-            }catch (IOException e){
-                e.printStackTrace();
+            if(requestCode==upload_code){
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    previewImageUpload.setImageBitmap(bitmap);
+                    getPath(getApplicationContext(), uri);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
             }
         }
+
 
     }
 

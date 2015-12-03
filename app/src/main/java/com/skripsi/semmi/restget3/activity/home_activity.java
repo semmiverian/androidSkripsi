@@ -53,6 +53,8 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
     private SharedPreferences sharedPreferences;
     private TextView navigationName;
     private TextView navigationStatus;
+    private NavigationView navigationView;
+    public final static int addCareerCode =112;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         displayFirstFragment();
+
+
+
+
         // Content responding code
 //        mUserLogin= (TextView) findViewById(R.id.userLogin);
 //        mStatusLogin= (TextView) findViewById(R.id.statusLogin);
@@ -101,7 +107,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         // define data from navigation header
@@ -110,10 +116,25 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         navigationName = (TextView) headerLayout.findViewById(R.id.namaUser);
         navigationStatus = (TextView) headerLayout.findViewById(R.id.statusUser);
         loadUserData();
+
+        if(getIntent()!= null && getIntent().getExtras()!=null){
+            if(getIntent().getExtras().containsKey("code")){
+                Log.d("kode", "dari add new Career");
+                openCareerFragment();
+                navigationView.getMenu().getItem(2).setChecked(true);
+
+            }
+        }
+    }
+
+    private void openCareerFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
+
     }
 
     private void displayFirstFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, HomeFragment.getInstance()).commit();
+
     }
 
 
@@ -272,4 +293,8 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 }

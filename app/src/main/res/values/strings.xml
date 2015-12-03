@@ -30,4 +30,5 @@
     <string name="userProduct">produk</string>
     <string name="userLogout">Logout</string>
     <string name="userHome">Home</string>
+    <string name="karirUpdate">Update Karir</string>
 </resources>

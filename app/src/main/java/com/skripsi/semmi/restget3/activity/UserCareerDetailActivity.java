@@ -66,13 +66,16 @@ public class UserCareerDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id= item.getItemId();
-
+        AllCareer allCareer=getIntent().getExtras().getParcelable(extra);
+        String karirNama= allCareer.getKarirnama();
+        String karirDetail = allCareer.getKarirdetail();
+        String karirId = allCareer.getKarirId();
         switch (id){
             case R.id.action_delete:
                 showDeleteConfirmDialog();
                 break;
             case R.id.action_edit:
-                editCareer();
+                editCareer(karirNama, karirDetail, karirId);
                 break;
         }
 
@@ -129,8 +132,12 @@ public class UserCareerDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void editCareer() {
-
+    private void editCareer(String karirNama , String karirDetail, String karirId) {
+        Intent editCarerIntent = new Intent(this, CareerEditActivity.class);
+        editCarerIntent.putExtra(CareerEditActivity.karirNama,karirNama);
+        editCarerIntent.putExtra(CareerEditActivity.karirDetail,karirDetail);
+        editCarerIntent.putExtra(CareerEditActivity.karirId,karirId);
+        startActivity(editCarerIntent);
     }
 
 
