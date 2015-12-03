@@ -1,22 +1,31 @@
 package com.skripsi.semmi.restget3.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UpdateCareerInterface;
 import com.skripsi.semmi.restget3.Model.DeleteData;
 import com.skripsi.semmi.restget3.R;
 
+import java.io.File;
+import java.io.IOException;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.TypedFile;
 
 /**
  * Created by semmi on 02/12/2015.
@@ -31,6 +40,12 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
     private Button updateButton;
     private  MaterialDialog dialog;
     private String idKarir;
+    private ImageView previewImage;
+    private Button changeImageButton;
+    private int upload_code=1;
+    private Uri uri;
+    private  TypedFile typedFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +53,9 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
         karirNamaText = (EditText) findViewById(R.id.editKarirNama);
         karirDetailText = (EditText) findViewById(R.id.editKarirDetail);
         updateButton = (Button) findViewById(R.id.updateKarir);
+        previewImage = (ImageView) findViewById(R.id.previewImageKarir);
+        changeImageButton = (Button) findViewById(R.id.updateImage);
+
         if(getIntent()!= null && getIntent().getExtras()!=null) {
             if (getIntent().getExtras().containsKey(karirNama)) {
                 karirNamaText.setText(getIntent().getExtras().getString(karirNama));
@@ -50,6 +68,7 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
         }
 
         updateButton.setOnClickListener(this);
+        changeImageButton.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -58,6 +77,27 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
             case R.id.updateKarir:
                 String nama = karirNamaText.getText().toString();
                 String detail = karirDetailText.getText().toString();
+                // ambil real path dari image yang dipilih
+                String imagePath=null;
+                if(uri != null){
+                    Cursor cursor = this.getContentResolver().query(
+                            uri, null, null, null, null);
+                    if (cursor == null) {
+                        imagePath = uri.getPath();
+                    } else {
+                        cursor.moveToFirst();
+                        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                        imagePath = cursor.getString(idx);
+                    }
+                    typedFile=new TypedFile("multipart/form-data",new File(imagePath ));
+                }else{
+                    // kalau ga ada gambar yang dipilih maka bakal set jadi null
+                    // gambar bakal dipasang gambar default yang sebelumnya udah di simpan di server
+                    if(imagePath==null){
+                        typedFile=null;
+                    }
+                }
+
                 dialog = new MaterialDialog.Builder(this)
                         .title("Proses")
                         .content("Connecting to server")
@@ -67,7 +107,7 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
                         .setEndpoint(getString(R.string.api))
                         .build();
                 UpdateCareerInterface updateCareerInterface = restAdapter.create(UpdateCareerInterface.class);
-                updateCareerInterface.postUpdateCareer(idKarir, nama, detail, new Callback<DeleteData>() {
+                updateCareerInterface.postUpdateCareer(idKarir, nama, detail, typedFile,new Callback<DeleteData>() {
                     @Override
                     public void success(DeleteData deleteData, Response response) {
                         dialog.setContent(deleteData.getInfo());
@@ -84,6 +124,37 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
                 break;
+            case R.id.updateImage:
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/* ");
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(intent, upload_code);
+                break;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            uri=data.getData();
+            // kalau ga ada image yang dipilih bakal tampilin null
+            if(uri== null)
+                return;
+
+            if(requestCode==upload_code){
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    previewImage.setImageBitmap(bitmap);
+                    AddNewCareerActivity anc = new AddNewCareerActivity();
+                    anc.getPath(getApplicationContext(), uri);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 }

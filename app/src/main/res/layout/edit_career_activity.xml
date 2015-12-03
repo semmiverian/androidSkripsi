@@ -41,7 +41,16 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <Button
+        android:id="@+id/updateImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/karirChangeImage" />
 
+    <ImageView
+        android:id="@+id/previewImageKarir"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
     <Button
         android:id="@+id/updateKarir"
         style="?android:attr/borderlessButtonStyle"

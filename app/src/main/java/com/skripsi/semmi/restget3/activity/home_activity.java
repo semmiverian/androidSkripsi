@@ -122,6 +122,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 Log.d("kode", "dari add new Career");
                 openCareerFragment();
                 navigationView.getMenu().getItem(2).setChecked(true);
+                // TODO find way to change the Title at Toolbar
 
             }
         }

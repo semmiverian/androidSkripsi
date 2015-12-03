@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.PersistableBundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -23,16 +22,13 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
-import com.skripsi.semmi.restget3.Interface.AllCareerInterface;
 import com.skripsi.semmi.restget3.Interface.NewCareerInterface;
-import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.NewCareer;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.AllCareerAdapater;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;

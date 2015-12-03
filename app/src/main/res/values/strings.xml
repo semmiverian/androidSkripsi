@@ -31,4 +31,5 @@
     <string name="userLogout">Logout</string>
     <string name="userHome">Home</string>
     <string name="karirUpdate">Update Karir</string>
+    <string name="karirChangeImage">Change Image</string>
 </resources>
