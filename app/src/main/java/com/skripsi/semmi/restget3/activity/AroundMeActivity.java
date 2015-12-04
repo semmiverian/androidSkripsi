@@ -2,6 +2,8 @@ package com.skripsi.semmi.restget3.activity;
 
 import android.content.Intent;
 import android.content.IntentSender;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -9,12 +11,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -30,6 +36,7 @@ import com.skripsi.semmi.restget3.Model.SaveUserLocation;
 import com.skripsi.semmi.restget3.Model.ShowAllUserLocation;
 import com.skripsi.semmi.restget3.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +52,8 @@ import retrofit.client.Response;
 public class AroundMeActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener, View.OnClickListener {
+
     // Variabel ini buat berinteraksi dengan google play services
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
@@ -56,6 +64,8 @@ public class AroundMeActivity extends AppCompatActivity implements
     public static final String  username="";
     private String usernameFromHome;
     private CoordinatorLayout coordinatorLayout;
+    private EditText searchLocation;
+    private Button searchLocationButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +85,10 @@ public class AroundMeActivity extends AppCompatActivity implements
         }
 
         coordinatorLayout= (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
+        searchLocation = (EditText) findViewById(R.id.searchLocation);
+        searchLocationButton = (Button) findViewById(R.id.searchLocationButton);
+        searchLocationButton.setOnClickListener(this);
     }
     // fungsi untuk ambil lokasi High accuracy
     private void requestLocation() {
@@ -177,11 +191,11 @@ public class AroundMeActivity extends AppCompatActivity implements
             @Override
             public void success(List<ShowAllUserLocation> showAllUserLocations, Response response) {
                 List<Marker> markers = new ArrayList<Marker>();
-                for( ShowAllUserLocation showAllUserLocation1:showAllUserLocations){
+                for (ShowAllUserLocation showAllUserLocation1 : showAllUserLocations) {
                     // muncul di map kalau lokasi nya ga 0 atau null
-                    if(!usernameFromHome.equals(showAllUserLocation1.getUsername()) && showAllUserLocation1.getLatitude()!=0 && showAllUserLocation1.getLongitude()!=0 ){
-                        MarkerOptions options=new MarkerOptions()
-                                .position(new LatLng(showAllUserLocation1.getLatitude(),showAllUserLocation1.getLongitude()))
+                    if (!usernameFromHome.equals(showAllUserLocation1.getUsername()) && showAllUserLocation1.getLatitude() != 0 && showAllUserLocation1.getLongitude() != 0) {
+                        MarkerOptions options = new MarkerOptions()
+                                .position(new LatLng(showAllUserLocation1.getLatitude(), showAllUserLocation1.getLongitude()))
                                 .title(showAllUserLocation1.getUsername())
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_user));
 
@@ -194,8 +208,8 @@ public class AroundMeActivity extends AppCompatActivity implements
                             //  Start snackbar with the detail of user
                             // Show user name and image when snackbar shown
                             // TODO Right now only show the username and the action to go to their representative profile
-                              final String usernameMarker =marker.getTitle();
-                            Snackbar snackbar = Snackbar.make(coordinatorLayout,marker.getTitle() ,Snackbar.LENGTH_INDEFINITE)
+                            final String usernameMarker = marker.getTitle();
+                            Snackbar snackbar = Snackbar.make(coordinatorLayout, marker.getTitle(), Snackbar.LENGTH_INDEFINITE)
                                     .setAction("Profile", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -211,17 +225,17 @@ public class AroundMeActivity extends AppCompatActivity implements
                                                     //  start intent to user profile here
                                                     Log.d("retrofit", allUser.getUsername());
                                                     Intent userProfileIntent = new Intent(AroundMeActivity.this, UserProfileFromAroundMeActivity.class);
-                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername,allUser.getUsername());
-                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage,allUser.getImage());
-                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraStatus,allUser.getStatus());
-                                                    userProfileIntent.putExtra("IDValue",allUser.getId());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername, allUser.getUsername());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage, allUser.getImage());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraStatus, allUser.getStatus());
+                                                    userProfileIntent.putExtra("IDValue", allUser.getId());
                                                     startActivity(userProfileIntent);
 
                                                 }
 
                                                 @Override
                                                 public void failure(RetrofitError error) {
-                                                    Log.d("marker Error",  error.getMessage());
+                                                    Log.d("marker Error", error.getMessage());
                                                 }
                                             });
                                         }
@@ -238,7 +252,7 @@ public class AroundMeActivity extends AppCompatActivity implements
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("get Error","from Retrofit"+error.getMessage());
+                Log.d("get Error", "from Retrofit" + error.getMessage());
             }
         });
     }
@@ -280,15 +294,56 @@ public class AroundMeActivity extends AppCompatActivity implements
         saveUserLocationInterface.saveLocation(currentLatitude, currentLongitude, usernameFromHome, new Callback<SaveUserLocation>() {
             @Override
             public void success(SaveUserLocation saveUserLocation, Response response) {
-                Log.d("save",saveUserLocation.getKode());
+                Log.d("save", saveUserLocation.getKode());
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("post Error","from Retrofit"+error.getMessage());
+                Log.d("post Error", "from Retrofit" + error.getMessage());
             }
         });
     }
 
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.searchLocationButton:
+                 String searchResult = searchLocation.getText().toString();
+                try {
+                    findSearchRequest(searchResult);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
+
+    private void findSearchRequest(String searchResult) throws IOException {
+        if(searchResult.equals("")){
+            Toast.makeText(AroundMeActivity.this, "Null Search", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> list = geocoder.getFromLocationName(searchResult, 1);
+
+        if(list.size() >0){
+            Address address = list.get(0);
+//            String locality = address.getLocality();
+
+            double lat = address.getLatitude();
+            double lng = address.getLongitude();
+
+            changeMapFromSearch(lat,lng,15);
+        }
+
+    }
+
+    private void changeMapFromSearch(double lat, double lng, float zoom) {
+        LatLng latLng = new LatLng(lat,lng);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng,zoom);
+        mMap.moveCamera(cameraUpdate);
+    }
 }
