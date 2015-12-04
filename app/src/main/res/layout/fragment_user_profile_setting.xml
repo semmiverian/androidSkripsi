@@ -55,5 +55,14 @@
             android:layout_marginRight="5dp"
             android:layout_marginEnd="5dp"/>
 
+        <Button
+            android:id="@+id/changePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_400"
+            android:text="@string/changePassword"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"/>
+
     </LinearLayout>
 </LinearLayout>

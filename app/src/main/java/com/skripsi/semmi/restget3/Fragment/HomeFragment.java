@@ -1,5 +1,6 @@
 package com.skripsi.semmi.restget3.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +41,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences sharedPreferences;
     private TextView navigationName;
     private TextView navigationStatus;
-
     public static HomeFragment getInstance(){
         HomeFragment fragment=  new HomeFragment();
         return fragment;
@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         allUser= (Button) view.findViewById(R.id.allUserButton);
         product = (Button) view.findViewById(R.id.trading);
         userProfileBeta = (Button) view.findViewById(R.id.userProfileBeta);
+        sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         return view;
     }
 
@@ -74,10 +75,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        String currentUser =sharedPreferences.getString("usernameSession", "Username");
         switch (v.getId()) {
             case R.id.aroundme:
                 Intent intentAroundMe=new Intent(getActivity(),AroundMeActivity.class);
-                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
+                intentAroundMe.putExtra(AroundMeActivity.username, currentUser);
                 startActivity(intentAroundMe);
                 break;
             case R.id.careerButton:

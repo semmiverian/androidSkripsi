@@ -45,6 +45,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.ChangePasswordActivity;
 import com.skripsi.semmi.restget3.activity.UploadImageActivity;
 import com.squareup.picasso.Picasso;
 
@@ -39,6 +40,7 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
     private  String user;
     private SharedPreferences sharedPreferences;
     private Button mButton;
+    private Button changePasswordButton;
 
     public static  UserProfileSettingFragment getInstance(){
         UserProfileSettingFragment fragment = new UserProfileSettingFragment();
@@ -54,11 +56,16 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_user_profile_setting,container,false);
+
         Username= (TextView) view.findViewById(R.id.usernameProfile);
         Status= (TextView) view.findViewById(R.id.usernameStatus);
         profileImage= (ImageView) view.findViewById(R.id.UserProfileImage);
         mButton= (Button) view.findViewById(R.id.changeProfileImage);
+        changePasswordButton = (Button) view.findViewById(R.id.changePassword);
+
         mButton.setOnClickListener(this);
+        changePasswordButton.setOnClickListener(this);
+
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         Username.setText(sharedPreferences.getString("usernameSession", "Username").toUpperCase());
@@ -115,6 +122,10 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
             case R.id.changeProfileImage:
                 Intent uploadImageIntent = new Intent(getActivity(), UploadImageActivity.class);
                 startActivity(uploadImageIntent);
+                break;
+            case R.id.changePassword:
+                Intent changePasswordIntent = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(changePasswordIntent);
                 break;
         }
     }

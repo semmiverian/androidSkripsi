@@ -32,4 +32,6 @@
     <string name="userHome">Home</string>
     <string name="karirUpdate">Update Karir</string>
     <string name="karirChangeImage">Change Image</string>
+    <string name="changePassword">Change Password</string>
+    <string name="confirmPass">Confirm</string>
 </resources>

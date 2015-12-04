@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.skripsi.semmi.restget3.Fragment.LoginFragment;
 import com.skripsi.semmi.restget3.Fragment.RegisterFragment;
+import com.skripsi.semmi.restget3.activity.home_activity;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//
         displayInitialFragment();
     }
     private void displayInitialFragment() {
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity  {
         // fungsi ketika user ketik back maka akan ke home bukan balik ke tampilan login
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
     }
 }

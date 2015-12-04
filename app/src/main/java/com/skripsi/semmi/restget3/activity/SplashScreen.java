@@ -40,7 +40,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 ConnectionTesting();
             }
-        }, 5000);
+        }, 3000);
     }
 
     // fungsi untuk mengecek koneksi ke internet sebelum bisa melanjutkan aplikasi
