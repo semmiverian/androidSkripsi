@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -313,6 +314,7 @@ public class AroundMeActivity extends AppCompatActivity implements
                  String searchResult = searchLocation.getText().toString();
                 try {
                     findSearchRequest(searchResult);
+                    hideKeyboard(v);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -332,13 +334,16 @@ public class AroundMeActivity extends AppCompatActivity implements
         if(list.size() >0){
             Address address = list.get(0);
 //            String locality = address.getLocality();
-
             double lat = address.getLatitude();
             double lng = address.getLongitude();
-
             changeMapFromSearch(lat,lng,15);
         }
 
+    }
+
+    private void hideKeyboard(View v) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(),0);
     }
 
     private void changeMapFromSearch(double lat, double lng, float zoom) {
