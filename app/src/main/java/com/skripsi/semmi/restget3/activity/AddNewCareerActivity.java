@@ -164,7 +164,7 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-
+    // TODO Refactor and make this ugly thing in one class
     // Dont Bother this part
     // Just a way to do something
     // ngambil nama data yang dipilih oleh user jika user menggunakan API diatas 19

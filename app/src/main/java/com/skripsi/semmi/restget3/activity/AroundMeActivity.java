@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -179,7 +181,7 @@ public class AroundMeActivity extends AppCompatActivity implements
         // set camera pake zoom
 
         // kaya kalau setiap connect bakal set zoom terus kayak pas lagi di pinch out
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
     }
 
     private void putAllUserMarker() {
@@ -337,6 +339,19 @@ public class AroundMeActivity extends AppCompatActivity implements
             double lat = address.getLatitude();
             double lng = address.getLongitude();
             changeMapFromSearch(lat,lng,15);
+        }else{
+            new MaterialDialog.Builder(this)
+                    .title("Gagalt")
+                    .content("Tempat ditemukan silahkan masukkan data lengkap ")
+                    .positiveText("Ulangi")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                            materialDialog.dismiss();
+                            searchLocation.setText("");
+                        }
+                    })
+                    .show();
         }
 
     }

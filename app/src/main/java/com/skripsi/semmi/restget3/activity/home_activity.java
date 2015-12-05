@@ -126,6 +126,20 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
             }
         }
+
+        if(getIntent()!= null && getIntent().getExtras()!=null){
+            if(getIntent().getExtras().containsKey("code2")){
+                Log.d("kode", "dari add new Career");
+                openUserSettingFragment();
+                navigationView.getMenu().getItem(1).setChecked(true);
+                // TODO find way to change the Title at Toolbar
+
+            }
+        }
+    }
+
+    private void openUserSettingFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileSettingFragment.getInstance()).commit();
     }
 
     private void openCareerFragment() {
