@@ -64,6 +64,7 @@
         <activity android:name=".activity.home_activity"
             android:label="@string/homePage"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".activity.AroundMeActivity"
             android:label="@string/aroundme"
             android:theme="@style/AppTheme"/>
@@ -84,8 +85,8 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.CareerActivity"
-            android:label="Career List"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".activity.CareerDetailActivity"
             android:label="Career"
             android:theme="@style/AppTheme"/>

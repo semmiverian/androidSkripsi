@@ -56,6 +56,7 @@ public class CareerListFragment extends ListFragment  {
         getCareerData();
         setListShown(true);
 
+
     }
 
     public void timerDoTheStuff() {
