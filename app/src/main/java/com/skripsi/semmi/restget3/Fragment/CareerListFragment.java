@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import android.view.LayoutInflater;
@@ -42,7 +43,8 @@ public class CareerListFragment extends ListFragment  {
     private Timer timer;
     public TimerTask timerTask;
     public Runnable runnable;
-//    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     public static CareerListFragment getInstance(){
         CareerListFragment fragment=new CareerListFragment();
         return fragment;
@@ -60,7 +62,23 @@ public class CareerListFragment extends ListFragment  {
 
     }
 
-//    public void timerDoTheStuff() {
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.career_fragment, container, false);
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+//        swipeRefreshLayout.setOnRefreshListener(this);
+//        swipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                swipeRefreshLayout.setRefreshing(true);
+//                getCareerData();
+//            }
+//        });
+//    }
+
+
+
+    //    public void timerDoTheStuff() {
 //        timer = new Timer();
 //        timerTask = new TimerTask() {
 //
@@ -147,4 +165,9 @@ public class CareerListFragment extends ListFragment  {
     }
 
 
+//    @Override
+//    public void onRefresh() {
+//        mAdapater.clear();
+//        getCareerData();
+//    }
 }

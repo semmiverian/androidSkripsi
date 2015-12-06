@@ -21,6 +21,7 @@ import com.skripsi.semmi.restget3.R;
 public class CareerActivity extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton mFloatingActionButton;
     public static String refresh_code="1";
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,10 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Career List");
+
+
+
+
 
         displayInitialFragment();
         Bundle bundle = new Bundle();
