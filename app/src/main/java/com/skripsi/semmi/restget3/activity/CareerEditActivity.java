@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UpdateCareerInterface;
 import com.skripsi.semmi.restget3.Model.DeleteData;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.Util.GetDataPathHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -147,8 +148,8 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     previewImage.setImageBitmap(bitmap);
-                    AddNewCareerActivity anc = new AddNewCareerActivity();
-                    anc.getPath(getApplicationContext(), uri);
+                    GetDataPathHelper gdph = new GetDataPathHelper();
+                    gdph.getPath(getApplicationContext(), uri);
                 }catch (IOException e){
                     e.printStackTrace();
                 }
