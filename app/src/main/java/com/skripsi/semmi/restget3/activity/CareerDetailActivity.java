@@ -2,16 +2,22 @@ package com.skripsi.semmi.restget3.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ListHolder;
 import com.skripsi.semmi.restget3.Interface.UserProfileFromAroundMe;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.AllUser;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.adapter.ContactDialogAdapter;
 import com.squareup.picasso.Picasso;
 
 import retrofit.Callback;
@@ -30,8 +36,18 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_career_detail);
 
+
+
+
         // ambil data yang udah di parse
         AllCareer allCareer=getIntent().getExtras().getParcelable(EXTRA);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
         // define objek yang di xml
         TextView judul= (TextView) findViewById(R.id.careerJudul);
         TextView detail= (TextView) findViewById(R.id.carerDetail);
@@ -59,6 +75,8 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         AllCareer allCareer=getIntent().getExtras().getParcelable(EXTRA);
         String username = allCareer.getUserName();
+        String email = allCareer.getKarirEmail();
+        String telepon = allCareer.getKarirTelepon();
         switch ( v.getId()){
             case R.id.imageProfile:
                 goToUserProfile(username);
@@ -66,8 +84,25 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
             case R.id.userNameCareer:
                 goToUserProfile(username);
                 break;
+            case R.id.fab:
+                showCareerContactInfo(email,telepon);
+                break;
         }
     }
+
+    private void showCareerContactInfo(String email, String telepon) {
+        ContactDialogAdapter contactDialogAdapter;
+        contactDialogAdapter = new ContactDialogAdapter(this,email,telepon);
+
+        DialogPlus dialogPlus = DialogPlus.newDialog(this)
+                .setAdapter(contactDialogAdapter)
+                .setContentHolder(new ListHolder())
+                .setGravity(Gravity.BOTTOM)
+                .setHeader(R.layout.dialog_header)
+                .create();
+        dialogPlus.show();
+    }
+
 
     private void goToUserProfile(String username) {
         RestAdapter restAdapter=new RestAdapter.Builder()

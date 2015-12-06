@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
 import com.skripsi.semmi.restget3.Interface.NewCareerInterface;
@@ -42,6 +43,8 @@ import retrofit.mime.TypedFile;
 public class AddNewCareerActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView addJudulKarir;
     private TextView addDeskKarir;
+    private TextView addEmailContact;
+    private TextView addPhoneContact;
     private Button addImageKarir;
     private ImageView previewImageUpload;
     private Button submit;
@@ -60,6 +63,8 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
         // define xml file biar bisa di pasang logik
         addJudulKarir= (TextView) findViewById(R.id.addJudulKarir);
         addDeskKarir= (TextView) findViewById(R.id.addDeskKarir);
+        addEmailContact = (TextView) findViewById(R.id.kontakEmail);
+        addPhoneContact = (TextView) findViewById(R.id.kontakTelepon);
         addImageKarir= (Button) findViewById(R.id.addImageKarir);
         previewImageUpload= (ImageView) findViewById(R.id.previewImageUpload);
         submit= (Button) findViewById(R.id.submitNewCareer);
@@ -71,6 +76,10 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+        String judul=addJudulKarir.getText().toString();
+        String detail=addDeskKarir.getText().toString();
+        String email = addEmailContact.getText().toString();
+        String phone = addPhoneContact.getText().toString();
         switch(v.getId()){
             case R.id.addImageKarir:
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -106,17 +115,32 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
                     }
                 }
 
+                if(judul.equals("") || detail.equals("") || email.equals("") || phone.equals("")){
+                    dialog.dismiss();
+                    new MaterialDialog.Builder(this)
+                            .title("Gagal")
+                            .content("Harus Di Isi Semua")
+                            .positiveText("Kembali")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                    materialDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    return;
+                }
+
                 // define adapter
                 mAdapater=new AllCareerAdapater(this,0);
 
                 String username=sharedPreferences.getString("usernameSession", "Username");
-                String judul=addJudulKarir.getText().toString();
-                String detail=addDeskKarir.getText().toString();
+
                 RestAdapter restAdapter=new RestAdapter.Builder()
                         .setEndpoint(getString(R.string.api))
                         .build();
                 NewCareerInterface newCareerInterface=restAdapter.create(NewCareerInterface.class);
-                newCareerInterface.postCareer(username,judul,detail,typedFile,new Callback<NewCareer>() {
+                newCareerInterface.postCareer(username,judul,detail,email,phone,typedFile,new Callback<NewCareer>() {
                     @Override
                     public void success(NewCareer newCareer, Response response) {
                         dialog.setContent("Sukses Add Data");

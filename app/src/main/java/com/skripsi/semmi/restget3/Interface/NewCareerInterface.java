@@ -14,5 +14,5 @@ import retrofit.mime.TypedFile;
 public interface NewCareerInterface {
     @Multipart
     @POST("/addNewCareer.php")
-    void postCareer(@Part("username") String username, @Part("judul") String judul, @Part("detail") String detail,@Part("image") TypedFile image, Callback<NewCareer> callback);
+    void postCareer(@Part("username") String username, @Part("judul") String judul, @Part("detail") String detail,@Part("email") String email,@Part("telepon") String telepon,@Part("image") TypedFile image, Callback<NewCareer> callback);
 }

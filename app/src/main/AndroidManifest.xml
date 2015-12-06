@@ -89,7 +89,12 @@
 
         <activity android:name=".activity.CareerDetailActivity"
             android:label="Career"
-            android:theme="@style/AppTheme"/>
+            android:parentActivityName=".activity.CareerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.CareerActivity" />
+        </activity>
         <activity android:name=".activity.AddNewCareerActivity"
             android:label="Add New Career"
             android:theme="@style/AppTheme"/>
@@ -122,7 +127,7 @@
 
         <activity android:name=".activity.UserCareerDetailActivity"
             android:label="Customize Career"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.UserCareerActivity"
             android:label="Your Career"
             android:theme="@style/AppTheme"/>

@@ -94,7 +94,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     return;
                 }
 
-                // TODO Send data to server and set Callback
+                //  Send data to server and set Callback
                 RestAdapter restAdapter=new RestAdapter.Builder()
                         .setEndpoint(getString(R.string.api))
                         .build();

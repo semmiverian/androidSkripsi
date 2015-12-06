@@ -14,11 +14,13 @@ public class AllCareer implements Parcelable {
     private String userName;
     private String userImage;
     private String karirId;
+    private String karirEmail;
+    private String karirTelepon;
 
     public AllCareer(){
 
     }
-    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage, String karirId){
+    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage, String karirId, String karirEmail, String karirTelepon){
         this.karirnama=karirnama;
         this.karirdetail=karirdetail;
         this.karirImage=karirImage;
@@ -26,6 +28,8 @@ public class AllCareer implements Parcelable {
         this.userName=userName;
         this.userImage=userImage;
         this.karirId=karirId;
+        this.karirEmail=karirEmail;
+        this.karirTelepon = karirTelepon;
     }
 
     public AllCareer(Parcel source){
@@ -36,6 +40,8 @@ public class AllCareer implements Parcelable {
         userName=source.readString();
         userImage=source.readString();
         karirId=source.readString();
+        karirEmail=source.readString();
+        karirTelepon=source.readString();
     }
 
 
@@ -54,6 +60,8 @@ public class AllCareer implements Parcelable {
         dest.writeString(userName);
         dest.writeString(userImage);
         dest.writeString(karirId);
+        dest.writeString(karirEmail);
+        dest.writeString(karirTelepon);
     }
 
     private void applyDefaultValues() {
@@ -77,6 +85,12 @@ public class AllCareer implements Parcelable {
         }
         if(karirId==null){
             karirId="";
+        }
+        if(karirEmail==null){
+            karirEmail="";
+        }
+        if(karirTelepon==null){
+            karirTelepon="";
         }
     }
 
@@ -148,4 +162,21 @@ public class AllCareer implements Parcelable {
     public void setKarirId(String karirId) {
         this.karirId = karirId;
     }
+
+    public String getKarirEmail() {
+        return karirEmail;
+    }
+
+    public void setKarirEmail(String karirEmail) {
+        this.karirEmail = karirEmail;
+    }
+
+    public String getKarirTelepon() {
+        return karirTelepon;
+    }
+
+    public void setKarirTelepon(String karirTelepon) {
+        this.karirTelepon = karirTelepon;
+    }
+
 }

@@ -110,7 +110,7 @@ public class UserProfileCareerFragment extends Fragment {
                     Toast.makeText(getActivity(), "Ga ada Career  yang di pasang", Toast.LENGTH_SHORT).show();
                    String kosong = "kosong";
                     String noneImage ="http://i.imgur.com/0hi2ZKN.png";
-                    AllCareer noCareer = new AllCareer(kosong,kosong,noneImage,kosong,kosong,kosong,kosong);
+                    AllCareer noCareer = new AllCareer(kosong,kosong,noneImage,kosong,kosong,kosong,kosong,kosong,kosong);
                     mAdapater.add(noCareer);
                     return;
                 }
