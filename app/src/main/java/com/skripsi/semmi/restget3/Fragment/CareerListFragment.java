@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.AllCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.Util.DateHelper;
 import com.skripsi.semmi.restget3.activity.CareerDetailActivity;
 import com.skripsi.semmi.restget3.adapter.AllCareerAdapater;
 
@@ -59,23 +60,23 @@ public class CareerListFragment extends ListFragment  {
 
     }
 
-    public void timerDoTheStuff() {
-        timer = new Timer();
-        timerTask = new TimerTask() {
-
-            @Override
-            public void run() {
-               handler.post(new Runnable() {
-                   @Override
-                   public void run() {
-                       getCareerData();
-                   }
-               });
-            }
-        };
-
-        timer.schedule(timerTask, 2000, 500);
-    }
+//    public void timerDoTheStuff() {
+//        timer = new Timer();
+//        timerTask = new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//               handler.post(new Runnable() {
+//                   @Override
+//                   public void run() {
+//                       getCareerData();
+//                   }
+//               });
+//            }
+//        };
+//
+//        timer.schedule(timerTask, 2000, 500);
+//    }
 
 
     @Override
@@ -103,7 +104,11 @@ public class CareerListFragment extends ListFragment  {
                     // parse data yang diambil dari server ke adapter
                     // dari adapter nanti bakal ditampilin ke aplikasi
                     mAdapater.add(allCareer);
-                    Log.d("Sukses", allCareer.getKarirnama());
+//                    Log.d("Sukses", allCareer.getKarirCreate());
+
+                    DateHelper dateHelper = new DateHelper();
+                    String dateTest = dateHelper.changeDateFormat(allCareer.getKarirCreate());
+                    Log.d("Sukses", dateTest);
                 }
                 // pasang ini biar bisa nge detek kalau ada data yang berubah
                 mAdapater.notifyDataSetChanged();

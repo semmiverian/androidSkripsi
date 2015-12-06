@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.Util.DateHelper;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -31,14 +32,18 @@ public class AllCareerAdapater extends ArrayAdapter<AllCareer> {
             holder.careerImage= (ImageView) convertView.findViewById(R.id.careerImage);
             holder.judulCareer= (TextView) convertView.findViewById(R.id.judulCareer);
             holder.deskripsiCareer= (TextView) convertView.findViewById(R.id.deskripsiCareer);
+            holder.dateCareer = (TextView) convertView.findViewById(R.id.dateCareer);
             // set tag biar kaya simpen flag
             convertView.setTag(holder);
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
+        DateHelper dateHelper = new DateHelper();
+        String date = dateHelper.changeDateFormat(getItem(position).getKarirCreate());
         // masukin data yang diambil biar bisa ditampilin di aplikasi
         holder.judulCareer.setText(getItem(position).getKarirnama());
         holder.deskripsiCareer.setText(getItem(position).getKarirdetail());
+        holder.dateCareer.setText(date);
         Picasso.with(getContext())
                 .load(getItem(position).getKarirImage())
                 .into(holder.careerImage);
@@ -50,5 +55,6 @@ public class AllCareerAdapater extends ArrayAdapter<AllCareer> {
         ImageView careerImage;
         TextView judulCareer;
         TextView deskripsiCareer;
+        TextView dateCareer;
     }
 }
