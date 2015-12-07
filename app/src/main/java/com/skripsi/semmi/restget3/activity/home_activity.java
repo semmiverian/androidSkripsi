@@ -3,9 +3,7 @@ package com.skripsi.semmi.restget3.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,23 +11,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.HomeFragment;
-import com.skripsi.semmi.restget3.Fragment.LoginFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.service.UpdateDataLocationServices;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -136,6 +132,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
             }
         }
+
+        // set Intent Services to get location if the gps is on
+//        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
+//        startService(serviceIntent);
     }
 
     private void openUserSettingFragment() {

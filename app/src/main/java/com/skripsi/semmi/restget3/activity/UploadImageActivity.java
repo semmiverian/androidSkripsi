@@ -1,20 +1,13 @@
 package com.skripsi.semmi.restget3.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.PersistableBundle;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,9 +21,8 @@ import android.widget.Toast;
 import com.skripsi.semmi.restget3.Interface.UploadImageInterface;
 import com.skripsi.semmi.restget3.Model.UploadImage;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.Util.GetDataPathHelper;
+import com.skripsi.semmi.restget3.Helper.GetDataPathHelper;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 

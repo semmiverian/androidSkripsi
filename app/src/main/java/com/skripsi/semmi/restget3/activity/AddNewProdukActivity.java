@@ -1,16 +1,12 @@
 package com.skripsi.semmi.restget3.activity;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,14 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
-import com.skripsi.semmi.restget3.Interface.NewCareerInterface;
 import com.skripsi.semmi.restget3.Interface.NewProductInterface;
-import com.skripsi.semmi.restget3.Model.NewCareer;
 import com.skripsi.semmi.restget3.Model.NewProduk;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.Util.GetDataPathHelper;
-import com.skripsi.semmi.restget3.adapter.AllCareerAdapater;
+import com.skripsi.semmi.restget3.Helper.GetDataPathHelper;
 
 import java.io.File;
 import java.io.IOException;

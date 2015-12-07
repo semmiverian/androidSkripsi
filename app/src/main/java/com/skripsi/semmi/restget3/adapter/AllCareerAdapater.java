@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.Util.DateHelper;
+import com.skripsi.semmi.restget3.Helper.DateHelper;
 import com.squareup.picasso.Picasso;
 
 /**

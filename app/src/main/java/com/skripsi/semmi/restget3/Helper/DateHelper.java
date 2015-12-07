@@ -1,4 +1,4 @@
-package com.skripsi.semmi.restget3.Util;
+package com.skripsi.semmi.restget3.Helper;
 
 /**
  * Created by semmi on 06/12/2015.

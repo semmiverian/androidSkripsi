@@ -7,10 +7,8 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
-import android.view.LayoutInflater;
 import android.view.View;
 
-import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -18,7 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.AllCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.Util.DateHelper;
+import com.skripsi.semmi.restget3.Helper.DateHelper;
 import com.skripsi.semmi.restget3.activity.CareerDetailActivity;
 import com.skripsi.semmi.restget3.adapter.AllCareerAdapater;
 
