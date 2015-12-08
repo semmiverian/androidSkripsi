@@ -2,78 +2,108 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:orientation="vertical" android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:id="@id/container">
+android:id="@+id/container"
+    android:background="#0063e5">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Username :"
-        android:id="@+id/userLabel" />
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:src="@drawable/logo_alumni"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:hint="Email"
+                android:background="#ffffff"
+                android:padding="10dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:padding="10dp"
+                android:background="#ffffff"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:singleLine="false" />
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:hint="@string/usernamehint"/>
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password :"
-        android:id="@+id/passLabel"
-       />
-    <EditText
+        android:orientation="vertical"
+        android:paddingTop="15dp">
+        <Button
+            android:id="@+id/loginGo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:text="Log in"
+            android:background="#3b3a3a"/>
+    </LinearLayout>
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:inputType="textPassword"
-        android:hint="@string/passwordhint"/>
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="15dp">
-    <Button
-        android:id="@+id/loginGo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimaryHome"
-        android:text="@string/login"
-        android:background="@color/colorAccent"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:paddingTop="15dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="15dp">
-    <Button
-        android:id="@+id/registerGo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/light_red"
-        android:text="@string/register"
-        android:background="@color/colorPrimaryHome"/>
+            <TextView
+            android:id="@+id/forgotGo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="Forgot Password? click here"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_gravity="right" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/forgotGo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="@color/light_red"
-        android:text="@string/forgotText"
-        android:paddingLeft="15dp"/>
-</LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/registerGo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up for Alumni Space"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

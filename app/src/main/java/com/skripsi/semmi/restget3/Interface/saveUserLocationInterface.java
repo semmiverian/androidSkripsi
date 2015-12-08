@@ -9,8 +9,9 @@ import retrofit.http.Part;
 
 /**
  * Created by semmi on 20/10/2015.
+ *
  */
-public interface SaveUserLocationInterface {
+public interface saveUserLocationInterface {
     @Multipart
     @POST("/savelocation.php")
     void saveLocation(@Part("Latitude") Double latitude,@Part("Longitude") Double longtitude,@Part("username") String username, Callback<SaveUserLocation> callback);

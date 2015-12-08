@@ -2,8 +2,6 @@ package com.skripsi.semmi.restget3.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,14 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
-import com.skripsi.semmi.restget3.Interface.UserImageInterface;
+import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.AllUser;
-import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
-import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
@@ -86,7 +81,7 @@ public class AllUserProfile extends AppCompatActivity implements View.OnClickLis
         RestAdapter restAdapter2=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
+        userCareerInterface userCareerInterface=restAdapter2.create(com.skripsi.semmi.restget3.Interface.userCareerInterface.class);
         userCareerInterface.getCareer(username, new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {

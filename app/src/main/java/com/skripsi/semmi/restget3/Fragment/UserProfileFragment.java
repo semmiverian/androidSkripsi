@@ -18,22 +18,18 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
+import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
-import com.skripsi.semmi.restget3.Interface.UserProfileInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
-import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.UploadImageActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
-import com.skripsi.semmi.restget3.view.AnimatedExpandableListView;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -137,7 +133,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         RestAdapter restAdapter2=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
+        userCareerInterface userCareerInterface=restAdapter2.create(com.skripsi.semmi.restget3.Interface.userCareerInterface.class);
         userCareerInterface.getCareer(user, new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {

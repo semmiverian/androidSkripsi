@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0b6ff2">
 
 
-    <ImageView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_screen"/>
+        android:padding="20dp"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_alumni" />
+    </LinearLayout>
 
 
 </LinearLayout>

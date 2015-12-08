@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.skripsi.semmi.restget3.Interface.SaveUserLocationInterface;
+import com.skripsi.semmi.restget3.Interface.saveUserLocationInterface;
 import com.skripsi.semmi.restget3.Interface.ShowAllUserLocationInterface;
 import com.skripsi.semmi.restget3.Interface.UserProfileFromAroundMe;
 import com.skripsi.semmi.restget3.Model.AllUser;
@@ -293,7 +293,7 @@ public class AroundMeActivity extends AppCompatActivity implements
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        SaveUserLocationInterface saveUserLocationInterface=restAdapter.create(SaveUserLocationInterface.class);
+        saveUserLocationInterface saveUserLocationInterface=restAdapter.create(com.skripsi.semmi.restget3.Interface.saveUserLocationInterface.class);
         saveUserLocationInterface.saveLocation(currentLatitude, currentLongitude, usernameFromHome, new Callback<SaveUserLocation>() {
             @Override
             public void success(SaveUserLocation saveUserLocation, Response response) {

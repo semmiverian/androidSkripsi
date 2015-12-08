@@ -1,12 +1,10 @@
 package com.skripsi.semmi.restget3.Fragment;
 
-import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,14 +18,10 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
+import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
-import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.activity.CareerDetailActivity;
-import com.skripsi.semmi.restget3.activity.ProductDetailActivity;
 import com.skripsi.semmi.restget3.activity.UserCareerDetailActivity;
-import com.skripsi.semmi.restget3.activity.UserProfileNewActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 
 import java.util.List;
@@ -102,7 +96,7 @@ public class UserProfileCareerFragment extends Fragment {
         RestAdapter restAdapter2=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
+        userCareerInterface userCareerInterface=restAdapter2.create(com.skripsi.semmi.restget3.Interface.userCareerInterface.class);
         userCareerInterface.getCareer(user, new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {

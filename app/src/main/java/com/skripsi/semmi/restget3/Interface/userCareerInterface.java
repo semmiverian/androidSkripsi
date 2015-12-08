@@ -13,7 +13,7 @@ import retrofit.http.Part;
 /**
  * Created by semmi on 27/10/2015.
  */
-public interface UserCareerInterface {
+public interface userCareerInterface {
     @POST("/retrieveUserCareer.php")
     @Multipart
     void getCareer(@Part("karirNama") String karirnama, Callback<List<AllCareer>> callback);

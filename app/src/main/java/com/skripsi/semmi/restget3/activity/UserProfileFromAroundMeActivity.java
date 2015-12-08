@@ -11,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skripsi.semmi.restget3.Interface.UserCareerInterface;
+import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
-import com.skripsi.semmi.restget3.Model.Career;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
@@ -89,7 +88,7 @@ public class UserProfileFromAroundMeActivity extends AppCompatActivity implement
         RestAdapter restAdapter2=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        UserCareerInterface userCareerInterface=restAdapter2.create(UserCareerInterface.class);
+        userCareerInterface userCareerInterface=restAdapter2.create(com.skripsi.semmi.restget3.Interface.userCareerInterface.class);
         userCareerInterface.getCareer(username, new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {

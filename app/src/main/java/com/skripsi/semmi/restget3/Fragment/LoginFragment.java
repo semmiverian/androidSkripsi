@@ -22,6 +22,7 @@ import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.ForgotPassActivity;
 import com.skripsi.semmi.restget3.activity.RegisterActivity;
 import com.skripsi.semmi.restget3.activity.home_activity;
+import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -32,7 +33,7 @@ import retrofit.client.Response;
  * Created by semmi on 14/10/2015.
  */
 public class LoginFragment extends Fragment implements View.OnClickListener {
-    private Button mRegister;
+    private TextView mRegister;
     private Button mLogin;
     private EditText mUsername;
     private EditText mPassword;
@@ -56,6 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mUsername= (EditText) view.findViewById(R.id.username);
         mPassword= (EditText) view.findViewById(R.id.password);
         mForgotPass= (TextView) view.findViewById(R.id.forgotGo);
+        mForgotPass.setTypeface(EasyFonts.robotoThin(getActivity()));
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         // kalau udah pernah login ga usah masuk ke tampilan login lagi
         if(sharedPreferences.getString("usernameSession",null)!= null){
@@ -69,8 +71,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRegister= (Button) view.findViewById(R.id.registerGo);
+
+
+
+        mRegister= (TextView) view.findViewById(R.id.registerGo);
         mRegister.setOnClickListener(this);
+
         mLogin= (Button) view.findViewById(R.id.loginGo);
         mLogin.setOnClickListener(this);
         mForgotPass.setOnClickListener(this);

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.skripsi.semmi.restget3"
@@ -45,5 +45,6 @@ dependencies {
     compile 'com.nhaarman.listviewanimations:lib-core-slh:3.1.0@aar'
     compile 'com.android.support:cardview-v7:23.0.1'
     compile 'com.orhanobut:dialogplus:1.10@aar'
+    compile 'com.vstechlab.easyfonts:easyfonts:1.0.0'
 
 }
