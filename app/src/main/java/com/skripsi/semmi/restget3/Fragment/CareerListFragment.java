@@ -53,6 +53,7 @@ public class CareerListFragment extends ListFragment  {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mAdapater=new AllCareerAdapater(getActivity(),0);
+        mAdapater.clear();
         setListShown(false);
         getCareerData();
         setListShown(true);
@@ -119,12 +120,14 @@ public class CareerListFragment extends ListFragment  {
                 for (AllCareer allCareer : allCareers) {
                     // parse data yang diambil dari server ke adapter
                     // dari adapter nanti bakal ditampilin ke aplikasi
+                    mAdapater.clear();
+                    mAdapater.remove(allCareer);
                     mAdapater.add(allCareer);
 //                    Log.d("Sukses", allCareer.getKarirCreate());
 
                     DateHelper dateHelper = new DateHelper();
                     String dateTest = dateHelper.changeDateFormat(allCareer.getKarirCreate());
-                    Log.d("Sukses", dateTest);
+                    Log.d("Sukses", allCareer.getKarirnama());
                 }
                 // pasang ini biar bisa nge detek kalau ada data yang berubah
                 mAdapater.notifyDataSetChanged();

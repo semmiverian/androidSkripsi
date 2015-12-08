@@ -65,6 +65,7 @@
 
         <activity android:name=".activity.home_activity"
             android:label="@string/homePage"
+            android:finishOnCloseSystemDialogs="true"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".activity.AroundMeActivity"

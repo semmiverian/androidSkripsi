@@ -233,13 +233,13 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-
+        finish();
         // fungsi ketika user ketik back maka akan ke home bukan balik ke tampilan login
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
-//        a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+        a.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK );
         startActivity(a);
-        finish();
+
     }
 
     @Override
@@ -275,16 +275,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void progressBar() {
-        // Create and show a non-indeterminate dialog with a max value of 150
-        // If the showMinMax parameter is true, a min/max ratio will be shown to the left of the seek bar.
-//        boolean showMinMax = true;
-        MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title("loading")
-                .content("sabar gan")
-                .progress(true,200)
-                .show();
-    }
 
 
     // fungsi ketika drawer di click
