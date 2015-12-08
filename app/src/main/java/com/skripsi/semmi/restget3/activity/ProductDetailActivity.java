@@ -1,6 +1,8 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -101,7 +103,10 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void goToUserProfile(String username) {
-        // TODO if the user who logged in click  the profile need to go to the user profile page instead of user profile for other user
+
+        SharedPreferences sharedPreferences= this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        final String userLogin=sharedPreferences.getString("usernameSession", "Username");
+
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -109,6 +114,12 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         upfa.fetchUser(username, new Callback<AllUser>() {
             @Override
             public void success(AllUser allUser, Response response) {
+                if(userLogin.equals(allUser.getUsername())){
+                    //  if the user who logged in click  the profile need to go to the user profile page instead of user profile for other user
+                    Intent ownProfileIntent = new Intent(ProductDetailActivity.this, UserProfileNewActivity.class);
+                    startActivity(ownProfileIntent);
+                    return;
+                }
                 Intent userProfileIntent = new Intent(ProductDetailActivity.this, UserProfileFromAroundMeActivity.class);
                 userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername,allUser.getUsername());
                 userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage,allUser.getImage());
@@ -116,7 +127,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                 userProfileIntent.putExtra("IDValue",allUser.getId());
                 startActivity(userProfileIntent);
             }
-
             @Override
             public void failure(RetrofitError error) {
                 Log.d("career", "from Career detail" + error.getMessage());

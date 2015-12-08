@@ -22,6 +22,7 @@ import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.ForgotPassActivity;
 import com.skripsi.semmi.restget3.activity.RegisterActivity;
 import com.skripsi.semmi.restget3.activity.home_activity;
+import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -56,6 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mUsername= (EditText) view.findViewById(R.id.username);
         mPassword= (EditText) view.findViewById(R.id.password);
         mForgotPass= (TextView) view.findViewById(R.id.forgotGo);
+        mForgotPass.setTypeface(EasyFonts.droidSerifRegular(getActivity()));
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         // kalau udah pernah login ga usah masuk ke tampilan login lagi
         if(sharedPreferences.getString("usernameSession",null)!= null){

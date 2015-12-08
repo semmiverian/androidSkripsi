@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:id="@+id/emailImage" />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:materialIconColor="#E93E30"
+        app:materialIconSize="50dp"
+        android:scaleType="center"
+        android:background="#FFFFFF"
+        android:id="@+id/emailImage"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/emailDialog"
-            android:textSize="20sp"/>
+            android:textSize="23sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp" />
     </LinearLayout>
 
     <LinearLayout

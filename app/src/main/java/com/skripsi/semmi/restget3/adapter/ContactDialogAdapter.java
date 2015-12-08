@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.R;
+import com.vstechlab.easyfonts.EasyFonts;
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+import net.steamcrafted.materialiconlib.MaterialIconView;
 
 /**
  * Created by semmi on 25/11/2015.
@@ -20,10 +24,12 @@ public class ContactDialogAdapter extends BaseAdapter {
     private String email;
     private String telepon;
     private LayoutInflater layoutInflater;
+    private Context mContext;
     public ContactDialogAdapter(Context context, String email , String telepon) {
         layoutInflater =LayoutInflater.from(context);
         this.email = email;
         this.telepon = telepon;
+        this.mContext = context;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class ContactDialogAdapter extends BaseAdapter {
         if(convertView  == null ){
             holder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.contact_dialog, parent, false);
-            holder.emailImage = (ImageView) convertView.findViewById(R.id.emailImage);
+            holder.emailImage = (MaterialIconView) convertView.findViewById(R.id.emailImage);
             holder.teleponImage = (ImageView) convertView.findViewById(R.id.teleponImage);
             holder.emailText = (TextView) convertView.findViewById(R.id.emailDialog);
             holder.teleponDialog = (TextView) convertView.findViewById(R.id.teleponDialog);
@@ -58,17 +64,19 @@ public class ContactDialogAdapter extends BaseAdapter {
         }
 //        holder.emailText.setText(getItem(position).getProdukEmail());
 //        holder.teleponDialog.setText(getItem(position).getProdukTelepon());
-        holder.emailImage.setImageResource(R.drawable.ic_search);
+        holder.emailImage.setIcon(MaterialDrawableBuilder.IconValue.GMAIL);
         holder.teleponImage.setImageResource(R.drawable.ic_search);
         holder.emailText.setText(email);
+        holder.emailText.setTypeface(EasyFonts.droidSerifRegular(mContext));
         holder.teleponDialog.setText(telepon);
         return convertView;
     }
 
     class ViewHolder{
-        ImageView emailImage;
+//        ImageView emailImage;
         ImageView teleponImage;
         TextView emailText;
         TextView teleponDialog;
+        MaterialIconView emailImage;
     }
 }

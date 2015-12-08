@@ -42,6 +42,7 @@ public class CareerListFragment extends ListFragment  {
     public TimerTask timerTask;
     public Runnable runnable;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private MaterialDialog dialog;
 
     public static CareerListFragment getInstance(){
         CareerListFragment fragment=new CareerListFragment();
@@ -53,12 +54,17 @@ public class CareerListFragment extends ListFragment  {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mAdapater=new AllCareerAdapater(getActivity(),0);
-        mAdapater.clear();
+
         setListShown(false);
         getCareerData();
         setListShown(true);
 
-
+        // set dialog proses ambil data dari server
+         dialog = new MaterialDialog.Builder(getActivity())
+                .title("Proses")
+                .content("Mengambil data dari server")
+                .progress(true,0)
+                .show();
     }
 
 //    @Override
@@ -105,7 +111,6 @@ public class CareerListFragment extends ListFragment  {
 
 
     public void getCareerData() {
-
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -113,6 +118,7 @@ public class CareerListFragment extends ListFragment  {
         allCareerInterface.getCareer(new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {
+
                 // ga bakal isi apa apa kalau ga ada data yang dateng
                 if (allCareers == null || allCareers.isEmpty()) {
                     return;
@@ -120,8 +126,7 @@ public class CareerListFragment extends ListFragment  {
                 for (AllCareer allCareer : allCareers) {
                     // parse data yang diambil dari server ke adapter
                     // dari adapter nanti bakal ditampilin ke aplikasi
-                    mAdapater.clear();
-                    mAdapater.remove(allCareer);
+//                    mAdapater.clear();
                     mAdapater.add(allCareer);
 //                    Log.d("Sukses", allCareer.getKarirCreate());
 
@@ -132,11 +137,16 @@ public class CareerListFragment extends ListFragment  {
                 // pasang ini biar bisa nge detek kalau ada data yang berubah
                 mAdapater.notifyDataSetChanged();
                 setListAdapter(mAdapater);
+
+                // kalau udah berhasil maka dialog awal bakal ilang
+                dialog.setContent("Data berhasil di ambil");
+                dialog.dismiss();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.d("get Error", "from Retrofit" + error.getMessage());
+                dialog.dismiss();
                 new MaterialDialog.Builder(getActivity())
                         .title("Something went wrong")
                         .content("Mohon maaf terjadi kesalahan pada penampilan data")
@@ -164,11 +174,4 @@ public class CareerListFragment extends ListFragment  {
         CareerDetailIntent.putExtra(CareerDetailActivity.EXTRA,mAdapater.getItem(position));
         startActivity(CareerDetailIntent);
     }
-
-
-//    @Override
-//    public void onRefresh() {
-//        mAdapater.clear();
-//        getCareerData();
-//    }
 }
