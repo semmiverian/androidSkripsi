@@ -25,7 +25,6 @@ import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.service.UpdateDataLocationServices;
 import com.squareup.picasso.Picasso;
 
 /**

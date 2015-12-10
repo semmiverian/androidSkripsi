@@ -26,14 +26,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="UserCareer">Career</string>
-    <string name="userSetting">User Profile</string>
-    <string name="userProduct">produk</string>
+    <string name="userSetting">Profile</string>
+    <string name="userProduct">Product</string>
     <string name="userLogout">Logout</string>
     <string name="userHome">Home</string>
-    <string name="karirUpdate">Update Karir</string>
+    <string name="karirUpdate">Update Career</string>
     <string name="karirChangeImage">Change Image</string>
     <string name="changePassword">Change Password</string>
     <string name="confirmPass">Confirm</string>
-    <string name="findLocation">Cari Lokasi</string>
+    <string name="findLocation">Search Location</string>
     <string name="contact_info">Contact Info</string>
 </resources>

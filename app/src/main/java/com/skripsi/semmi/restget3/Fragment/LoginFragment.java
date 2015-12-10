@@ -55,9 +55,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // panggil View
         View view=inflater.inflate(R.layout.simple_login_page,container,false);
         mUsername= (EditText) view.findViewById(R.id.username);
+        mUsername.setTypeface(EasyFonts.robotoLight(getActivity()));
         mPassword= (EditText) view.findViewById(R.id.password);
+        mPassword.setTypeface(EasyFonts.robotoLight(getActivity()));
         mForgotPass= (TextView) view.findViewById(R.id.forgotGo);
-        mForgotPass.setTypeface(EasyFonts.robotoThin(getActivity()));
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         // kalau udah pernah login ga usah masuk ke tampilan login lagi
         if(sharedPreferences.getString("usernameSession",null)!= null){
@@ -78,6 +79,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mRegister.setOnClickListener(this);
 
         mLogin= (Button) view.findViewById(R.id.loginGo);
+        mLogin.setTypeface(EasyFonts.robotoBold(getActivity()));
         mLogin.setOnClickListener(this);
         mForgotPass.setOnClickListener(this);
     }

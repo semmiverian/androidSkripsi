@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -22,74 +23,131 @@
         <!--android:layout_marginStart="28dp"-->
         <!--android:layout_marginTop="29dp" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/statusLogin"
-        android:layout_above="@+id/career"
-        android:layout_toRightOf="@+id/userLogin"
-        android:layout_toEndOf="@+id/userLogin"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp" />
-    <Button
-        android:layout_below="@+id/userLogin"
-        android:layout_marginLeft="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Around Me"
-        android:textColor="#FFFFFF"
-        android:id="@+id/aroundme"
-        android:layout_marginTop="55dp"
-        android:background="@color/colorPrimaryDarkHome"/>
-    <Button
-        android:layout_below="@+id/userLogin"
-        android:layout_marginLeft="150dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Career"
-        android:id="@+id/careerButton"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="55dp"
-        android:background="@color/light_red"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Trading"
-        android:textColor="#FFFFFF"
-        android:id="@+id/trading"
-        android:background="@color/blue"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/statusLogin"
-        android:layout_alignStart="@+id/statusLogin" />
+        android:gravity="center|center_horizontal"
+        android:layout_marginTop="20dp"
+        android:padding="30dp">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/dummybutton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="139dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/imageView2"
+            android:src="@drawable/logo_alumni2" />
+    </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="All User"
-        android:id="@+id/allUserButton"
-        android:layout_alignBottom="@+id/dummybutton"
-        android:layout_toRightOf="@+id/userLogin"
-        android:layout_toEndOf="@+id/userLogin" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Welcome, "
+                android:id="@+id/textView3"
+                android:textStyle="bold|italic" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Angkatan alumni"
+            android:id="@+id/textView6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jurusan"
+            android:id="@+id/textView7" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:id="@+id/textView8" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Profile Beta"
-        android:id="@+id/userProfileBeta"
-        android:layout_below="@+id/allUserButton"
-        android:layout_toLeftOf="@+id/trading"
-        android:layout_toStartOf="@+id/trading"
-        android:layout_marginTop="40dp" />
-</RelativeLayout>
+        android:layout_weight="1"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:layout_below="@+id/userLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Around Me"
+                android:textColor="#FFFFFF"
+                android:id="@+id/aroundme"
+                android:background="@color/colorPrimaryDarkHome"/>
+
+            <Button
+                android:layout_below="@+id/userLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Career"
+                android:id="@+id/careerButton"
+                android:textColor="#FFFFFF"
+                android:background="@color/light_red"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trading"
+                android:textColor="#FFFFFF"
+                android:id="@+id/trading"
+                android:background="@color/blue"
+                android:layout_below="@+id/careerButton"
+                android:layout_toRightOf="@+id/careerButton"
+                android:layout_toEndOf="@+id/careerButton" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusLogin"
+            android:layout_above="@+id/career"
+            android:layout_toRightOf="@+id/userLogin"
+            android:layout_toEndOf="@+id/userLogin" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Message"
+            android:id="@+id/allUserButton"
+            android:layout_alignBottom="@+id/dummybutton"
+            android:layout_toRightOf="@+id/userLogin"
+            android:layout_toEndOf="@+id/userLogin"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Profile Beta"
+            android:id="@+id/userProfileBeta"
+            android:layout_below="@+id/allUserButton"
+            android:layout_toLeftOf="@+id/trading"
+            android:layout_toStartOf="@+id/trading"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

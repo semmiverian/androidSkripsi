@@ -2,35 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/margin_top_navigation">
+    android:layout_marginTop="@dimen/margin_top_navigation"
+    android:padding="30dp">
 
-    <RelativeLayout  android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/UserProfileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="20dp" />
+
         <TextView
-            android:id="@+id/usernameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@id/UserProfileImage"
-            android:layout_toEndOf="@id/UserProfileImage"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/usernameProfile"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="35sp"/>
+            android:layout_gravity="center" />
+
         <TextView
             android:id="@+id/usernameStatus"
             android:layout_toRightOf="@+id/usernameProfile"
             android:layout_toEndOf="@id/UserProfileImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/usernameProfile" />
-    </RelativeLayout>
+            android:layout_below="@+id/usernameProfile"
+            android:layout_gravity="center" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

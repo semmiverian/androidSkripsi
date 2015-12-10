@@ -3,7 +3,7 @@
 android:orientation="vertical" android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:id="@+id/container"
-    android:background="#0063e5">
+    android:background="#0064a5">
 
     <LinearLayout
         android:orientation="vertical"
@@ -39,7 +39,7 @@ android:id="@+id/container"
                 android:hint="Email"
                 android:background="#ffffff"
                 android:padding="10dp"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@ android:id="@+id/container"
                 android:padding="10dp"
                 android:background="#ffffff"
                 android:layout_marginTop="15dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:singleLine="false" />
         </LinearLayout>
 
@@ -63,10 +63,11 @@ android:id="@+id/container"
             android:id="@+id/loginGo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="#ffffff"
             android:text="Log in"
-            android:background="#3b3a3a"/>
+            android:background="#3b3a3a"
+            android:textStyle="bold" />
     </LinearLayout>
 
         <LinearLayout
