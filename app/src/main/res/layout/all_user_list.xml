@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
     <com.github.siyamed.shapeimageview.CircularImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:id="@+id/userImage"
         app:siBorderWidth="2dp"
-        app:siBorderColor="@color/colorPrimary"/>
+        app:siBorderColor="@color/colorPrimary"
+        android:layout_marginRight="10dp" />
 
         <TextView
             android:id="@+id/usernameList"

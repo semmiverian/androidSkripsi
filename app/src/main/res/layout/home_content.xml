@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp">
+    android:padding="30dp"
+    android:background="#fafafa">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -50,13 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Welcome, "
                 android:id="@+id/textView3"
-                android:textStyle="bold|italic" />
+                app:typeface="robotoMediumItalic" />
 
         </LinearLayout>
 
@@ -66,20 +66,22 @@
             android:layout_height="wrap_content"
             android:text="Angkatan alumni"
             android:id="@+id/textView6"
-            app:typeface="robotoLight"/>
+            app:typeface="robotoLight"
+            />
 
-        <com.skripsi.semmi.restget3.Font.MaterialDesignIconsTextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jurusan"
-            android:id="@+id/textView7" />
+            android:id="@+id/textView7"
+            app:typeface="robotoLight"/>
 
         <com.skripsi.semmi.restget3.Font.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status"
             android:id="@+id/textView8"
-            app:typeface="robotoRegular"/>
+            app:typeface="robotoLight"/>
 
     </LinearLayout>
 
@@ -99,7 +101,7 @@
             <Button
                 android:layout_below="@+id/userLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:text="Around Me"
                 android:textColor="#FFFFFF"
                 android:id="@+id/aroundme"
@@ -108,19 +110,21 @@
             <Button
                 android:layout_below="@+id/userLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:text="Career"
                 android:id="@+id/careerButton"
                 android:textColor="#FFFFFF"
-                android:background="@color/light_red"/>
+                android:background="@color/light_red"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:text="Trading"
                 android:textColor="#FFFFFF"
                 android:id="@+id/trading"
-                android:background="@color/blue"
+                android:background="#ffba0b"
                 android:layout_below="@+id/careerButton"
                 android:layout_toRightOf="@+id/careerButton"
                 android:layout_toEndOf="@+id/careerButton" />
@@ -135,14 +139,17 @@
             android:layout_toEndOf="@+id/userLogin" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="All Message"
             android:id="@+id/allUserButton"
             android:layout_alignBottom="@+id/dummybutton"
             android:layout_toRightOf="@+id/userLogin"
             android:layout_toEndOf="@+id/userLogin"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="#2566d5"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp" />
 
     </LinearLayout>
 
