@@ -1,6 +1,8 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -105,6 +107,9 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
 
 
     private void goToUserProfile(String username) {
+
+        SharedPreferences sharedPreferences= this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        final String userLogin=sharedPreferences.getString("usernameSession", "Username");
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -112,6 +117,12 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
         upfa.fetchUser(username, new Callback<AllUser>() {
             @Override
             public void success(AllUser allUser, Response response) {
+                if(userLogin.equals(allUser.getUsername())){
+                    Intent ownProfileIntent = new Intent(CareerDetailActivity.this, UserProfileNewActivity.class);
+                    startActivity(ownProfileIntent);
+                    return;
+                }
+
                 Intent userProfileIntent = new Intent(CareerDetailActivity.this, UserProfileFromAroundMeActivity.class);
                 userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername,allUser.getUsername());
                 userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage,allUser.getImage());
