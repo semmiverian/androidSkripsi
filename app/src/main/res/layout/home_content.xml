@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp">
 
@@ -58,23 +60,26 @@
 
         </LinearLayout>
 
-        <TextView
+
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Angkatan alumni"
-            android:id="@+id/textView6" />
+            android:id="@+id/textView6"
+            app:typeface="robotoLight"/>
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.MaterialDesignIconsTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jurusan"
             android:id="@+id/textView7" />
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status"
-            android:id="@+id/textView8" />
+            android:id="@+id/textView8"
+            app:typeface="robotoRegular"/>
 
     </LinearLayout>
 
@@ -139,15 +144,6 @@
             android:layout_toEndOf="@+id/userLogin"
             android:layout_gravity="center" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Profile Beta"
-            android:id="@+id/userProfileBeta"
-            android:layout_below="@+id/allUserButton"
-            android:layout_toLeftOf="@+id/trading"
-            android:layout_toStartOf="@+id/trading"
-            android:layout_gravity="center" />
     </LinearLayout>
 
 </LinearLayout>

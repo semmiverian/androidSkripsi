@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mCareer= (Button) view.findViewById(R.id.careerButton);
         allUser= (Button) view.findViewById(R.id.allUserButton);
         product = (Button) view.findViewById(R.id.trading);
-        userProfileBeta = (Button) view.findViewById(R.id.userProfileBeta);
+//        userProfileBeta = (Button) view.findViewById(R.id.userProfileBeta);
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         return view;
     }
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mCareer.setOnClickListener(this);
         allUser.setOnClickListener(this);
         product.setOnClickListener(this);
-        userProfileBeta.setOnClickListener(this);
+//        userProfileBeta.setOnClickListener(this);
     }
 
     @Override
@@ -95,10 +95,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Intent intentTrading = new Intent(getActivity() , AllProductActivity.class);
                 startActivity(intentTrading);
                 break;
-            case R.id.userProfileBeta:
-                Intent userProfileBetaIntent = new Intent(getActivity(), UserProfileNewActivity.class);
-                startActivity(userProfileBetaIntent);
-                break;
+//            case R.id.userProfileBeta:
+//                Intent userProfileBetaIntent = new Intent(getActivity(), UserProfileNewActivity.class);
+//                startActivity(userProfileBetaIntent);
+//                break;
         }
     }
 }
