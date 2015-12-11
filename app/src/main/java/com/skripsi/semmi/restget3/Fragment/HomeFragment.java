@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         product = (Button) view.findViewById(R.id.trading);
 //        userProfileBeta = (Button) view.findViewById(R.id.userProfileBeta);
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+
         return view;
     }
 
