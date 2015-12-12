@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_200">
+
+
+    <!--<com.arlib.floatingsearchview.FloatingSearchView-->
+        <!--android:id="@+id/floating_search_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchHint="Search..."-->
+        <!--app:floatingSearch_showSearchKey="false"-->
+        <!--app:floatingSearch_dismissOnOutsideTouch="true"-->
+        <!--app:floatingSearch_leftActionMode="showHamburger"/>-->
+
+    <com.skripsi.semmi.restget3.Font.RobotoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/querySearchHeader"
+        android:textSize="20sp"
+        android:text="@string/search_header"
+        app:typeface="robotoRegular"
+        android:textColor="@color/blue_grey_300"
+        android:background="#FFFFFF"
+        android:layout_marginTop="@dimen/search_view_inset"
+        android:layout_marginRight="@dimen/search_view_inset"
+        android:layout_marginLeft="@dimen/search_view_inset"
+        android:padding="12dp"
+        />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="@dimen/search_view_inset"
+        android:layout_marginRight="@dimen/search_view_inset"
+        android:layout_marginLeft="@dimen/search_view_inset"
+        android:queryHint="Search User ..."
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginTop="@dimen/search_view_inset"
+        android:layout_marginRight="@dimen/search_view_inset"
+        android:layout_marginLeft="@dimen/search_view_inset"
+        android:padding="@dimen/search_view_inset"
+        android:orientation="vertical"
+        android:layout_marginBottom="14dp">
+
+
+
+
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/querySearchResult"
+            app:typeface="robotoMedium"
+            android:textColor="@color/red_400"
+
+            />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/FindUserListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp">
+    </ListView>
+
+</LinearLayout>

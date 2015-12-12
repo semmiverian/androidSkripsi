@@ -23,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
+import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.AllProductInterface;
 import com.skripsi.semmi.restget3.Interface.SearchProductInterface;
 import com.skripsi.semmi.restget3.Model.AllProduct;
@@ -65,19 +66,9 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(
                 INITIAL_DELAY_MILLIS);
 
-        listView.setClipToPadding(false);
-        listView.setDivider(null);
-        Resources r = getResources();
-        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                8, r.getDisplayMetrics());
-        listView.setDividerHeight(px);
-        listView.setFadingEdgeLength(0);
-        listView.setFitsSystemWindows(true);
-        px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12,
-                r.getDisplayMetrics());
-        listView.setPadding(px, px, px, px);
-        listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        listView.setAdapter(swingBottomInAnimationAdapter);
+        // Google card design
+        ListViewHelper listViewHelper = new ListViewHelper();
+        listViewHelper.googleCardslistViewDesign(getResources(),listView);
 
         //fab related code
         mFloatingActionButton= (FloatingActionButton) findViewById(R.id.fab);

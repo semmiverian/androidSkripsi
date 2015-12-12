@@ -36,4 +36,7 @@
     <string name="confirmPass">Confirm</string>
     <string name="findLocation">Search Location</string>
     <string name="contact_info">Contact Info</string>
+    <string name="menu_search_user">Search User</string>
+    <string name="dummy_text">Dummy text</string>
+    <string name="search_header">Search User by username or name</string>
 </resources>

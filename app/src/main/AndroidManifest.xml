@@ -144,6 +144,16 @@
         <activity android:name=".activity.ChangePasswordActivity"
             android:label="Change Password"
             android:theme="@style/AppTheme"/>
+
+
+        <activity android:name=".activity.FindUserActivity"
+            android:label="Find User"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activity.AllUserActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.CareerActivity" />
+        </activity>
         
         
         <!--<service android:name=".service.UpdateDataLocationServices"-->
