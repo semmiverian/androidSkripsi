@@ -114,7 +114,7 @@
             android:label="User Profile"
             android:theme="@style/AppTheme"/>
         <activity android:name=".activity.MessageActivity"
-            android:label="MEssage"
+            android:label="Message"
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.AllProductActivity"
@@ -122,7 +122,13 @@
             android:theme="@style/GoogleCard"/>
         <activity android:name=".activity.ProductDetailActivity"
             android:label="Produk"
-            android:theme="@style/GoogleCard"/>
+            android:parentActivityName=".activity.AllProductActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.AllProductActivity" />
+        </activity>
+
         <activity android:name=".activity.AddNewProdukActivity"
             android:label="Add New Product"
             android:theme="@style/GoogleCard"/>

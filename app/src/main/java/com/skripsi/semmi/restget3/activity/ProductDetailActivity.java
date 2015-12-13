@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -32,7 +34,6 @@ import retrofit.client.Response;
  */
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String extra="extra";
-    private Button contactButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +42,21 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         // ambil data yang udah di parse
         AllProduct allProduct=getIntent().getExtras().getParcelable(extra);
 
+
+        // New Design
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
+
         // define objek yang di xml
         TextView judul= (TextView) findViewById(R.id.produkJudul);
         TextView detail= (TextView) findViewById(R.id.produkDetail);
         ImageView gambar= (ImageView) findViewById(R.id.produkImage);
         ImageView profilepict = (ImageView) findViewById(R.id.imageProfile);
         TextView user = (TextView) findViewById(R.id.userNameProduk);
-        contactButton = (Button) findViewById(R.id.btnContact);
-        contactButton.setOnClickListener(this);
 
         //  ambil data dari server terus di tampilin
         judul.setText(allProduct.getProduknama());
@@ -80,7 +88,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             case R.id.userNameProduk:
                 goToUserProfile(username);
                 break;
-            case R.id.btnContact:
+            case R.id.fab:
                 showContactDialog(email ,telepon);
                 break;
         }

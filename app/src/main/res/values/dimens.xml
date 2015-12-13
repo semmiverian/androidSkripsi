@@ -5,6 +5,7 @@
     <dimen name="map_margin">30dp</dimen>
     <dimen name="padding_map_text">30dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height_produk">250dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="tab_max_width">264dp</dimen>
     <dimen name="tab_padding_bottom">16dp</dimen>
