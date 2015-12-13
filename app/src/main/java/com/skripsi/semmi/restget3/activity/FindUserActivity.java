@@ -1,9 +1,14 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,18 +39,21 @@ public class FindUserActivity extends AppCompatActivity {
     private RobotoTextView resultSearch;
     private ListView mListView;
     private SearchUserAdapter mAdapter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_user);
         mSearchView = (SearchView) findViewById(R.id.searchView);
+
         resultSearch = (RobotoTextView) findViewById(R.id.querySearchResult);
         mListView = (ListView) findViewById(R.id.FindUserListView);
 
         ListViewHelper listViewHelper = new ListViewHelper();
         listViewHelper.googleCardslistViewDesign(getResources(),mListView);
 
+        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
 
         resultSearch.setText("# no query defined");
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -53,7 +61,8 @@ public class FindUserActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 if(!query.equals("")){
                     resultSearch.setText(query);
-                    findUser(query);
+                    String currentUser =sharedPreferences.getString("usernameSession", "Username");
+                    findUser(query,currentUser);
                 }
                 return true;
             }
@@ -65,9 +74,13 @@ public class FindUserActivity extends AppCompatActivity {
         });
 
 
+
+
     }
     // fungsi untuk mencari data user berdasarkan nama atau username yang didapat dari query yang dilakukan oleh user
-    private void findUser(String query) {
+    private void findUser(String query, final String currentUser) {
+
+
         if(query.equals("") || query == null){
             new MaterialDialog.Builder(this)
                     .title("null")
@@ -82,6 +95,8 @@ public class FindUserActivity extends AppCompatActivity {
                     .show();
             return;
         }
+
+
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
@@ -91,7 +106,8 @@ public class FindUserActivity extends AppCompatActivity {
             public void success(List<AllUser> allUsers, Response response) {
                 mAdapter = new SearchUserAdapter(FindUserActivity.this, 0);
                 if(allUsers.isEmpty() || allUsers == null){
-                    // TODO Set custom adapter for no data return
+                    //  Set custom adapter for no data return
+                    // Still use the same adapter as the existing data
                     Log.d("no data", "ga ada data dengan query tersebut");
                     String kosong = "kosong";
                     String noneImage ="http://i.imgur.com/0hi2ZKN.png";
@@ -103,14 +119,26 @@ public class FindUserActivity extends AppCompatActivity {
                 }
 
                 for(AllUser allUser : allUsers){
-                    // TODO set adapter for the exist data
-                    Log.d("data exist", allUser.getNama());
-                    if(!allUser.getStatus().equals("unverified")){
+                    //  set adapter for the exist data
+                    Log.d("data exist", allUser.getUsername());
+                if(!allUser.getUsername().equals(currentUser)){
+                    if (!allUser.getStatus().equals("unverified")){
                         mAdapter.add(allUser);
+                        }
                     }
                 }
+                Log.d("currUser",currentUser);
+
                 mListView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent UserProfileIntent = new Intent(FindUserActivity.this, AllUserProfile.class);
+                        UserProfileIntent.putExtra(AllUserProfile.extra,mAdapter.getItem(position));
+                        startActivity(UserProfileIntent);
+                    }
+                });
             }
 
             @Override

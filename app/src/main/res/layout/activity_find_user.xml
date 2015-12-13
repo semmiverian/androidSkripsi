@@ -7,21 +7,10 @@
     android:background="@color/grey_200">
 
 
-    <!--<com.arlib.floatingsearchview.FloatingSearchView-->
-        <!--android:id="@+id/floating_search_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"-->
-        <!--app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"-->
-        <!--app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"-->
-        <!--app:floatingSearch_searchHint="Search..."-->
-        <!--app:floatingSearch_showSearchKey="false"-->
-        <!--app:floatingSearch_dismissOnOutsideTouch="true"-->
-        <!--app:floatingSearch_leftActionMode="showHamburger"/>-->
 
     <com.skripsi.semmi.restget3.Font.RobotoTextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/querySearchHeader"
         android:textSize="20sp"
         android:text="@string/search_header"
@@ -33,6 +22,17 @@
         android:layout_marginLeft="@dimen/search_view_inset"
         android:padding="12dp"
         />
+    <!--<com.arlib.floatingsearchview.FloatingSearchView-->
+        <!--android:id="@+id/floating_search_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"-->
+        <!--app:floatingSearch_searchHint="Search..."-->
+        <!--app:floatingSearch_showSearchKey="false"-->
+        <!--app:floatingSearch_dismissOnOutsideTouch="true"-->
+        <!--app:floatingSearch_leftActionMode="showHamburger"/>-->
 
     <android.support.v7.widget.SearchView
         android:id="@+id/searchView"
