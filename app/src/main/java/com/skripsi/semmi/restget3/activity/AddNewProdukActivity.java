@@ -40,13 +40,17 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
     private TextView addKontakEmail;
     private TextView addKontakTelepon;
     private Button addImageProduk;
+    private Button captureImageProduk;
     private ImageView previewImageUpload;
     private Button submit;
     private int upload_code=1;
+    private int camera_code=2;
+    public static final int MEDIA_TYPE_IMAGE = 10;
     private  Uri uri;
     private  TypedFile typedFile;
     private SharedPreferences sharedPreferences;
     private  MaterialDialog dialog;
+    private   GetDataPathHelper gdph;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,12 +63,16 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
         addKontakEmail = (TextView) findViewById(R.id.addKontakEmail);
         addKontakTelepon = (TextView) findViewById(R.id.addKontakTelepon);
         addImageProduk= (Button) findViewById(R.id.addImageProduk);
+        captureImageProduk = (Button) findViewById(R.id.captureImageProduk);
         previewImageUpload= (ImageView) findViewById(R.id.previewImageUpload);
         submit= (Button) findViewById(R.id.submitNewProduk);
         sharedPreferences= this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         // set onclick listener
         addImageProduk.setOnClickListener(this);
+        captureImageProduk.setOnClickListener(this);
         submit.setOnClickListener(this);
+
+        gdph = new GetDataPathHelper();
     }
 
     @Override
@@ -75,6 +83,12 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
                 intent.setType("image/* ");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent, upload_code);
+                break;
+            case R.id.captureImageProduk:
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                uri = gdph.getOutputMediaFileUri(10);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivityForResult(cameraIntent, camera_code);
                 break;
             case R.id.submitNewProduk:
                 // pasang dialog
@@ -137,23 +151,54 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
     }
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // save file url in bundle as it will be null on screen orientation
+        // changes
+        outState.putParcelable("file_uri", uri);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // get the file url
+        uri = savedInstanceState.getParcelable("file_uri");
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        uri=data.getData();
+
         // kalau ga ada image yang dipilih bakal tampilin null
         if(uri== null)
             return;
-        if(requestCode==upload_code){
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                previewImageUpload.setImageBitmap(bitmap);
-                GetDataPathHelper gdph = new GetDataPathHelper();
-                gdph.getPath(getApplicationContext(), uri);
-            }catch (IOException e){
-                e.printStackTrace();
+        if(resultCode == RESULT_OK){
+            if(requestCode==upload_code){
+                uri=data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    previewImageUpload.setImageBitmap(bitmap);
+
+                    gdph.getPath(getApplicationContext(), uri);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(requestCode==camera_code){
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    previewImageUpload.setImageBitmap(bitmap);
+                    gdph.getPath(getApplicationContext(), uri);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
             }
         }
 
