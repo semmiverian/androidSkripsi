@@ -93,6 +93,12 @@ public class FindUserActivity extends AppCompatActivity {
                 if(allUsers.isEmpty() || allUsers == null){
                     // TODO Set custom adapter for no data return
                     Log.d("no data", "ga ada data dengan query tersebut");
+                    String kosong = "kosong";
+                    String noneImage ="http://i.imgur.com/0hi2ZKN.png";
+                    AllUser allUserNone = new AllUser(kosong,noneImage,kosong,kosong,1);
+                    mAdapter.add(allUserNone);
+                    mListView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
                     return;
                 }
 

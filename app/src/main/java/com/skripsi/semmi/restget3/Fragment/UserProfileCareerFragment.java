@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
@@ -71,18 +72,9 @@ public class UserProfileCareerFragment extends Fragment {
         fetchUserCareer();
 
         // Design listview yang akan tampil
-        listView.setClipToPadding(false);
-        listView.setDivider(null);
-        Resources r = getResources();
-        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                8, r.getDisplayMetrics());
-        listView.setDividerHeight(px);
-        listView.setFadingEdgeLength(0);
-        listView.setFitsSystemWindows(true);
-        px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12,
-                r.getDisplayMetrics());
-        listView.setPadding(px, px, px, px);
-        listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        ListViewHelper listViewHelper = new ListViewHelper();
+        listViewHelper.googleCardslistViewDesign(getResources(),listView);
+
         listView.setAdapter(mAdapater);
 
 
