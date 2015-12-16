@@ -12,17 +12,21 @@ public class Register {
     private String email;
     private String kode;
     private String status;
+    private String jurusan;
+    private String tahunLulus;
     // Default Constructor
     public Register(){
 
     }
     // Constructor
-    public Register(String username,String dob,String email,String kode ,String status){
+    public Register(String username,String dob,String email,String kode ,String status, String jurusan, String tahunLulus){
         this.username=username;
         this.dob=dob;
         this.email=email;
         this.kode=kode;
         this.status=status;
+        this.jurusan=jurusan;
+        this.tahunLulus=tahunLulus;
     }
 
     // Setter Getter setiap field
@@ -77,5 +81,21 @@ public class Register {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+    public String getTahunLulus() {
+        return tahunLulus;
+    }
+
+    public void setTahunLulus(String tahunLulus) {
+        this.tahunLulus = tahunLulus;
     }
 }

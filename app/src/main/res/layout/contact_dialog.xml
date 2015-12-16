@@ -27,23 +27,5 @@
             android:layout_marginTop="5dp" />
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-        <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:materialIconColor="#E93E30"-->
-            <!--app:materialIconSize="50dp"-->
-            <!--android:scaleType="center"-->
-            <!--android:background="#FFFFFF"-->
-            <!--android:id="@+id/teleponImage"/>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/teleponDialog"-->
-            <!--android:textSize="20sp"/>-->
-    <!--</LinearLayout>-->
 
 </LinearLayout>

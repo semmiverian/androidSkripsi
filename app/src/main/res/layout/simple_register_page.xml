@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0064a5"
-    android:padding="30dp">
+    android:padding="15dp">
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -67,6 +68,26 @@
             android:padding="12dp"
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/jurusanRegis"
+            android:hint="Jurusan"
+            android:inputType="text"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tahunLulus"
+            android:hint="Tahun Lulus"
+            android:inputType="number"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp" />
     </LinearLayout>
 
     <CheckBox
@@ -82,8 +103,10 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="Submit"
+        android:textAlignment="center"
         android:id="@+id/btnRegister"
         android:layout_gravity="right"
-        android:background="#3b3a3a"
+        android:background="#B0BEC5"
         android:textColor="#ffffff" />
+
 </LinearLayout>

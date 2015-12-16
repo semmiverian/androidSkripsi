@@ -46,6 +46,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
     private static final int INITIAL_DELAY_MILLIS = 300;
     public static String refresh_code="1";
     private FloatingActionButton mFloatingActionButton;
+    private MaterialDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,13 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
             }
         });
 
+        // Set dialog at first encounter
+        dialog = new MaterialDialog.Builder(this)
+                .title("Proses")
+                .content("Mengambil data dari server")
+                .progress(true,0)
+                .show();
+
     }
 
     // Ambil data produk dari server
@@ -108,6 +116,8 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
                 listView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 
+                // disable dialog after finish fetching data from server
+                dialog.dismiss();
 
             }
 
