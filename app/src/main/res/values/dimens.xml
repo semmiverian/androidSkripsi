@@ -19,4 +19,6 @@
 
     <dimen name="search_view_inset">5dp</dimen>
 
+    <dimen name="margin_welcome_text">5dp</dimen>
+
 </resources>

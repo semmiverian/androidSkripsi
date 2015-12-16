@@ -31,17 +31,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TextView mStatusLogin;
     private Button mAroundMe;
     private Button mCareer;
-    private Button mDummy;
     private Button allUser;
     private Button product;
-    private Button userProfileBeta;
-    private ImageView userImage;
-    private String usernameExtra;
-    private String statusExtra;
-    private String imageUserLink;
     private SharedPreferences sharedPreferences;
-    private TextView navigationName;
-    private TextView navigationStatus;
+    private TextView welcomeName;
+    private TextView welcomeJurusan;
+    private TextView welcomeAngkatan;
+    private TextView welcomeStatus;
+
     public static HomeFragment getInstance(){
         HomeFragment fragment=  new HomeFragment();
         return fragment;
@@ -54,6 +51,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // define ID from xml
         mUserLogin= (TextView) view.findViewById(R.id.userLogin);
         mStatusLogin= (TextView) view.findViewById(R.id.statusLogin);
+        welcomeName = (TextView) view.findViewById(R.id.usernameWelcome);
+        welcomeJurusan = (TextView) view.findViewById(R.id.jurusanWelcome);
+        welcomeAngkatan= (TextView) view.findViewById(R.id.angkatanWelcome);
+        welcomeStatus = (TextView) view.findViewById(R.id.statusWelcome);
+
+
         mAroundMe= (Button) view.findViewById(R.id.aroundme);
         mCareer= (Button) view.findViewById(R.id.careerButton);
         allUser= (Button) view.findViewById(R.id.allUserButton);
@@ -72,6 +75,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mCareer.setOnClickListener(this);
         allUser.setOnClickListener(this);
         product.setOnClickListener(this);
+
+        // Set welcome text
+        welcomeName.setText(sharedPreferences.getString("namaSession","nama User"));
+        welcomeAngkatan.setText(sharedPreferences.getString("angkatanSession","Tahun Lulus"));
+        welcomeJurusan.setText(sharedPreferences.getString("jurusanSession","Jurusan User"));
+        welcomeStatus.setText(sharedPreferences.getString("statusSession","Status user"));
+
 //        userProfileBeta.setOnClickListener(this);
     }
 

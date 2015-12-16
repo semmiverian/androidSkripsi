@@ -58,30 +58,74 @@
                 android:id="@+id/textView3"
                 app:typeface="robotoMediumItalic" />
 
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/usernameWelcome"
+                app:typeface="robotoMediumItalic"
+                android:layout_marginLeft="@dimen/margin_welcome_text"
+               />
+
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Angkatan alumni"
+                android:id="@+id/textView6"
+                app:typeface="robotoLight"
+                />
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/angkatanWelcome"
+                app:typeface="robotoLight"
+                android:layout_marginLeft="@dimen/margin_welcome_text"
+                />
+            </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jurusan"
+                android:id="@+id/textView7"
+                app:typeface="robotoLight"/>
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Angkatan alumni"
-            android:id="@+id/textView6"
-            app:typeface="robotoLight"
-            />
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/jurusanWelcome"
+                app:typeface="robotoLight"
+                android:layout_marginLeft="@dimen/margin_welcome_text"/>
+        </LinearLayout>
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jurusan"
-            android:id="@+id/textView7"
-            app:typeface="robotoLight"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:id="@+id/textView8"
-            app:typeface="robotoLight"/>
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:id="@+id/textView8"
+                app:typeface="robotoLight"/>
+
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/statusWelcome"
+                app:typeface="robotoLight"
+                android:layout_marginLeft="@dimen/margin_welcome_text"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

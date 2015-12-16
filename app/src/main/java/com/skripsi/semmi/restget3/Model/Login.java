@@ -11,9 +11,12 @@ public class Login {
     private String info;
     private String image;
     private int id;
+    private String jurusan;
+    private String tahunlulus;
+    private String nama;
 
     public Login(){}
-    public Login(String username,String password,String kode,String status,String info,String image,int id){
+    public Login(String username,String password,String kode,String status,String info,String image,int id, String jurusan, String tahunlulus, String nama ){
         this.username=username;
         this.password=password;
         this.kode=kode;
@@ -21,6 +24,9 @@ public class Login {
         this.info=info;
         this.image=image;
         this.id=id;
+        this.jurusan=jurusan;
+        this.tahunlulus=tahunlulus;
+        this.nama=nama;
     }
     public String getUsername() {
         return username;
@@ -77,5 +83,31 @@ public class Login {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getTahunlulus() {
+        return tahunlulus;
+    }
+
+    public void setTahunlulus(String tahunlulus) {
+        this.tahunlulus = tahunlulus;
     }
 }

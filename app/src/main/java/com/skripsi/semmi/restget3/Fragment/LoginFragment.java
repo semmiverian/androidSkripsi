@@ -118,10 +118,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                             editor=sharedPreferences.edit();
                             editor.putString("usernameSession",login.getUsername());
-                            editor.putString("statusSession",login.getStatus());
-                            editor.putString("imageSession",login.getImage());
-                            editor.putInt("idSession",login.getId());
+                            editor.putString("statusSession", login.getStatus());
+                            editor.putString("imageSession", login.getImage());
+                            editor.putInt("idSession", login.getId());
+                            editor.putString("jurusanSession", login.getJurusan());
+                            editor.putString("angkatanSession",login.getTahunlulus());
+                            editor.putString("namaSession",login.getNama());
                             editor.apply();
+
                             Intent intent1 = new Intent(getActivity(), home_activity.class);
                             intent1.putExtra(home_activity.username, login.getUsername());
                             intent1.putExtra(home_activity.status, login.getStatus());
