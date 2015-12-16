@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skripsi.semmi.restget3" >
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -160,8 +162,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.CareerActivity" />
         </activity>
-        
-        
+
+        <activity android:name=".activity.ComposeEmailActivity"
+            android:label="Send Email"
+            android:theme="@style/AppTheme"/>
+
+
+
         <!--<service android:name=".service.UpdateDataLocationServices"-->
             <!--android:enabled="true"-->
             <!--android:exported="false"/>-->

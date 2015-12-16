@@ -3,6 +3,7 @@ package com.skripsi.semmi.restget3.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +16,19 @@ import android.widget.TextView;
 
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
+import com.orhanobut.dialogplus.OnItemClickListener;
 import com.skripsi.semmi.restget3.Interface.UserProfileFromAroundMe;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.Model.AllUser;
+import com.skripsi.semmi.restget3.Model.Dialog;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.ContactDialogAdapter;
 import com.squareup.picasso.Picasso;
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -92,15 +100,49 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void showCareerContactInfo(String email, String telepon) {
+    private void showCareerContactInfo(final String email, final String telepon) {
+
+        // Testing
+        Dialog data1 = new Dialog(MaterialDrawableBuilder.IconValue.GMAIL,email);
+        Dialog data2 = new Dialog(MaterialDrawableBuilder.IconValue.MESSAGE,telepon);
+
+        List<Dialog> items = new ArrayList<Dialog>();
+        items.add(data1);
+        items.add(data2);
+
         ContactDialogAdapter contactDialogAdapter;
-        contactDialogAdapter = new ContactDialogAdapter(this,email,telepon);
+        contactDialogAdapter = new ContactDialogAdapter(this,items);
 
         DialogPlus dialogPlus = DialogPlus.newDialog(this)
                 .setAdapter(contactDialogAdapter)
                 .setContentHolder(new ListHolder())
                 .setGravity(Gravity.BOTTOM)
                 .setHeader(R.layout.dialog_header)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+//                                        Toast.makeText(ProductDetailActivity.this, "tes posisi" + position, Toast.LENGTH_SHORT).show();
+                        if (position == 1) {
+
+
+                            // Set Email Address
+                            String[] addresses = new String[1];
+                            addresses[0] = email;
+
+                            Intent SendEmailIntent = new Intent(Intent.ACTION_SENDTO);
+                            SendEmailIntent.setType("*/*");
+                            SendEmailIntent.setData(Uri.parse("mailto:"));
+                            SendEmailIntent.putExtra(Intent.EXTRA_EMAIL, addresses);
+                            startActivity(SendEmailIntent);
+                        }
+                        if (position == 2) {
+                            // Start intent buat bisa open dialer
+                            Intent OpenDialerIntent = new Intent(Intent.ACTION_VIEW);
+                            OpenDialerIntent.setData(Uri.parse("tel:" + telepon));
+                            startActivity(OpenDialerIntent);
+                        }
+                    }
+                })
                 .create();
         dialogPlus.show();
     }
