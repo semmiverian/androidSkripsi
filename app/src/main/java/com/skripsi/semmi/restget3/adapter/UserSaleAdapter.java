@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
@@ -15,7 +16,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by semmi on 25/10/2015.
  */
-public class UserSaleAdapter extends ArrayAdapter<Product>{
+public class UserSaleAdapter extends ArrayAdapter<AllProduct>{
     public UserSaleAdapter(Context context, int resource) {
         super(context, resource);
     }
@@ -33,7 +34,7 @@ public class UserSaleAdapter extends ArrayAdapter<Product>{
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
-        holder.nama.setText(getItem(position).getProdukNama());
+        holder.nama.setText(getItem(position).getProduknama());
         Picasso.with(getContext())
                 .load(getItem(position).getProdukImage())
                 .into(holder.image);

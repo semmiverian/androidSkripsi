@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -21,9 +20,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
-import com.skripsi.semmi.restget3.Model.Product;
+import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.activity.ProductDetailActivity;
+import com.skripsi.semmi.restget3.activity.UserProductDetailActivity;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
 
 import java.util.List;
@@ -74,8 +73,8 @@ public class UserProfileProductListFragment extends Fragment {
                 8, r.getDisplayMetrics());
         gridView.setFadingEdgeLength(0);
         gridView.setFitsSystemWindows(true);
-        px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12,
-                r.getDisplayMetrics());
+//        px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12,
+//                r.getDisplayMetrics());
         gridView.setPadding(px, px, px, px);
         gridView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         gridView.setAdapter(mAdapater);
@@ -83,25 +82,27 @@ public class UserProfileProductListFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent productDetailIntent = new Intent(getActivity(),UserProductDetailActivity.class);
+                productDetailIntent.putExtra(UserProductDetailActivity.extra,mAdapater.getItem(position));
+                startActivity(productDetailIntent);
             }
         });
     }
 
     private void fetchUserProduct() {
-        RestAdapter restAdapter=new RestAdapter.Builder()
+        RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
-        UserProductInterface userProductInterface=restAdapter.create(UserProductInterface.class);
-        userProductInterface.getUserProduct(user, new Callback<List<Product>>() {
+        UserProductInterface userProductInterface = restAdapter.create(UserProductInterface.class);
+        userProductInterface.getUserProduct(user, new Callback<List<AllProduct>>() {
             @Override
-            public void success(List<Product> products, Response response) {
+            public void success(List<AllProduct> allProducts, Response response) {
                 Log.d("berhasil catch", "berhasil gan");
-                if (products == null || products.isEmpty()) {
+                if (allProducts == null || allProducts.isEmpty()) {
                     Toast.makeText(getActivity(), "Ga ada Produk yang di Jual", Toast.LENGTH_SHORT).show();
                 }
-                for (Product product : products) {
-                    mAdapater.add(product);
+                for (AllProduct allProduct : allProducts) {
+                    mAdapater.add(allProduct);
                 }
                 mAdapater.notifyDataSetChanged();
             }
@@ -113,6 +114,9 @@ public class UserProfileProductListFragment extends Fragment {
             }
         });
     }
+
+
+
 
     private void showFailureDialog() {
         new MaterialDialog.Builder(getActivity())

@@ -1,6 +1,6 @@
 package com.skripsi.semmi.restget3.Interface;
 
-import com.skripsi.semmi.restget3.Model.Product;
+import com.skripsi.semmi.restget3.Model.AllProduct;
 
 import java.util.List;
 
@@ -16,5 +16,5 @@ public interface UserProductInterface {
 
     @Multipart
     @POST("/retrieveProductByUser.php")
-    void getUserProduct(@Part("produkNama") String produkNama, Callback<List<Product>> callback );
+    void getUserProduct(@Part("produkNama") String produkNama, Callback<List<AllProduct>> callback );
 }

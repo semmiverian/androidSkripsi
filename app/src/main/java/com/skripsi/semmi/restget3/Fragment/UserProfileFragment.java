@@ -22,6 +22,7 @@ import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
+import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
@@ -163,15 +164,15 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserProductInterface userProductInterface=restAdapter.create(UserProductInterface.class);
-        userProductInterface.getUserProduct(user, new Callback<List<Product>>() {
+        userProductInterface.getUserProduct(user, new Callback<List<AllProduct>>() {
             @Override
-            public void success(List<Product> products, Response response) {
+            public void success(List<AllProduct> allProducts, Response response) {
                 Log.d("berhasil catch", "berhasil gan");
-                if(products == null  || products.isEmpty()){
+                if(allProducts == null  || allProducts.isEmpty()){
                     Toast.makeText(getActivity(),"Ga ada Produk yang di Jual",Toast.LENGTH_SHORT).show();
                 }
-                for(Product product:products){
-                    mAdapater.add(product);
+                for(AllProduct allProduct:allProducts){
+                    mAdapater.add(allProduct);
                 }
                 mAdapater.notifyDataSetChanged();
             }
@@ -182,6 +183,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 flag= flag+1;
             }
         });
+//
     }
 
     // ambil data image user

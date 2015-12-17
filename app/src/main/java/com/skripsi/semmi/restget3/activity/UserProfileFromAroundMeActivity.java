@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
+import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.Model.Product;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
@@ -119,15 +120,15 @@ public class UserProfileFromAroundMeActivity extends AppCompatActivity implement
                 .setEndpoint(getString(R.string.api))
                 .build();
         UserProductInterface userProductInterface=restAdapter.create(UserProductInterface.class);
-        userProductInterface.getUserProduct(username, new Callback<List<Product>>() {
+        userProductInterface.getUserProduct(username, new Callback<List<AllProduct>>() {
             @Override
-            public void success(List<Product> products, Response response) {
+            public void success(List<AllProduct> allProducts, Response response) {
                 Log.d("berhasil catch", "berhasil gan");
-                if(products == null  || products.isEmpty()){
+                if(allProducts == null  || allProducts.isEmpty()){
                     Toast.makeText(UserProfileFromAroundMeActivity.this, "Ga ada Produk yang di Jual", Toast.LENGTH_SHORT).show();
                 }
-                for(Product product:products){
-                    mAdapater.add(product);
+                for(AllProduct allProduct:allProducts){
+                    mAdapater.add(allProduct);
                 }
                 mAdapater.notifyDataSetChanged();
             }

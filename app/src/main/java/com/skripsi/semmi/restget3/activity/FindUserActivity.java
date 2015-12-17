@@ -10,12 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.arlib.floatingsearchview.FloatingSearchView;
 import com.skripsi.semmi.restget3.Font.RobotoTextView;
 import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.SearchUserInterface;

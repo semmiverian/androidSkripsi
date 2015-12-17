@@ -16,30 +16,33 @@ public class AllProduct implements Parcelable {
     private String userImage;
     private String produkEmail;
     private String produkTelepon;
+    private String produkId;
 
+    public AllProduct() {
+    }
 
-    public AllProduct(){}
-
-    public AllProduct(String produknama, String produkdetail, String produkImage, String produkCreate , String userName , String userImage, String produkEmail, String produkTelepon){
+    public AllProduct(String produknama, String produkdetail, String produkImage, String produkCreate, String userName, String userImage, String produkEmail, String produkTelepon, String produkId) {
         this.produknama = produknama;
-        this.produkdetail= produkdetail;
+        this.produkdetail = produkdetail;
         this.produkImage = produkImage;
         this.produkCreate = produkCreate;
         this.userName = userName;
         this.userImage = userImage;
         this.produkEmail = produkEmail;
         this.produkTelepon = produkTelepon;
+        this.produkId = produkId;
     }
 
-    public AllProduct(Parcel source){
-        produknama= source.readString();
-        produkdetail= source.readString();
-        produkImage= source.readString();
-        produkCreate= source.readString();
-        userName= source.readString();
-        userImage= source.readString();
+    public AllProduct(Parcel source) {
+        produknama = source.readString();
+        produkdetail = source.readString();
+        produkImage = source.readString();
+        produkCreate = source.readString();
+        userName = source.readString();
+        userImage = source.readString();
         produkEmail = source.readString();
         produkTelepon = source.readString();
+        produkId = source.readString();
 
     }
 
@@ -107,37 +110,40 @@ public class AllProduct implements Parcelable {
         dest.writeString(userImage);
         dest.writeString(produkEmail);
         dest.writeString(produkTelepon);
-
+        dest.writeString(produkId);
     }
 
     private void defaultValues() {
-        if(produknama == null){
-            produknama="";
+        if (produknama == null) {
+            produknama = "";
         }
-        if(produkdetail == null){
-            produkdetail="";
+        if (produkdetail == null) {
+            produkdetail = "";
         }
-        if(produkImage == null){
-            produkImage="";
+        if (produkImage == null) {
+            produkImage = "";
         }
-        if(produkCreate == null){
-            produkCreate="";
+        if (produkCreate == null) {
+            produkCreate = "";
         }
-        if(userName==null){
-            userName="";
+        if (userName == null) {
+            userName = "";
         }
-        if(userImage==null){
-            userImage="";
+        if (userImage == null) {
+            userImage = "";
         }
-        if(produkEmail == null){
-            produkEmail ="not available";
+        if (produkEmail == null) {
+            produkEmail = "not available";
         }
-        if(produkTelepon == null){
+        if (produkTelepon == null) {
             produkTelepon = "not available";
+        }
+        if (produkId == null) {
+            produkId = "";
         }
     }
 
-    public static  Creator<AllProduct> CREATOR = new Creator<AllProduct>() {
+    public static Creator<AllProduct> CREATOR = new Creator<AllProduct>() {
         @Override
         public AllProduct createFromParcel(Parcel source) {
             return new AllProduct(source);
@@ -164,4 +170,14 @@ public class AllProduct implements Parcelable {
     public void setProdukTelepon(String produkTelepon) {
         this.produkTelepon = produkTelepon;
     }
+
+    public String getProdukId() {
+        return produkId;
+    }
+
+    public void setProdukId(String produkId) {
+        this.produkId = produkId;
+    }
 }
+
+

@@ -132,9 +132,22 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             }
         }
 
+        if(getIntent()!= null && getIntent().getExtras()!=null){
+            if(getIntent().getExtras().containsKey("code3")){
+                Log.d("kode", "dari delete produk");
+                openProductFragment();
+                navigationView.getMenu().getItem(2).setChecked(true);
+                // TODO find way to change the Title at Toolbar
+            }
+        }
+
         // set Intent Services to get location if the gps is on
 //        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
 //        startService(serviceIntent);
+    }
+
+    private void openProductFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileProductListFragment.getInstance()).commit();
     }
 
     private void openUserSettingFragment() {
@@ -283,11 +296,14 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         if(id == R.id.nav_home){
             displayFirstFragment();
         }else if (id == R.id.nav_user_setting) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileSettingFragment.getInstance()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileSettingFragment.getInstance()).commit();
+            openUserSettingFragment();
         } else if (id == R.id.nav_career) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
+            openCareerFragment();
         } else if (id == R.id.nav_product) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileProductListFragment.getInstance()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileProductListFragment.getInstance()).commit();
+            openProductFragment();
         }else if(id == R.id.nav_logout){
             logoutConfirmationDialog();
         }
