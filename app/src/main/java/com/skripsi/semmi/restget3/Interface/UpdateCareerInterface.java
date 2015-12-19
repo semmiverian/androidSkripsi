@@ -16,5 +16,6 @@ public interface UpdateCareerInterface {
     @Multipart
     @POST("/updateCareer.php")
     void postUpdateCareer(@Part("karirId") String karirId,@Part("karirNama") String karirNama , @Part("karirDetail")
-                        String karirDetail, @Part("image") TypedFile image,Callback<DeleteData> callback);
+                        String karirDetail, @Part("image") TypedFile image, @Part("karirEmail") String karirEmail, @Part("karirTelepon") String karirTelepon
+                        ,Callback<DeleteData> callback);
 }

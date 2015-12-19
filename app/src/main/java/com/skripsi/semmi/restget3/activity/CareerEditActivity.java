@@ -34,10 +34,13 @@ import retrofit.mime.TypedFile;
 public class CareerEditActivity extends AppCompatActivity implements View.OnClickListener {
     public final static String karirNama = "Extra karir nama";
     public final static String karirDetail = "Extra karir detail";
-    public final static String karirImage = "Extra karir Image";
     public final static String karirId = "Extra karir ID";
+    public final static String karirEmail = "Extra karir Email";
+    public final static String karirTelepon = "Extra karir telepon";
     private EditText karirNamaText;
     private EditText karirDetailText;
+    private EditText karirEmailText;
+    private EditText karirTeleponText;
     private Button updateButton;
     private  MaterialDialog dialog;
     private String idKarir;
@@ -53,24 +56,37 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.edit_career_activity);
         karirNamaText = (EditText) findViewById(R.id.editKarirNama);
         karirDetailText = (EditText) findViewById(R.id.editKarirDetail);
+        karirEmailText = (EditText) findViewById(R.id.karirEmailEdit);
+        karirTeleponText = (EditText) findViewById(R.id.karirTeleponEdit);
+
         updateButton = (Button) findViewById(R.id.updateKarir);
         previewImage = (ImageView) findViewById(R.id.previewImageKarir);
         changeImageButton = (Button) findViewById(R.id.updateImage);
+
+        showOldData();
+
+        updateButton.setOnClickListener(this);
+        changeImageButton.setOnClickListener(this);
+    }
+
+    private void showOldData() {
 
         if(getIntent()!= null && getIntent().getExtras()!=null) {
             if (getIntent().getExtras().containsKey(karirNama)) {
                 karirNamaText.setText(getIntent().getExtras().getString(karirNama));
             }if(getIntent().getExtras().containsKey(karirDetail)) {
                 karirDetailText.setText(getIntent().getExtras().getString(karirDetail));
-            }
-            if(getIntent().getExtras().containsKey(karirId)) {
+            }if(getIntent().getExtras().containsKey(karirId)) {
                 idKarir=getIntent().getExtras().getString(karirId);
+            }if(getIntent().getExtras().containsKey(karirEmail)) {
+
+                karirEmailText.setText(getIntent().getExtras().getString(karirEmail));
+            }if(getIntent().getExtras().containsKey(karirTelepon)) {
+                karirTeleponText.setText(getIntent().getExtras().getString(karirTelepon));
             }
         }
-
-        updateButton.setOnClickListener(this);
-        changeImageButton.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v) {
         int id =v.getId();
@@ -78,6 +94,8 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
             case R.id.updateKarir:
                 String nama = karirNamaText.getText().toString();
                 String detail = karirDetailText.getText().toString();
+                String email = karirEmailText.getText().toString();
+                String telepon = karirTeleponText.getText().toString();
                 // ambil real path dari image yang dipilih
                 String imagePath=null;
                 if(uri != null){
@@ -108,7 +126,7 @@ public class CareerEditActivity extends AppCompatActivity implements View.OnClic
                         .setEndpoint(getString(R.string.api))
                         .build();
                 UpdateCareerInterface updateCareerInterface = restAdapter.create(UpdateCareerInterface.class);
-                updateCareerInterface.postUpdateCareer(idKarir, nama, detail, typedFile,new Callback<DeleteData>() {
+                updateCareerInterface.postUpdateCareer(idKarir, nama, detail, typedFile,email,telepon,new Callback<DeleteData>() {
                     @Override
                     public void success(DeleteData deleteData, Response response) {
                         dialog.setContent(deleteData.getInfo());

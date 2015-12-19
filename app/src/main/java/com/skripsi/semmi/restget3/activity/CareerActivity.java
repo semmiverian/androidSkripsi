@@ -74,7 +74,6 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.fab:
                 Intent intent = new Intent(this, AddNewCareerActivity.class);
                 startActivity(intent);
-
                 break;
         }
     }

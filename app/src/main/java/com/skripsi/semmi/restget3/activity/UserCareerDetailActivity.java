@@ -74,12 +74,14 @@ public class UserCareerDetailActivity extends AppCompatActivity {
         String karirNama= allCareer.getKarirnama();
         String karirDetail = allCareer.getKarirdetail();
         String karirId = allCareer.getKarirId();
+        String karirEmail = allCareer.getKarirEmail();
+        String karirTelepon = allCareer.getKarirTelepon();
         switch (id){
             case R.id.action_delete:
                 showDeleteConfirmDialog();
                 break;
             case R.id.action_edit:
-                editCareer(karirNama, karirDetail, karirId);
+                editCareer(karirNama, karirDetail, karirId,karirEmail,karirTelepon);
                 break;
         }
 
@@ -94,7 +96,6 @@ public class UserCareerDetailActivity extends AppCompatActivity {
                 .content("Apa anda yakin untuk menghapus karir ini")
                 .positiveText("ya")
                 .negativeText("tidak")
-//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
@@ -136,11 +137,13 @@ public class UserCareerDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void editCareer(String karirNama , String karirDetail, String karirId) {
+    private void editCareer(String karirNama, String karirDetail, String karirId, String karirEmail, String karirTelepon) {
         Intent editCarerIntent = new Intent(this, CareerEditActivity.class);
         editCarerIntent.putExtra(CareerEditActivity.karirNama,karirNama);
         editCarerIntent.putExtra(CareerEditActivity.karirDetail,karirDetail);
         editCarerIntent.putExtra(CareerEditActivity.karirId,karirId);
+        editCarerIntent.putExtra(CareerEditActivity.karirEmail,karirEmail);
+        editCarerIntent.putExtra(CareerEditActivity.karirTelepon,karirTelepon);
         startActivity(editCarerIntent);
     }
 

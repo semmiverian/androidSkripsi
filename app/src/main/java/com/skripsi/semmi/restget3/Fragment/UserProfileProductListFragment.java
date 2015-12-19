@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
@@ -22,6 +23,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.UserProductInterface;
 import com.skripsi.semmi.restget3.Model.AllProduct;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.AddNewProdukActivity;
 import com.skripsi.semmi.restget3.activity.UserProductDetailActivity;
 import com.skripsi.semmi.restget3.adapter.UserSaleAdapter;
 
@@ -35,11 +37,12 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 29/11/2015.
  */
-public class UserProfileProductListFragment extends Fragment {
+public class UserProfileProductListFragment extends Fragment implements View.OnClickListener {
     private GridView gridView;
     private UserSaleAdapter mAdapater;
     private  String user;
     private SharedPreferences sharedPreferences;
+    private FloatingActionButton mFloatingActionButton;
 
     public static UserProfileProductListFragment getInstance(){
         UserProfileProductListFragment fragment = new UserProfileProductListFragment();
@@ -59,6 +62,9 @@ public class UserProfileProductListFragment extends Fragment {
         gridView = (GridView) view.findViewById(R.id.UserProductGrid);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         user=sharedPreferences.getString("usernameSession","Username");
+
+        mFloatingActionButton= (FloatingActionButton) view.findViewById(R.id.fab);
+        mFloatingActionButton.setOnClickListener(this);
         return view;
     }
 
@@ -131,5 +137,16 @@ public class UserProfileProductListFragment extends Fragment {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch(id){
+            case R.id.fab:
+                Intent newProduct = new Intent(getActivity(), AddNewProdukActivity.class);
+                startActivity(newProduct);
+                break;
+        }
     }
 }

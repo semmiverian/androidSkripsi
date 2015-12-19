@@ -1,6 +1,7 @@
 package com.skripsi.semmi.restget3.activity;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;

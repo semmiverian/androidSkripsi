@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
@@ -22,6 +23,7 @@ import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.userCareerInterface;
 import com.skripsi.semmi.restget3.Model.AllCareer;
 import com.skripsi.semmi.restget3.R;
+import com.skripsi.semmi.restget3.activity.AddNewCareerActivity;
 import com.skripsi.semmi.restget3.activity.UserCareerDetailActivity;
 import com.skripsi.semmi.restget3.adapter.UserCareerAdapter;
 
@@ -35,13 +37,14 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 29/11/2015.
  */
-public class UserProfileCareerFragment extends Fragment {
+public class UserProfileCareerFragment extends Fragment implements View.OnClickListener {
 
     private ListView listView;
     private UserCareerAdapter mAdapater;
     private  String user;
     private SharedPreferences sharedPreferences;
     private static final int INITIAL_DELAY_MILLIS = 300;
+    private FloatingActionButton mFloatingActionButton;
 
     public static UserProfileCareerFragment getInstance(){
         UserProfileCareerFragment fragment=new UserProfileCareerFragment();
@@ -60,6 +63,8 @@ public class UserProfileCareerFragment extends Fragment {
         listView = (ListView) view.findViewById(R.id.CareerListView);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         user=sharedPreferences.getString("usernameSession","Username");
+        mFloatingActionButton= (FloatingActionButton) view.findViewById(R.id.fab);
+        mFloatingActionButton.setOnClickListener(this);
         return view;
     }
 
@@ -142,5 +147,14 @@ public class UserProfileCareerFragment extends Fragment {
     }
 
 
-
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.fab:
+                Intent intent = new Intent(getActivity(), AddNewCareerActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
