@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         welcomeAngkatan.setText(sharedPreferences.getString("angkatanSession","Tahun Lulus"));
         welcomeJurusan.setText(sharedPreferences.getString("jurusanSession","Jurusan User"));
         welcomeStatus.setText(sharedPreferences.getString("statusSession","Status user"));
+        Log.d("userID",""+sharedPreferences.getInt("idSession",1));
 
 //        userProfileBeta.setOnClickListener(this);
     }

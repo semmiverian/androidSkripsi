@@ -179,6 +179,12 @@
             <!--android:enabled="true"-->
             <!--android:exported="false"/>-->
 
+
+        <provider
+            android:authorities="com.skripsi.semmi.restget3"
+            android:name=".provider.UserProvider"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

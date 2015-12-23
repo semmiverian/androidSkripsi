@@ -52,9 +52,8 @@ public class AllUserFragment extends ListFragment {
         setListShown(true);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         currentUserId= sharedPreferences.getInt("idSession", 0);
-
+        Log.d("curr User", "" + currentUserId);
         getUserList(currentUserId);
-
     }
 
     private void getUserList(final int currentUserId) {

@@ -1,8 +1,11 @@
 package com.skripsi.semmi.restget3.Fragment;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,12 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Helper.DBopenHelper;
 import com.skripsi.semmi.restget3.Interface.LoginApiInterface;
 import com.skripsi.semmi.restget3.Model.Login;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.ForgotPassActivity;
 import com.skripsi.semmi.restget3.activity.RegisterActivity;
 import com.skripsi.semmi.restget3.activity.home_activity;
+import com.skripsi.semmi.restget3.provider.UserProvider;
 import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
@@ -46,8 +51,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,14 +63,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mPassword.setTypeface(EasyFonts.robotoLight(getActivity()));
         mForgotPass= (TextView) view.findViewById(R.id.forgotGo);
         sharedPreferences = this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-        // kalau udah pernah login ga usah masuk ke tampilan login lagi
-        if(sharedPreferences.getString("usernameSession",null)!= null){
-            Intent intent1 = new Intent(getActivity(), home_activity.class);
-            intent1.putExtra(home_activity.username, sharedPreferences.getString("usernameSession",null));
-            startActivity(intent1);
-        }
+
+
         return view;
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -126,9 +127,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             editor.putString("namaSession",login.getNama());
                             editor.apply();
 
+                            saveCurrentUser(login.getUsername());
+
                             Intent intent1 = new Intent(getActivity(), home_activity.class);
-                            intent1.putExtra(home_activity.username, login.getUsername());
-                            intent1.putExtra(home_activity.status, login.getStatus());
                             startActivity(intent1);
                         }else{
                             dialog.dismiss();
@@ -150,5 +151,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-    
+
+    private void saveCurrentUser(String username) {
+        ContentValues values = new ContentValues();
+        values.put(DBopenHelper.USER_NAME,username);
+        Uri userUri = getActivity().getContentResolver().insert(UserProvider.CONTENT_URI,values);
+        Log.d("insert sukses ", userUri.getLastPathSegment());
+    }
+
 }
