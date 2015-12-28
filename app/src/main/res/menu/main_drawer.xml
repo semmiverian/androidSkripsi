@@ -19,4 +19,11 @@
         </menu>
     </item>
 
+    <item android:title="About Us">
+        <menu>
+            <item android:id="@+id/nav_about_us" android:icon="@android:drawable/ic_dialog_info"
+                android:title="@string/about_us" />
+        </menu>
+    </item>
+
 </menu>

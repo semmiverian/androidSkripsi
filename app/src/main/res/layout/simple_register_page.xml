@@ -78,16 +78,7 @@
             android:padding="12dp"
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tahunLulus"
-            android:hint="Tahun Lulus"
-            android:inputType="number"
-            android:background="#ffffff"
-            android:padding="12dp"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp" />
+
     </LinearLayout>
 
     <CheckBox

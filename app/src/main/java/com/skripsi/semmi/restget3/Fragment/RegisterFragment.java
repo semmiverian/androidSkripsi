@@ -35,14 +35,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private EditText mEmail;
     private EditText mName;
     private EditText mJurusan;
-    private EditText mTahunulus;
     private CheckBox mCheckBox;
     private String username;
     private String dob;
     private String email;
     private String name;
     private String jurusan;
-    private String tahunlulus;
     private MaterialDialog dialog;
     public static RegisterFragment getInstance(){
         RegisterFragment fragment=new RegisterFragment();
@@ -58,7 +56,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         mEmail= (EditText) view.findViewById(R.id.emailRegis);
         mName= (EditText) view.findViewById(R.id.nameRegis);
         mJurusan = (EditText) view.findViewById(R.id.jurusanRegis);
-        mTahunulus= (EditText) view.findViewById(R.id.tahunLulus);
         mCheckBox= (CheckBox) view.findViewById(R.id.checkBoxTOS);
         mButton.setOnClickListener(this);
         return view;
@@ -78,13 +75,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         email=mEmail.getText().toString();
         name=mName.getText().toString();
         jurusan=mJurusan.getText().toString();
-        tahunlulus=mTahunulus.getText().toString();
 
         RestAdapter restAdapter=new RestAdapter.Builder()
                 .setEndpoint(getString(R.string.api))
                 .build();
         RegisterApiInterface registerApiInterface=restAdapter.create(RegisterApiInterface.class);
-        registerApiInterface.postRegister(username,dob,email, name,jurusan,tahunlulus,new Callback<Register>() {
+        registerApiInterface.postRegister(username,dob,email, name,jurusan,new Callback<Register>() {
             @Override
             public void success(Register register, Response response) {
                //  Log.d("sukses","alhamdulillah");

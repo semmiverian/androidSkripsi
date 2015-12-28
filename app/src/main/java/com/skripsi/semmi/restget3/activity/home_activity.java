@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,12 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Fragment.AboutUsFragment;
 import com.skripsi.semmi.restget3.Fragment.HomeFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
@@ -39,23 +38,12 @@ import com.squareup.picasso.Picasso;
 public class home_activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     public static final String  username="username";
     public static final String  status="status";
-    private TextView mUserLogin;
-    private TextView mStatusLogin;
-    private Button mAroundMe;
-    private Button mCareer;
-    private Button mDummy;
-    private Button allUser;
-    private Button product;
-    private Button userProfileBeta;
     private ImageView userImage;
-    private String usernameExtra;
-    private String statusExtra;
     private String imageUserLink;
     private SharedPreferences sharedPreferences;
     private TextView navigationName;
     private TextView navigationStatus;
     private NavigationView navigationView;
-    public final static int addCareerCode =112;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,42 +52,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         displayFirstFragment();
-
-
-
-
-        // Content responding code
-//        mUserLogin= (TextView) findViewById(R.id.userLogin);
-//        mStatusLogin= (TextView) findViewById(R.id.statusLogin);
-        // validasi dan ngambil data dari aktivitas login
-//        if(getIntent()!= null && getIntent().getExtras()!=null){
-//            if(getIntent().getExtras().containsKey(username)){
-//                mUserLogin.setText(getIntent().getExtras().getString(username));
-//                usernameExtra=mUserLogin.getText().toString();
-//                mStatusLogin.setText(getIntent().getExtras().getString(status));
-//            }
-//        }
-
-        // find ID code
-//        mAroundMe= (Button) findViewById(R.id.aroundme);
-//        mCareer= (Button) findViewById(R.id.careerButton);
-//        mDummy= (Button) findViewById(R.id.dummybutton);
-//        allUser= (Button) findViewById(R.id.allUserButton);
-//        product = (Button) findViewById(R.id.trading);
-//        userProfileBeta = (Button) findViewById(R.id.userProfileBeta);
-
-
-
-        // on click listener
-//        mAroundMe.setOnClickListener(this);
-//        mCareer.setOnClickListener(this);
-//        mDummy.setOnClickListener(this);
-//        allUser.setOnClickListener(this);
-//        product.setOnClickListener(this);
-//        userProfileBeta.setOnClickListener(this);
-
-
-
 
         // Drawer layout responding code
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerMainLayout);
@@ -150,24 +102,13 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             }
         }
 //        String nama = sharedPreferences.getString("usernameSession", "username");
-//
-
-
-
-
         /*
             Database Testing code
          */
-        Cursor cursor = getContentResolver().query(UserProvider.CONTENT_URI,DBopenHelper.allColumns,null,null,null,null);
-        String[] datas = {DBopenHelper.USER_NAME};
+//        Cursor cursor = getContentResolver().query(UserProvider.CONTENT_URI,DBopenHelper.allColumns,null,null,null,null);
+//        String[] datas = {DBopenHelper.USER_NAME};
 //        saveCurrentUser(nama);
-        selectAllData(cursor);
-
-        Log.d("current count",""+cursor.getCount());
-
-
-
-
+//        selectAllData(cursor)
         // set Intent Services to get location if the gps is on
 //        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
 //        startService(serviceIntent);
@@ -192,7 +133,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 flag += 1;
                 cursor.moveToNext();
             }
-            Log.d("wrond","wrong logic");
         }
     }
 
@@ -236,25 +176,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 .into(userImage);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_home, menu);
-//        return true;
-//    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id=item.getItemId();
-//        switch (id){
-//            case R.id.action_logout:
-//                logoutConfirmationDialog();
-//                break;
-//            case R.id.action_profile:
-//                showUserProfile();
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void logoutConfirmationDialog() {
         new MaterialDialog.Builder(this)
@@ -314,34 +236,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.aroundme:
-//                Intent intentAroundMe=new Intent(this,AroundMeActivity.class);
-//                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
-//                startActivity(intentAroundMe);
-//                break;
-//            case R.id.careerButton:
-//                Intent intentCareer=new Intent(this,CareerActivity.class);
-////                intentAroundMe.putExtra(AroundMeActivity.username, usernameExtra);
-//                startActivity(intentCareer);
-//                break;
-//            case R.id.dummybutton:
-//                progressBar();
-//                break;
-//            case R.id.allUserButton:
-//                Intent intentUser = new Intent(this, AllUserActivity.class);
-//                startActivity(intentUser);
-//                break;
-//            case R.id.trading:
-//                Intent intentTrading = new Intent(this , AllProductActivity.class);
-//                startActivity(intentTrading);
-//                break;
-//            case R.id.userProfileBeta:
-//                Intent userProfileBetaIntent = new Intent(this, UserProfileNewActivity.class);
-//                startActivity(userProfileBetaIntent);
-//                break;
-//        }
-
 
     }
 
@@ -364,6 +258,8 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             openProductFragment();
         }else if(id == R.id.nav_logout){
             logoutConfirmationDialog();
+        }else if(id == R.id.nav_about_us){
+            openAboutUsFragment();
         }
         item.setChecked(true);
         setTitle(item.getTitle());
@@ -372,7 +268,9 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         return true;
     }
 
-
+    private void openAboutUsFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, AboutUsFragment.getInstance()).commit();
+    }
 
 
 }

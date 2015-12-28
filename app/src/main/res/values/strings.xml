@@ -41,4 +41,5 @@
     <string name="search_header">Search User by username or name</string>
     <string name="update_produk">Update Produk</string>
     <string name="app_name_alumni">Alumni Space</string>
+    <string name="about_us">About Us</string>
 </resources>

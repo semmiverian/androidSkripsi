@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Fragment.LoginFragment;
 import com.skripsi.semmi.restget3.Helper.DBopenHelper;
 import com.skripsi.semmi.restget3.Interface.LoginApiInterface;
 import com.skripsi.semmi.restget3.Model.Login;
@@ -48,11 +47,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.simple_login_page);
         sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-
 //        Log.d("preferences", nama);
-
 //        checkDbSessionUser();
+        setViewData();
+    }
 
+    private void setViewData() {
         mUsername= (EditText) findViewById(R.id.username);
         mUsername.setTypeface(EasyFonts.robotoLight(this));
         mPassword= (EditText) findViewById(R.id.password);
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent1);
                 return;
             }
-//            displayInitialFragment();
             Log.d("problem","Masih ada problem pas cek session dari SQLite");
     }
 
@@ -89,16 +88,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(nama!= null){
             Intent intent1 = new Intent(this, home_activity.class);
             startActivity(intent1);
-
         }
-//        displayInitialFragment();
-        Log.d("BUG","dari main activity");
+        Log.d("BUG", "dari main activity");
     }
 
-    private void displayInitialFragment() {
-//        Default Fragment when user open the App
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, LoginFragment.getInstance()).commit();
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -114,66 +108,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.registerGo:
-                Toast.makeText(this, "Register Click", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Register Click", Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(this, RegisterActivity.class);
                 startActivityForResult(intent, 102);
                 break;
             case R.id.loginGo:
-                // buat sebuah dialog bar biar bisa ngasih tau user apa yang sedang terjadi
-
-                dialog = new MaterialDialog.Builder(this)
-                        .title("Proses")
-                        .content("Connecting to server")
-                        .progress(true,0)
-                        .show();
-                String username=mUsername.getText().toString();
-                String password=mPassword.getText().toString();
-                RestAdapter restAdapter=new RestAdapter.Builder()
-                        .setEndpoint(getString(R.string.api))
-                        .build();
-                LoginApiInterface loginApiInterface = restAdapter.create(LoginApiInterface.class);
-                loginApiInterface.cekLogin(username, password, new Callback<Login>() {
-                    @Override
-                    public void success(Login login, Response response) {
-                        // Log.d("sukses",""+login.getKode());
-                        if(login.getKode().equals("4")) {
-//                             dialog.dismiss();
-
-                            dialog.setContent("Berhasil Log in");
-                            // kalau sukses bakal simpen kaya season ke device
-
-                            editor=sharedPreferences.edit();
-                            editor.putString("usernameSession",login.getUsername());
-                            editor.putString("statusSession", login.getStatus());
-                            editor.putString("imageSession", login.getImage());
-                            editor.putInt("idSession", login.getId());
-                            editor.putString("jurusanSession", login.getJurusan());
-                            editor.putString("angkatanSession",login.getTahunlulus());
-                            editor.putString("namaSession",login.getNama());
-                            editor.apply();
-
-//                            saveCurrentUser(login.getUsername());
-
-                            Intent intent1 = new Intent(MainActivity.this, home_activity.class);
-                            startActivity(intent1);
-                        }else{
-                            dialog.dismiss();
-                            Toast.makeText(MainActivity.this,"Error"+login.getInfo(),Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.d("post Error","from Retrofit"+error.getMessage());
-                    }
-                });
-
+                checkLoginUser();
                 break;
             case  R.id.forgotGo:
                 Intent intent3=new Intent(this, ForgotPassActivity.class);
                 startActivity(intent3);
                 break;
         }
+    }
+
+    // Fungsi buat ngatur alur user waktu login
+    private void checkLoginUser() {
+        dialog = new MaterialDialog.Builder(this)
+                .title("Proses")
+                .content("Connecting to server")
+                .progress(true, 0)
+                .show();
+        String username=mUsername.getText().toString();
+        String password=mPassword.getText().toString();
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        LoginApiInterface loginApiInterface = restAdapter.create(LoginApiInterface.class);
+        loginApiInterface.cekLogin(username, password, new Callback<Login>() {
+            @Override
+            public void success(Login login, Response response) {
+                // Log.d("sukses",""+login.getKode());
+                if(login.getKode().equals("4")) {
+//                             dialog.dismiss();
+
+                    dialog.setContent("Berhasil Log in");
+                    // kalau sukses bakal simpen kaya season ke device
+
+                    editor=sharedPreferences.edit();
+                    editor.putString("usernameSession",login.getUsername());
+                    editor.putString("statusSession", login.getStatus());
+                    editor.putString("imageSession", login.getImage());
+                    editor.putInt("idSession", login.getId());
+                    editor.putString("jurusanSession", login.getJurusan());
+                    editor.putString("angkatanSession",login.getTahunlulus());
+                    editor.putString("namaSession",login.getNama());
+                    editor.apply();
+
+//                            saveCurrentUser(login.getUsername());
+
+                    Intent intent1 = new Intent(MainActivity.this, home_activity.class);
+                    startActivity(intent1);
+                }else{
+                    dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Error" + login.getInfo(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("post Error", "from Retrofit" + error.getMessage());
+            }
+        });
     }
 
     private void saveCurrentUser(String username) {
