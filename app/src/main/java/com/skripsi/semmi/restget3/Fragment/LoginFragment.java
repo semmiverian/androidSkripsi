@@ -1,11 +1,8 @@
 package com.skripsi.semmi.restget3.Fragment;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,14 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Helper.DBopenHelper;
 import com.skripsi.semmi.restget3.Interface.LoginApiInterface;
 import com.skripsi.semmi.restget3.Model.Login;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.ForgotPassActivity;
 import com.skripsi.semmi.restget3.activity.RegisterActivity;
 import com.skripsi.semmi.restget3.activity.home_activity;
-import com.skripsi.semmi.restget3.provider.UserProvider;
 import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
@@ -127,7 +122,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             editor.putString("namaSession",login.getNama());
                             editor.apply();
 
-                            saveCurrentUser(login.getUsername());
 
                             Intent intent1 = new Intent(getActivity(), home_activity.class);
                             startActivity(intent1);
@@ -152,11 +146,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void saveCurrentUser(String username) {
-        ContentValues values = new ContentValues();
-        values.put(DBopenHelper.USER_NAME,username);
-        Uri userUri = getActivity().getContentResolver().insert(UserProvider.CONTENT_URI,values);
-        Log.d("insert sukses ", userUri.getLastPathSegment());
-    }
+
 
 }

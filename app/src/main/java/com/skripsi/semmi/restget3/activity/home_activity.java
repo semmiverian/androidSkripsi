@@ -1,11 +1,8 @@
 package com.skripsi.semmi.restget3.activity;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,16 +23,14 @@ import com.skripsi.semmi.restget3.Fragment.HomeFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
-import com.skripsi.semmi.restget3.Helper.DBopenHelper;
 import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.R;
-import com.skripsi.semmi.restget3.provider.UserProvider;
 import com.squareup.picasso.Picasso;
 
 /**
  * Created by semmi on 15/10/2015.
  */
-public class home_activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class home_activity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
     public static final String  username="username";
     public static final String  status="status";
     private ImageView userImage;
@@ -102,46 +97,15 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
             }
         }
 //        String nama = sharedPreferences.getString("usernameSession", "username");
-        /*
-            Database Testing code
-         */
-//        Cursor cursor = getContentResolver().query(UserProvider.CONTENT_URI,DBopenHelper.allColumns,null,null,null,null);
-//        String[] datas = {DBopenHelper.USER_NAME};
-//        saveCurrentUser(nama);
-//        selectAllData(cursor)
+
         // set Intent Services to get location if the gps is on
 //        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
 //        startService(serviceIntent);
     }
 
-    private void deleteCurrentUserSession() {
-        getContentResolver().delete(UserProvider.CONTENT_URI,null,null);
-    }
 
-    // Code about Database Insert, Select Testing
 
-    private void selectAllData(Cursor cursor) {
-        int flag=0;
-        if(cursor.moveToFirst()){
-            String[] Users;
-            String user;
-            Users=new String[31];
-            while(cursor.isAfterLast() == false && flag <=Users.length){
-                user=cursor.getString(cursor.getColumnIndex(DBopenHelper.USER_NAME));
-                Users[flag]=user;
-                Log.d("cursor", Users[flag]);
-                flag += 1;
-                cursor.moveToNext();
-            }
-        }
-    }
 
-    private void saveCurrentUser(String nama) {
-        ContentValues values = new ContentValues();
-        values.put(DBopenHelper.USER_NAME,nama);
-        Uri userUri = getContentResolver().insert(UserProvider.CONTENT_URI,values);
-        Log.d("insert sukses ", userUri.getLastPathSegment());
-    }
 
 
     private void openProductFragment() {
@@ -184,7 +148,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
                 .content("Apa anda yakin ingin keluar")
                 .positiveText("ya")
                 .negativeText("tidak")
-//                        .icon(Drawable.createFromPath(String.valueOf(R.drawable.ic_media_play)))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
@@ -204,14 +167,7 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void showUserProfile() {
-        // fungsi untuk melihat user profile
-        Intent intentProfile=new Intent(this,ProfileActivity.class);
-        startActivity(intentProfile);
-    }
-
     private void logoutUser() {
-        deleteCurrentUserSession();
         // Hilangkan session yang di simpern di mobile jadi harus login lagi kalau mau masuk ke app
         SharedPreferences sharedPreferences=getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -234,13 +190,6 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         startActivity(a);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-
-
     // fungsi ketika drawer di click
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -248,13 +197,10 @@ public class home_activity extends AppCompatActivity implements View.OnClickList
         if(id == R.id.nav_home){
             displayFirstFragment();
         }else if (id == R.id.nav_user_setting) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileSettingFragment.getInstance()).commit();
             openUserSettingFragment();
         } else if (id == R.id.nav_career) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileCareerFragment.getInstance()).commit();
             openCareerFragment();
         } else if (id == R.id.nav_product) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.container, UserProfileProductListFragment.getInstance()).commit();
             openProductFragment();
         }else if(id == R.id.nav_logout){
             logoutConfirmationDialog();

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RestGet3</string>
-    <string name="api">http://semmiapi.esy.es/androidapi/api/</string>
+    <string name="api">http://alumnispace.org/androidapi/api</string>
     <string name="register">Register</string>
     <string name="login">login</string>
     <string name="regisPage">Register</string>
@@ -16,7 +16,7 @@
     <string name="profile_action">Profile</string>
     <string name="aroundme">Around Me</string>
     <string name="profile">Youre Profile</string>
-    <string name="avatarDefaultString">http://semmiapi.esy.es/androidapi/upload/usertes.png</string>
+    <string name="avatarDefaultString">http://alumnispace.org/androidapi/upload/usertes.png</string>
     <string name="profileMessage">Message</string>
     <string name="ProfileImage">Update Image</string>
     <string name="sellProduct">Sell Product</string>

@@ -35,7 +35,7 @@
                 android:id="@+id/userNameCareer"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/wallet_holo_blue_light"/>
+                android:textColor="#9FA8DA"/>
         </LinearLayout>
 
         <TextView

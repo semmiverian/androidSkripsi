@@ -118,22 +118,24 @@ public class CareerListFragment extends ListFragment  {
         allCareerInterface.getCareer(new Callback<List<AllCareer>>() {
             @Override
             public void success(List<AllCareer> allCareers, Response response) {
-
                 // ga bakal isi apa apa kalau ga ada data yang dateng
                 if (allCareers == null || allCareers.isEmpty()) {
                     return;
                 }
+                mAdapater.clear();
                 for (AllCareer allCareer : allCareers) {
                     // parse data yang diambil dari server ke adapter
                     // dari adapter nanti bakal ditampilin ke aplikasi
-//                    mAdapater.clear();
+
                     mAdapater.add(allCareer);
 //                    Log.d("Sukses", allCareer.getKarirCreate());
-
                     DateHelper dateHelper = new DateHelper();
                     String dateTest = dateHelper.changeDateFormat(allCareer.getKarirCreate());
                     Log.d("Sukses", allCareer.getKarirnama());
                 }
+
+                ListView listView = getListView();
+                listView.invalidate();
                 // pasang ini biar bisa nge detek kalau ada data yang berubah
                 mAdapater.notifyDataSetChanged();
                 setListAdapter(mAdapater);

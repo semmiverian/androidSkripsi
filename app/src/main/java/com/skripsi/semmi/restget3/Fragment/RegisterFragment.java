@@ -108,7 +108,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             }
             @Override
             public void failure(RetrofitError error) {
-                Log.d("post Error","from Retrofit"+error.getMessage());
+                Log.d("register Error","from Retrofit"+error.getMessage());
             }
         });
     }

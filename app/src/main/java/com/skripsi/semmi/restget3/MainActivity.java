@@ -1,11 +1,8 @@
 package com.skripsi.semmi.restget3;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,13 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.skripsi.semmi.restget3.Helper.DBopenHelper;
 import com.skripsi.semmi.restget3.Interface.LoginApiInterface;
 import com.skripsi.semmi.restget3.Model.Login;
 import com.skripsi.semmi.restget3.activity.ForgotPassActivity;
 import com.skripsi.semmi.restget3.activity.RegisterActivity;
 import com.skripsi.semmi.restget3.activity.home_activity;
-import com.skripsi.semmi.restget3.provider.UserProvider;
 import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
@@ -48,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.simple_login_page);
         sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
 //        Log.d("preferences", nama);
-//        checkDbSessionUser();
         setViewData();
     }
 
@@ -73,16 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkSessionUser(nama);
     }
 
-    private void checkDbSessionUser() {
-            Cursor cursor =getContentResolver().query(UserProvider.CONTENT_URI, DBopenHelper.allColumns,null,null,null,null);
-            Log.d("testcursor",""+cursor.getCount());
-            if(cursor.getCount()==1){
-                Intent intent1 = new Intent(this, home_activity.class);
-                startActivity(intent1);
-                return;
-            }
-            Log.d("problem","Masih ada problem pas cek session dari SQLite");
-    }
 
     private void checkSessionUser(String nama) {
         if(nama!= null){
@@ -139,27 +123,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(Login login, Response response) {
                 // Log.d("sukses",""+login.getKode());
-                if(login.getKode().equals("4")) {
+                if (login.getKode().equals("4")) {
 //                             dialog.dismiss();
 
                     dialog.setContent("Berhasil Log in");
                     // kalau sukses bakal simpen kaya season ke device
 
-                    editor=sharedPreferences.edit();
-                    editor.putString("usernameSession",login.getUsername());
+                    editor = sharedPreferences.edit();
+                    editor.putString("usernameSession", login.getUsername());
                     editor.putString("statusSession", login.getStatus());
                     editor.putString("imageSession", login.getImage());
                     editor.putInt("idSession", login.getId());
                     editor.putString("jurusanSession", login.getJurusan());
-                    editor.putString("angkatanSession",login.getTahunlulus());
-                    editor.putString("namaSession",login.getNama());
+                    editor.putString("angkatanSession", login.getTahunlulus());
+                    editor.putString("namaSession", login.getNama());
                     editor.apply();
 
 //                            saveCurrentUser(login.getUsername());
 
                     Intent intent1 = new Intent(MainActivity.this, home_activity.class);
                     startActivity(intent1);
-                }else{
+                } else {
                     dialog.dismiss();
                     Toast.makeText(MainActivity.this, "Error" + login.getInfo(), Toast.LENGTH_LONG).show();
                 }
@@ -172,10 +156,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void saveCurrentUser(String username) {
-        ContentValues values = new ContentValues();
-        values.put(DBopenHelper.USER_NAME,username);
-        Uri userUri = getContentResolver().insert(UserProvider.CONTENT_URI,values);
-        Log.d("insert sukses ", userUri.getLastPathSegment());
-    }
+
 }

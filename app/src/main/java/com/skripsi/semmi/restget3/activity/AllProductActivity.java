@@ -1,9 +1,7 @@
 package com.skripsi.semmi.restget3.activity;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -11,7 +9,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +18,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.AllProductInterface;
 import com.skripsi.semmi.restget3.Interface.SearchProductInterface;
@@ -41,7 +35,7 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 17/11/2015.
  */
-public class AllProductActivity extends AppCompatActivity implements OnDismissCallback, View.OnClickListener {
+public class AllProductActivity extends AppCompatActivity implements  View.OnClickListener {
     private AllProductAdapter mAdapter;
     private ListView listView;
     private static final int INITIAL_DELAY_MILLIS = 300;
@@ -61,12 +55,7 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
 
         // define design
         listView = (ListView) findViewById(R.id.ProductListView);
-        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(mAdapter);
-        swingBottomInAnimationAdapter.setAbsListView(listView);
 
-        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(
-                INITIAL_DELAY_MILLIS);
 
         // Google card design
         ListViewHelper listViewHelper = new ListViewHelper();
@@ -141,11 +130,6 @@ public class AllProductActivity extends AppCompatActivity implements OnDismissCa
         });
     }
 
-    @Override
-    public void onDismiss(@NonNull final ViewGroup listView,
-                          @NonNull final int[] reverseSortedPositions) {
-
-    }
 
     @Override
     public void onClick(View v) {

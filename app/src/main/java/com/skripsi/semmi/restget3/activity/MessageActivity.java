@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.skripsi.semmi.restget3.Interface.PostMessageInterface;
 import com.skripsi.semmi.restget3.Interface.getMessageInterface;
+import com.skripsi.semmi.restget3.Model.LocalMessage;
 import com.skripsi.semmi.restget3.Model.Message;
 import com.skripsi.semmi.restget3.Model.PostMessage;
 import com.skripsi.semmi.restget3.R;
@@ -23,6 +24,9 @@ import com.skripsi.semmi.restget3.adapter.MessageAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmAsyncTask;
+import io.realm.RealmResults;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -115,8 +119,10 @@ public class MessageActivity extends AppCompatActivity  {
         // bakal nge reset data yang sudah ada di listview dengan barisan data yang baru
 
         if(getIntent()!= null && getIntent().getExtras()!=null){
+
+
             if(getIntent().getExtras().containsKey(to_id)){
-                int to_id_user= getIntent().getExtras().getInt(to_id);
+                final int to_id_user= getIntent().getExtras().getInt(to_id);
                 int from_id_user=sharedPreferences.getInt("idSession", 0);
                 Log.d("to_id", ""+getIntent().getExtras().getInt(to_id));
                 Log.d("from_id", String.valueOf(from_id_user));
@@ -128,15 +134,29 @@ public class MessageActivity extends AppCompatActivity  {
                     @Override
                     public void success(List<Message> messages, Response response) {
                         mAdapater.clear();
-                        for(Message message : messages){
+                        for (Message message : messages) {
+                            final LocalMessage dataMessage = new LocalMessage(to_id_user, message.getPesan());
+                            // set realm starter
+                            Realm myRealm = Realm.getInstance(MessageActivity.this);
+                            // Asynchronous transaction to local database
+                            RealmAsyncTask transaction = myRealm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm realm) {
+                                    LocalMessage localMessage = realm.copyToRealm(dataMessage);
+                                }
+                            }, null);
+
+                            RealmResults<LocalMessage> localMessages=myRealm.where(LocalMessage.class)
+                                                                            .equalTo("to_id",to_id_user)
+                                                                            .findAll();
+                            Log.d("count","local message"+localMessages.size());
+                            // TODO Try doing this only if there is new data
+                            // TODO if not don't try to refresh this every time
                             mAdapater.add(message);
                             mAdapater.notifyDataSetChanged();
                             listView.invalidate();
                             // biar bisa nampilin data yang paling baru
-                            listView.setSelection(mAdapater.getCount() -1);
-//                            Log.d("message",message.getPesan());
-//                            Log.d("to Image",message.getTo_image());
-//                            Log.d("from Image",message.getFrom_image());
+                            listView.setSelection(mAdapater.getCount() - 1);
                         }
 
                     }
@@ -146,6 +166,7 @@ public class MessageActivity extends AppCompatActivity  {
                         Log.d("message Error", "from Retrofit" + error.getMessage());
                     }
                 });
+
             }
         }
     }

@@ -53,19 +53,7 @@ public class Register {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String toJSON() {
 
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("username", username);
-            jsonObject.put("dob", dob);
-            jsonObject.put("email", email);
-            return jsonObject.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
 
     public String getKode() {
         return kode;
