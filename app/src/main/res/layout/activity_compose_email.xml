@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
 
     <com.skripsi.semmi.restget3.Font.RobotoTextView
@@ -29,23 +30,27 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff">
 
         <EditText
             android:id="@+id/contentEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Content Email" />
+            android:hint="Content Email"
+            android:paddingLeft="10dp"
+            android:background="@android:color/transparent" />
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Email"
+        android:text="Send"
         android:layout_marginTop="10dp"
-        android:background="@color/md_material_blue_600"
+        android:background="#ff5050"
         android:id="@+id/sendEmail" />
 
 

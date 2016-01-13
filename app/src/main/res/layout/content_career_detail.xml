@@ -11,17 +11,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
-            android:textColor="@color/grey_600"
-            android:id="@+id/careerJudul"/>
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:id="@+id/careerJudul"
+            android:layout_marginTop="10dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:baselineAligned="false">
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -37,11 +42,13 @@
                 android:layout_marginStart="10dp"
                 android:textColor="#9FA8DA"/>
         </LinearLayout>
+        <View style="@style/Divider"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/carerDetail"/>
+            android:id="@+id/carerDetail"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 
