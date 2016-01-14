@@ -58,58 +58,86 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         mJurusan = (EditText) view.findViewById(R.id.jurusanRegis);
         mCheckBox= (CheckBox) view.findViewById(R.id.checkBoxTOS);
         mButton.setOnClickListener(this);
+        mJurusan.setOnClickListener(this);
         return view;
     }
 
 
     @Override
     public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.jurusanRegis:
+//                Toast.makeText(getActivity(),"Jurusan DI klik ",Toast.LENGTH_LONG).show();
+                    // TODO : set dialog for jurusan list
+                String[] jurusans =new String[10];
+                jurusans[0] = "Teknik Informatika";
+                jurusans[1]="Sistem Informasi";
+                jurusans[2]="Sistem Komputer";
+                jurusans[3]="Other";
+                new MaterialDialog.Builder(getActivity())
+                        .title("Pilih Jurusan")
+                        .items(jurusans)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                if(which == 0){
+                                    Toast.makeText(getActivity(), "Pilih nomer", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .show();
+                break;
+            case R.id.btnRegister:
+                dialog = new MaterialDialog.Builder(getActivity())
+                        .title("Proses")
+                        .content("Connecting to server")
+                        .progress(true,0)
+                        .show();
+                username=mUsername.getText().toString();
+                dob=mDob.getText().toString();
+                email=mEmail.getText().toString();
+                name=mName.getText().toString();
+                jurusan=mJurusan.getText().toString();
 
-        dialog = new MaterialDialog.Builder(getActivity())
-                .title("Proses")
-                .content("Connecting to server")
-                .progress(true,0)
-                .show();
-        username=mUsername.getText().toString();
-        dob=mDob.getText().toString();
-        email=mEmail.getText().toString();
-        name=mName.getText().toString();
-        jurusan=mJurusan.getText().toString();
+                RestAdapter restAdapter=new RestAdapter.Builder()
+                        .setEndpoint(getString(R.string.api))
+                        .build();
+                RegisterApiInterface registerApiInterface=restAdapter.create(RegisterApiInterface.class);
+                registerApiInterface.postRegister(username,dob,email, name,jurusan,new Callback<Register>() {
+                    @Override
+                    public void success(Register register, Response response) {
+                        //  Log.d("sukses","alhamdulillah");
+                        if(!mCheckBox.isSelected()&& username.equals("") && dob.equals("")&&email.equals("")&&name.equals("")){
+                            Toast.makeText(getActivity(),"Isi semua field dan check TOS",Toast.LENGTH_SHORT).show();
+                            dialog.setContent("Gagal Register");
+                            dialog.dismiss();
+                        }
+                        else if(register.getKode().equals("1")){
+                            mUsername.setText("");
+                            mDob.setText("");
+                            mEmail.setText("");
+                            mName.setText("");
+                            dialog.setContent("Gagal Register");
+                            dialog.dismiss();
+                            Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();
+                        }else{
+                            Log.d("status",register.getStatus());
+                            dialog.setContent("Sukses Register");
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();
+                        }
 
-        RestAdapter restAdapter=new RestAdapter.Builder()
-                .setEndpoint(getString(R.string.api))
-                .build();
-        RegisterApiInterface registerApiInterface=restAdapter.create(RegisterApiInterface.class);
-        registerApiInterface.postRegister(username,dob,email, name,jurusan,new Callback<Register>() {
-            @Override
-            public void success(Register register, Response response) {
-               //  Log.d("sukses","alhamdulillah");
-                if(!mCheckBox.isSelected()&& username.equals("") && dob.equals("")&&email.equals("")&&name.equals("")){
-                    Toast.makeText(getActivity(),"Isi semua field dan check TOS",Toast.LENGTH_SHORT).show();
-                    dialog.setContent("Gagal Register");
-                    dialog.dismiss();
-                }
-                else if(register.getKode().equals("1")){
-                    mUsername.setText("");
-                    mDob.setText("");
-                    mEmail.setText("");
-                    mName.setText("");
-                    dialog.setContent("Gagal Register");
-                    dialog.dismiss();
-                    Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();
-                }else{
-                    Log.d("status",register.getStatus());
-                    dialog.setContent("Sukses Register");
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(getActivity(),""+register.getStatus(),Toast.LENGTH_LONG).show();
-                }
+                    }
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d("register Error","from Retrofit"+error.getMessage());
+                    }
+                });
+                break;
+        }
 
-            }
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("register Error","from Retrofit"+error.getMessage());
-            }
-        });
+
     }
 }

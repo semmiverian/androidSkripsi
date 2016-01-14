@@ -24,8 +24,14 @@ import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
 import com.skripsi.semmi.restget3.MainActivity;
+import com.skripsi.semmi.restget3.Model.LocalMessage;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+import io.realm.RealmResults;
 
 /**
  * Created by semmi on 15/10/2015.
@@ -101,6 +107,12 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         // set Intent Services to get location if the gps is on
 //        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
 //        startService(serviceIntent);
+
+
+
+
+
+
     }
 
 
