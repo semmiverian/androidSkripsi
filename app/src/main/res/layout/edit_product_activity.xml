@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/previewImageKarir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,7 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Produk Title" />
+            android:hint="Product Name"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -24,7 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Produk Detail" />
+            android:hint="Details"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -37,7 +55,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email" />
+            android:hint="E-mail"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -50,24 +70,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Telepon" />
+            android:hint="Phone Number"
+            android:padding="10dp"
+            android:textSize="15sp" />
 
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/updateImage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/karirChangeImage" />
+        android:layout_marginTop="20dp">
 
-    <ImageView
-        android:id="@+id/previewImageKarir"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-    <Button
-        android:id="@+id/updateProduk"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/updateImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/karirChangeImage" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/update_produk" />
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/updateProduk"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/update_produk"
+            android:background="#ff5050"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
 </LinearLayout>

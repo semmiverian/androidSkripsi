@@ -3,16 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0064a5"
+    android:padding="20dp">
+
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/previewImageUpload"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Judul Produk"
-            android:textColor="@color/common_signin_btn_default_background"/>
-
 
 
         <EditText
@@ -21,63 +31,56 @@
             android:id="@+id/addJudulProduk"
             android:singleLine="true"
 
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detail Produk"
-            android:textColor="@color/common_signin_btn_default_background"/>
+            android:hint="Product Name"
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:textSize="15sp" />
+
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:id="@+id/addDeskProduk"
-            android:inputType="textMultiLine"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choose Image"
-                android:id="@+id/addImageProduk"/>
+            android:id="@+id/addDeskProduk"
+            android:inputType="textMultiLine"
+            android:hint="Details"
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp" />
+    </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Take Picture"
-                android:id="@+id/captureImageProduk"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
-        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Image"
+            android:id="@+id/addImageProduk"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Picture"
+            android:id="@+id/captureImageProduk"/>
 
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/previewImageUpload"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Contact Info ( Optional )"/>
+        android:textSize="20sp"
+        android:text="Contact Info"
+        android:textColor="#ffffff" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E-Mail"
-            android:textColor="@color/common_signin_btn_default_background"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -85,17 +88,10 @@
             android:inputType="textEmailAddress"
             android:id="@+id/addKontakEmail"
             android:singleLine="true"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textColor="@color/common_signin_btn_default_background"/>
+            android:textSize="15sp"
+            android:hint="E-mail"
+            android:background="#ffffff"
+            android:padding="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -103,12 +99,25 @@
             android:inputType="number"
             android:id="@+id/addKontakTelepon"
             android:singleLine="true"
-            />
+            android:textSize="15sp"
+            android:hint="Phone Number"
+            android:background="#ffffff"
+            android:layout_marginTop="10dp"
+            android:padding="10dp" />
     </LinearLayout>
-    <Button
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
-        android:text="Submit New Product"
-        android:id="@+id/submitNewProduk"/>
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="Submit New Product"
+            android:id="@+id/submitNewProduk"
+            android:background="#ff5050" />
+    </LinearLayout>
+
 </LinearLayout>

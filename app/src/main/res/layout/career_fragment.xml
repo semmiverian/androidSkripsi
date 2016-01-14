@@ -13,33 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+    android:padding="20dp">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:id="@+id/careerImage"
-                    android:contentDescription="CareerImage" />
-                <LinearLayout
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/careerImage"
+                        android:contentDescription="CareerImage" />
+    </LinearLayout>
+
+    <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp">
+                    android:layout_marginLeft="20dp">
                     <TextView
                         android:id="@+id/judulCareer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="25sp"/>
+                        android:textSize="20sp"/>
                     <TextView
                     android:id="@+id/deskripsiCareer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:layout_marginTop="15dp"
                         android:id="@+id/dateCareer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

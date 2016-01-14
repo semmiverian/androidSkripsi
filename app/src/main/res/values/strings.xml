@@ -2,7 +2,7 @@
     <string name="app_name">RestGet3</string>
     <string name="api">http://www.alumnispace.org/androidapi/api</string>
     <string name="register">Register</string>
-    <string name="login">login</string>
+    <string name="login">Login</string>
     <string name="regisPage">Register</string>
     <string name="LoginLabel">Login</string>
     <string name="forgotText">Forgot Password?</string>
@@ -20,7 +20,7 @@
     <string name="profileMessage">Message</string>
     <string name="ProfileImage">Update Image</string>
     <string name="sellProduct">Sell Product</string>
-    <string name="select_picture">selectPicture</string>
+    <string name="select_picture">Select Picture</string>
     <string name="user_profile">User Profile</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -33,7 +33,7 @@
     <string name="karirUpdate">Update Career</string>
     <string name="karirChangeImage">Change Image</string>
     <string name="changePassword">Change Password</string>
-    <string name="confirmPass">Confirm</string>
+    <string name="confirmPass">Confirm Change Password</string>
     <string name="findLocation">Search Location</string>
     <string name="contact_info">Contact Info</string>
     <string name="menu_search_user">Search User</string>

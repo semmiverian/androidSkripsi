@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/blue_grey_300"
-            android:textSize="24dp"/>
+            android:textSize="20dp"/>
     </LinearLayout>
 
 </LinearLayout>
