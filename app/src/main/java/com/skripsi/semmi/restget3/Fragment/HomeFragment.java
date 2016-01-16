@@ -51,10 +51,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // define ID from xml
         mUserLogin= (TextView) view.findViewById(R.id.userLogin);
         mStatusLogin= (TextView) view.findViewById(R.id.statusLogin);
-        welcomeName = (TextView) view.findViewById(R.id.usernameWelcome);
-        welcomeJurusan = (TextView) view.findViewById(R.id.jurusanWelcome);
-        welcomeAngkatan= (TextView) view.findViewById(R.id.angkatanWelcome);
-        welcomeStatus = (TextView) view.findViewById(R.id.statusWelcome);
+        //welcomeName = (TextView) view.findViewById(R.id.usernameWelcome);
+       // welcomeJurusan = (TextView) view.findViewById(R.id.jurusanWelcome);
+       // welcomeAngkatan= (TextView) view.findViewById(R.id.angkatanWelcome);
+        //welcomeStatus = (TextView) view.findViewById(R.id.statusWelcome);
 
 
         mAroundMe= (Button) view.findViewById(R.id.aroundme);
@@ -77,10 +77,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         product.setOnClickListener(this);
 
         // Set welcome text
-        welcomeName.setText(sharedPreferences.getString("namaSession","nama User"));
-        welcomeAngkatan.setText(sharedPreferences.getString("angkatanSession","Tahun Lulus"));
-        welcomeJurusan.setText(sharedPreferences.getString("jurusanSession","Jurusan User"));
-        welcomeStatus.setText(sharedPreferences.getString("statusSession","Status user"));
+      //  welcomeName.setText(sharedPreferences.getString("namaSession","nama User"));
+        //welcomeAngkatan.setText(sharedPreferences.getString("angkatanSession","Tahun Lulus"));
+       // welcomeJurusan.setText(sharedPreferences.getString("jurusanSession","Jurusan User"));
+      //  welcomeStatus.setText(sharedPreferences.getString("statusSession","Status user"));
         Log.d("userID",""+sharedPreferences.getInt("idSession",1));
 
 //        userProfileBeta.setOnClickListener(this);

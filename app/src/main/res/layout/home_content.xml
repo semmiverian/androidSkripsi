@@ -4,8 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
-    android:background="#fafafa">
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingBottom="30dp"
+    android:paddingTop="50dp">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -31,16 +33,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center|center_horizontal"
-        android:layout_marginTop="20dp"
-        android:padding="30dp">
+        android:padding="30dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/imageView2"
-            android:src="@drawable/logo_alumni2" />
+            android:src="@drawable/logo_home" />
     </LinearLayout>
 
+
+    <!--
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -128,61 +132,15 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginTop="30dp">
+        android:layout_gravity="center_vertical|bottom">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <Button
-                android:layout_below="@+id/userLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="Around Me"
-                android:textColor="#FFFFFF"
-                android:id="@+id/aroundme"
-                android:background="@color/colorPrimaryDarkHome"/>
-
-            <Button
-                android:layout_below="@+id/userLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="Career"
-                android:id="@+id/careerButton"
-                android:textColor="#FFFFFF"
-                android:background="@color/light_red"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="Trading"
-                android:textColor="#FFFFFF"
-                android:id="@+id/trading"
-                android:background="#ffba0b"
-                android:layout_below="@+id/careerButton"
-                android:layout_toRightOf="@+id/careerButton"
-                android:layout_toEndOf="@+id/careerButton" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/statusLogin"
-            android:layout_above="@+id/career"
-            android:layout_toRightOf="@+id/userLogin"
-            android:layout_toEndOf="@+id/userLogin" />
-
-        <Button
+        <!--<Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="All Message"
@@ -193,7 +151,71 @@
             android:layout_gravity="center"
             android:background="#2566d5"
             android:textColor="#ffffff"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp" />-->
+
+        <Button
+            android:layout_below="@+id/userLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Around Me"
+            android:textColor="#FFFFFF"
+            android:id="@+id/aroundme"
+            android:background="#c8d81d61"
+            android:drawableTop="@drawable/ic_aroundme"
+            android:textSize="12sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_below="@+id/userLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Job Vacancy"
+            android:id="@+id/careerButton"
+            android:textColor="#FFFFFF"
+            android:background="#c88c0ad7"
+            android:drawableTop="@drawable/ic_career2_white"
+            android:textSize="12sp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trading"
+            android:textColor="#FFFFFF"
+            android:id="@+id/trading"
+            android:background="#c8fdc600"
+            android:layout_below="@+id/careerButton"
+            android:layout_toRightOf="@+id/careerButton"
+            android:layout_toEndOf="@+id/careerButton"
+            android:drawableTop="@drawable/ic_trading_white"
+            android:textSize="12sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/allUserButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#c80ab6dd"
+            android:drawableTop="@drawable/ic_pesan1"
+            android:paddingTop="5dp"
+            android:textColor="#ffffff"
+            android:text="All Message"
+            android:paddingBottom="5dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusLogin"
+            android:layout_above="@+id/career"
+            android:layout_toRightOf="@+id/userLogin"
+            android:layout_toEndOf="@+id/userLogin" />
 
     </LinearLayout>
 
