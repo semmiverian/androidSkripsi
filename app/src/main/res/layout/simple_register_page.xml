@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/jurusanRegis"
-            android:hint="Jurusan"
+            android:hint="Major"
             android:inputType="text"
             android:background="#ffffff"
             android:padding="12dp"

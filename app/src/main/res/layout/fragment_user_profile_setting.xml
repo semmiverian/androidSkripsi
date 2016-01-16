@@ -3,81 +3,272 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/margin_top_navigation"
-    android:padding="30dp">
+    android:padding="0dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/UserProfileImage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="20dp" />
-
-        <com.skripsi.semmi.restget3.Font.RobotoTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/usernameProfile"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_gravity="center" />
-
-        <com.skripsi.semmi.restget3.Font.RobotoTextView
-            android:id="@+id/usernameStatus"
-            android:layout_toRightOf="@+id/usernameProfile"
-            android:layout_toEndOf="@id/UserProfileImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/usernameProfile"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/scrollView"
+        android:padding="0dp">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content"
+            android:padding="20dp">
 
-            <Button
-                android:id="@+id/changeProfileImage"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:background="#ddf20a34"
-                android:text="@string/ProfileImage"
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:layout_marginRight="5dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/changePassword"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:background="#276ec6"
-                android:text="@string/changePassword"
-                android:gravity="center"
-                android:textColor="#ffffff" />
+                <ImageView
+                    android:id="@+id/UserProfileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <Button
+                    android:id="@+id/changeProfileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/border"
+                    android:drawableTop="@drawable/ic_image"
+                    android:paddingTop="3dp"
+                    android:layout_marginTop="1dp" />
+            </LinearLayout>
+
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/usernameProfile"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="center" />
+
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                android:id="@+id/usernameStatus"
+                android:layout_toRightOf="@+id/usernameProfile"
+                android:layout_toEndOf="@id/UserProfileImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usernameProfile"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <!--<Button
+                    android:id="@+id/changeProfileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ddf20a34"
+                    android:text="@string/ProfileImage"
+                    android:gravity="center"
+                    android:textColor="#ffffff" />-->
+
+                <Button
+                    android:id="@+id/messageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#0ab6dd"
+                    android:drawableTop="@drawable/ic_pesan1"
+                    android:paddingTop="3dp"
+                    android:textColor="#ffffff"
+                    android:text="Message"
+                    android:paddingBottom="3dp"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/changePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#276ec6"
+                    android:text="@string/changePassword"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Username"
+                        android:id="@+id/textView5"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Small Text"
+                        android:id="@+id/textView9" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:id="@+id/textView10"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView11" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail"
+                        android:id="@+id/textView12"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView13" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:id="@+id/textView14"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView15" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Birth of Date"
+                        android:id="@+id/textView16"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView17" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="University"
+                        android:id="@+id/textView20"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView21" />
+
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Major"
+                        android:id="@+id/textView18"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView19" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:id="@+id/textView22"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView23" />
+                </LinearLayout>
+                <View style="@style/Divider"/>
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/messageButton"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#0ab6dd"
-            android:text="@string/profileMessage"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
 </LinearLayout>
