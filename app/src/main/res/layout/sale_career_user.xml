@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/gray_100"
+    android:background="#ffffff"
     android:layout_marginTop="10dp">
 
     <LinearLayout
@@ -16,13 +17,14 @@
             android:layout_width="130dp"
             android:layout_height="90dp" />
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoRegular"
             android:id="@+id/UserCareerName"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/blue_grey_300"
-            android:textSize="20dp"/>
+            android:textColor="#333333"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </LinearLayout>

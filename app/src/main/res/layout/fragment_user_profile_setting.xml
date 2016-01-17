@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/margin_top_navigation"
     android:padding="0dp">
@@ -74,7 +76,8 @@
                     android:gravity="center"
                     android:textColor="#ffffff" />-->
 
-                <Button
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
                     android:id="@+id/messageButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +89,8 @@
                     android:paddingBottom="3dp"
                     android:textSize="12sp" />
 
-                <Button
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
                     android:id="@+id/changePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -109,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -117,11 +122,12 @@
                         android:id="@+id/textView5"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Small Text"
+                        android:text="New Text"
                         android:id="@+id/textView9" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
@@ -131,14 +137,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Full Name"
                         android:id="@+id/textView10"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -151,14 +159,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="E-mail"
                         android:id="@+id/textView12"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -171,14 +181,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Gender"
                         android:id="@+id/textView14"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -191,14 +203,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Birth of Date"
                         android:id="@+id/textView16"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -211,14 +225,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="University"
                         android:id="@+id/textView20"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -232,14 +248,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Major"
                         android:id="@+id/textView18"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
@@ -252,14 +270,16 @@
                     android:layout_height="match_parent"
                     android:padding="2dp">
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Status"
                         android:id="@+id/textView22"
                         android:layout_marginRight="20dp" />
 
-                    <TextView
+                    <com.skripsi.semmi.restget3.Font.RobotoTextView
+                        app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"

@@ -4,7 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0064a5"
     android:padding="20dp">
 
     <LinearLayout
@@ -25,24 +24,24 @@
         android:layout_height="wrap_content">
 
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addJudulProduk"
             android:singleLine="true"
 
             android:hint="Product Name"
-            android:background="#ffffff"
             android:padding="10dp"
             android:textSize="15sp" />
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addDeskProduk"
             android:inputType="textMultiLine"
             android:hint="Details"
-            android:background="#ffffff"
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:textSize="15sp" />
@@ -51,28 +50,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
-        <Button
-            android:layout_width="wrap_content"
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Choose Image"
-            android:id="@+id/addImageProduk"/>
+            android:id="@+id/addImageProduk"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:background="#333333" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Take Picture"
-            android:id="@+id/captureImageProduk"/>
+            android:id="@+id/captureImageProduk"
+            android:background="#0a7edd"
+            android:drawableTop="@drawable/ic_image"
+            android:paddingTop="3dp"
+            android:textColor="#ffffff"
+            android:paddingBottom="3dp"
+            android:textSize="12sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="10dp" />
 
 
     </LinearLayout>
-    <TextView
+    <com.skripsi.semmi.restget3.Font.RobotoTextView
+        app:typeface="robotoMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="Contact Info"
         android:textColor="#ffffff" />
     <LinearLayout
@@ -82,7 +96,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -90,10 +105,10 @@
             android:singleLine="true"
             android:textSize="15sp"
             android:hint="E-mail"
-            android:background="#ffffff"
             android:padding="10dp" />
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -101,7 +116,6 @@
             android:singleLine="true"
             android:textSize="15sp"
             android:hint="Phone Number"
-            android:background="#ffffff"
             android:layout_marginTop="10dp"
             android:padding="10dp" />
     </LinearLayout>
@@ -111,7 +125,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"

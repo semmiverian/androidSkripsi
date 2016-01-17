@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
-    <TextView
+
+    <com.skripsi.semmi.restget3.Font.RobotoTextView
+        app:typeface="robotoRegular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/purple_200"
-        android:text="@string/contact_info"
-        android:layout_marginBottom="10dp"/>
+        android:textColor="#333333"
+        android:text="@string/contact_info" />
 
 
 </LinearLayout>

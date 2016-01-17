@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Interface.ChangePasswordInterface;
 import com.skripsi.semmi.restget3.Model.DeleteData;
 import com.skripsi.semmi.restget3.R;
+import com.vstechlab.easyfonts.EasyFonts;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;

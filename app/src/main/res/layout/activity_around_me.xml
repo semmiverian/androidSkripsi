@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.skripsi.semmi.restget3.activity.AroundMeActivity"
     android:id="@+id/coordinatorLayout"
     android:background="#ffffff"
@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
                     android:id="@+id/searchLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -35,12 +36,21 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <Button
+            <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                app:typeface="robotoRegular"
                 android:id="@+id/searchLocationButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/findLocation"
-                android:layout_below="@+id/textHolder"/>
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="Search"
+                android:layout_below="@+id/textHolder"
+                android:background="#3f4143"
+                android:drawableLeft="@drawable/ic_search2"
+                android:paddingTop="3dp"
+                android:textColor="#ffffff"
+                android:paddingBottom="3dp"
+                android:textSize="12sp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
 
         <fragment
@@ -49,7 +59,8 @@
             android:layout_height="match_parent"
             android:id="@+id/map"
             tools:context=".MapsActivity"
-            android:name="com.google.android.gms.maps.SupportMapFragment" />
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_marginTop="10dp" />
         </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
 

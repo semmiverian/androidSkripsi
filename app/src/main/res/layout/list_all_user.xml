@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
@@ -17,7 +18,8 @@
             android:layout_width="90dp"
             android:layout_height="90dp" />
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoRegular"
             android:id="@+id/FindNamaUser"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"

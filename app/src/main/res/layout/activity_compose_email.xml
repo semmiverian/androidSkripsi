@@ -51,7 +51,8 @@
         android:text="Send"
         android:layout_marginTop="10dp"
         android:background="#ff5050"
-        android:id="@+id/sendEmail" />
+        android:id="@+id/sendEmail"
+        android:textColor="#ffffff" />
 
 
 </LinearLayout>

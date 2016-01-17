@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/querySearchHeader"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="@string/search_header"
         app:typeface="robotoRegular"
         android:textColor="@color/blue_grey_300"

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:id="@+id/container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container"
     android:background="#0064a5">
 
     <LinearLayout
@@ -59,15 +61,16 @@ android:id="@+id/container"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="15dp">
-        <Button
+
+            <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                app:typeface="robotoRegular"
             android:id="@+id/loginGo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="#ffffff"
             android:text="Log in"
-            android:background="#3b3a3a"
-            android:textStyle="bold" />
+            android:background="#3b3a3a" />
     </LinearLayout>
 
         <LinearLayout
@@ -76,7 +79,8 @@ android:id="@+id/container"
         android:orientation="vertical"
         android:paddingTop="15dp">
 
-            <TextView
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                app:typeface="robotoRegular"
             android:id="@+id/forgotGo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,12 +97,12 @@ android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                app:typeface="robotoBold"
                 android:id="@+id/registerGo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign Up for Alumni Space"
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:textColor="#ffffff"
                 android:layout_marginTop="20dp" />

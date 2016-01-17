@@ -44,96 +44,6 @@
             android:src="@drawable/logo_home" />
     </LinearLayout>
 
-
-    <!--
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Welcome, "
-                android:id="@+id/textView3"
-                app:typeface="robotoMediumItalic" />
-
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/usernameWelcome"
-                app:typeface="robotoMediumItalic"
-                android:layout_marginLeft="@dimen/margin_welcome_text"
-               />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Angkatan alumni"
-                android:id="@+id/textView6"
-                app:typeface="robotoLight"
-                />
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/angkatanWelcome"
-                app:typeface="robotoLight"
-                android:layout_marginLeft="@dimen/margin_welcome_text"
-                />
-            </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jurusan"
-                android:id="@+id/textView7"
-                app:typeface="robotoLight"/>
-
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/jurusanWelcome"
-                app:typeface="robotoLight"
-                android:layout_marginLeft="@dimen/margin_welcome_text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:id="@+id/textView8"
-                app:typeface="robotoLight"/>
-
-            <com.skripsi.semmi.restget3.Font.RobotoTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/statusWelcome"
-                app:typeface="robotoLight"
-                android:layout_marginLeft="@dimen/margin_welcome_text"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-    -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -154,7 +64,8 @@
             android:textColor="#ffffff"
             android:layout_margin="10dp" />-->
 
-        <Button
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:layout_below="@+id/userLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,7 +79,8 @@
             android:paddingBottom="5dp"
             android:layout_marginBottom="10dp" />
 
-        <Button
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:layout_below="@+id/userLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,13 +94,14 @@
             android:paddingTop="5dp"
             android:layout_marginBottom="10dp" />
 
-        <Button
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Trading"
             android:textColor="#FFFFFF"
             android:id="@+id/trading"
-            android:background="#dcfdc600"
+            android:background="#dcfca800"
             android:layout_below="@+id/careerButton"
             android:layout_toRightOf="@+id/careerButton"
             android:layout_toEndOf="@+id/careerButton"
@@ -198,7 +111,8 @@
             android:paddingBottom="5dp"
             android:layout_marginBottom="10dp" />
 
-        <Button
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:id="@+id/allUserButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

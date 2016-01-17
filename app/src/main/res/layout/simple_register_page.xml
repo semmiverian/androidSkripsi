@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0064a5"
     android:padding="15dp">
@@ -12,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0">
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -28,16 +31,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/usernameRegis"
         android:hint="Username"
+            app:typeface="robotoLight"
             android:padding="12dp"
             android:textSize="15sp"
             android:background="#ffffff" />
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameRegis"
@@ -47,7 +52,8 @@
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dobRegis"
@@ -58,7 +64,8 @@
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
 
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emailRegis"
@@ -68,7 +75,8 @@
             android:padding="12dp"
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
-        <EditText
+        <com.skripsi.semmi.restget3.Font.RobotoEditText
+            app:typeface="robotoLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/jurusanRegis"
@@ -86,18 +94,19 @@
         android:layout_height="wrap_content"
         android:text="@string/TOS"
         android:id="@+id/checkBoxTOS"
-        android:textColor="#f6a400"
+        android:textColor="#fcb900"
         android:paddingTop="20dp"
         android:paddingBottom="20dp" />
 
-    <Button
+    <com.skripsi.semmi.restget3.Font.RobotoTextButton
+        app:typeface="robotoRegular"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="Submit"
         android:textAlignment="center"
         android:id="@+id/btnRegister"
         android:layout_gravity="right"
-        android:background="#B0BEC5"
+        android:background="#3b3a3a"
         android:textColor="#ffffff" />
 
 </LinearLayout>

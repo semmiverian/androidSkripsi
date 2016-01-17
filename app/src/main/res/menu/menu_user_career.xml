@@ -6,12 +6,12 @@
     <item android:id="@+id/action_delete"
         android:title="@string/logoutItem"
         app:showAsAction="ifRoom|withText"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_trash2"
         android:orderInCategory="101"  />
 
     <item android:id="@+id/action_edit"
         android:title="@string/profile_action"
         app:showAsAction="ifRoom|withText"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/ic_edit1"
         android:orderInCategory="100"  />
 </menu>

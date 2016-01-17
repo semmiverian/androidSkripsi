@@ -5,7 +5,7 @@
     <item android:id="@+id/action_logout"
         android:title="@string/logoutItem"
         app:showAsAction="ifRoom|withText"
-        android:icon="@mipmap/ic_exit"
+        android:icon="@drawable/ic_logout2"
         android:orderInCategory="101"  />
     <item android:id="@+id/action_profile"
         android:title="@string/profile_action"
