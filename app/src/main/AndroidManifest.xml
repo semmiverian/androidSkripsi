@@ -110,9 +110,15 @@
         <activity android:name=".activity.AddNewCareerActivity"
             android:label="Add New Career"
             android:theme="@style/AppTheme"/>
+
         <activity android:name=".activity.AllUserActivity"
             android:label="All Message"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activity.home_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home_activity" />
+        </activity>
 
         <activity android:name=".activity.AllUserProfile"
             android:label="User Profile"
