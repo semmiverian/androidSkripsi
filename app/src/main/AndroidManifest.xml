@@ -92,7 +92,12 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.CareerActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.home_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home_activity" />
+        </activity>
 
         <activity android:name=".activity.CareerDetailActivity"
             android:label="Career"
@@ -121,7 +126,12 @@
 
         <activity android:name=".activity.AllProductActivity"
             android:label="All Produk"
-            android:theme="@style/GoogleCard"/>
+            android:theme="@style/GoogleCard"
+            android:parentActivityName=".activity.home_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.home_activity" />
+        </activity>
         <activity android:name=".activity.ProductDetailActivity"
             android:label="Produk"
             android:parentActivityName=".activity.AllProductActivity"
