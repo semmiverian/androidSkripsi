@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,7 +50,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/usernameProfile"
                 android:textColor="@color/colorPrimaryDark"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                tools:text="lorem ipsum"/>
 
             <com.skripsi.semmi.restget3.Font.RobotoTextView
                 android:id="@+id/usernameStatus"
@@ -128,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="New Text"
-                        android:id="@+id/textView9" />
+                        android:id="@+id/usernameDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
                 <LinearLayout
@@ -150,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
-                        android:id="@+id/textView11" />
+                        android:id="@+id/namaDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
                 <LinearLayout
@@ -172,7 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
-                        android:id="@+id/textView13" />
+                        android:id="@+id/emailDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
                 <LinearLayout
@@ -216,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
-                        android:id="@+id/textView17" />
+                        android:id="@+id/bodDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
                 <LinearLayout
@@ -237,8 +239,8 @@
                         app:typeface="robotoLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:id="@+id/textView21" />
+                        android:text="Bina Nusantara University"
+                        android:id="@+id/unviersityDetail" />
 
                 </LinearLayout>
                 <View style="@style/Divider"/>
@@ -261,7 +263,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
-                        android:id="@+id/textView19" />
+                        android:id="@+id/majorDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
                 <LinearLayout
@@ -283,7 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Text"
-                        android:id="@+id/textView23" />
+                        android:id="@+id/statusDetail" />
                 </LinearLayout>
                 <View style="@style/Divider"/>
             </LinearLayout>

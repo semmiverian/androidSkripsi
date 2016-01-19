@@ -109,6 +109,7 @@ public class AddNewCareerActivity extends AppCompatActivity implements View.OnCl
                     // gambar bakal dipasang gambar default yang sebelumnya udah di simpan di server
                     if(imagePath==null){
                         typedFile=null;
+                        Log.d("imagepath", "onClick: imagepath null");
                     }
                 }
 

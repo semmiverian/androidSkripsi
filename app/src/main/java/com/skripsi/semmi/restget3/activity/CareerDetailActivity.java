@@ -160,7 +160,8 @@ public class CareerDetailActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void success(AllUser allUser, Response response) {
                 if(userLogin.equals(allUser.getUsername())){
-                    Intent ownProfileIntent = new Intent(CareerDetailActivity.this, UserProfileNewActivity.class);
+                    Intent ownProfileIntent = new Intent(CareerDetailActivity.this, home_activity.class);
+                    ownProfileIntent.putExtra("code2","from career");
                     startActivity(ownProfileIntent);
                     return;
                 }

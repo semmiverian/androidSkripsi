@@ -14,9 +14,11 @@ public class Login {
     private String jurusan;
     private String tahunlulus;
     private String nama;
+    private String dob;
+    private String email;
 
     public Login(){}
-    public Login(String username,String password,String kode,String status,String info,String image,int id, String jurusan, String tahunlulus, String nama ){
+    public Login(String username,String password,String kode,String status,String info,String image,int id, String jurusan, String tahunlulus, String nama, String dob,String email ){
         this.username=username;
         this.password=password;
         this.kode=kode;
@@ -27,6 +29,8 @@ public class Login {
         this.jurusan=jurusan;
         this.tahunlulus=tahunlulus;
         this.nama=nama;
+        this.dob=dob;
+        this.email = email;
     }
     public String getUsername() {
         return username;
@@ -109,5 +113,21 @@ public class Login {
 
     public void setTahunlulus(String tahunlulus) {
         this.tahunlulus = tahunlulus;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

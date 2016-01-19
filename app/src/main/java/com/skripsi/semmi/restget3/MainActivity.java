@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     editor.putString("jurusanSession", login.getJurusan());
                     editor.putString("angkatanSession", login.getTahunlulus());
                     editor.putString("namaSession", login.getNama());
+                    editor.putString("dobSession",login.getDob());
+                    editor.putString("emailSession",login.getEmail());
                     editor.apply();
 
 //                            saveCurrentUser(login.getUsername());

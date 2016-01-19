@@ -41,6 +41,12 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
     private SharedPreferences sharedPreferences;
     private Button mButton;
     private Button changePasswordButton;
+    private TextView usernameDetail;
+    private TextView namaDetail;
+    private TextView emailDetail;
+    private TextView dobDetail;
+    private TextView majorDetail;
+    private TextView statusDetail;
 
     public static  UserProfileSettingFragment getInstance(){
         UserProfileSettingFragment fragment = new UserProfileSettingFragment();
@@ -62,13 +68,36 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
         profileImage= (ImageView) view.findViewById(R.id.UserProfileImage);
         mButton= (Button) view.findViewById(R.id.changeProfileImage);
         changePasswordButton = (Button) view.findViewById(R.id.changePassword);
-
+        usernameDetail = (TextView) view.findViewById(R.id.usernameDetail);
+        emailDetail = (TextView) view.findViewById(R.id.emailDetail);
+        namaDetail = (TextView) view.findViewById(R.id.namaDetail);
+        dobDetail = (TextView) view.findViewById(R.id.bodDetail);
+        majorDetail = (TextView) view.findViewById(R.id.majorDetail);
+        statusDetail = (TextView) view.findViewById(R.id.statusDetail);
         mButton.setOnClickListener(this);
         changePasswordButton.setOnClickListener(this);
 
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-        Username.setText(sharedPreferences.getString("usernameSession", "Username").toUpperCase());
+
+        String currentName =sharedPreferences.getString("namaSession", "nama");
+        String currentUser = sharedPreferences.getString("usernameSession","user");
+        String currentEmail = sharedPreferences.getString("emailSession","email");
+        String bod = sharedPreferences.getString("dobSession","1111111");
+        String currentMajor = sharedPreferences.getString("jurusanSession","IT");
+        String currentStatus = sharedPreferences.getString("statusSession","alumni");
+
+        usernameDetail.setText(currentUser);
+        emailDetail.setText(currentEmail);
+        namaDetail.setText(currentName);
+        dobDetail.setText(bod);
+
+        majorDetail.setText(currentMajor);
+        statusDetail.setText(currentStatus);
+
+
+
+        Username.setText(currentName.toUpperCase());
         Status.setText(sharedPreferences.getString("statusSession", "Status"));
         user=sharedPreferences.getString("usernameSession","Username");
         fetchUserImage();

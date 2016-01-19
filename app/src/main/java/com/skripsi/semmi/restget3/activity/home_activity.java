@@ -187,6 +187,11 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         editor.remove("statusSession");
         editor.remove("imageSession");
         editor.remove("idSession");
+        editor.remove("jurusanSession");
+        editor.remove("angkatanSession");
+        editor.remove("namaSession");
+        editor.remove("dobSession");
+        editor.remove("emailSession");
         editor.apply();
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
