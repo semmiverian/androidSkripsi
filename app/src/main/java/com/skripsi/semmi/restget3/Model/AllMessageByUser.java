@@ -8,14 +8,16 @@ public class AllMessageByUser {
     private int to_id;
     private String to_username;
     private String to_image;
+    private String nama;
 
 
     public AllMessageByUser(){}
 
-    public AllMessageByUser(int to_id , String to_username , String to_image){
+    public AllMessageByUser(int to_id , String to_username , String to_image, String nama){
         this.to_id = to_id;
         this.to_username = to_username;
         this.to_image= to_image;
+        this.nama = nama;
     }
 
 
@@ -41,5 +43,13 @@ public class AllMessageByUser {
 
     public void setTo_id(int to_id) {
         this.to_id = to_id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 }

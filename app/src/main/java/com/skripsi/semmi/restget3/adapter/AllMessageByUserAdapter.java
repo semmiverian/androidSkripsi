@@ -39,7 +39,7 @@ public class AllMessageByUserAdapter extends ArrayAdapter<AllMessageByUser> {
         Picasso.with(getContext())
                 .load(getItem(position).getTo_image())
                 .into(holder.userImage);
-        holder.userNama.setText(getItem(position).getTo_username());
+        holder.userNama.setText(getItem(position).getNama());
         return convertView;
     }
 
