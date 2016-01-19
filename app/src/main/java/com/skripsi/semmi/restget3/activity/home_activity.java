@@ -143,7 +143,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
     private void loadUserData() {
         sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         imageUserLink=sharedPreferences.getString("imageSession", "image");
-        String nama = sharedPreferences.getString("usernameSession", "username");
+        String nama = sharedPreferences.getString("namaSession", "username");
         String status = sharedPreferences.getString("statusSession", "status");
         navigationName.setText(nama);
         navigationStatus.setText(status);
