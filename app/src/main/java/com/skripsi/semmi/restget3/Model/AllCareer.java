@@ -16,11 +16,12 @@ public class AllCareer implements Parcelable {
     private String karirId;
     private String karirEmail;
     private String karirTelepon;
+    private String userNama;
 
     public AllCareer(){
 
     }
-    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage, String karirId, String karirEmail, String karirTelepon){
+    public AllCareer(String karirnama, String karirdetail, String karirImage,String karirCreate, String userName, String userImage, String karirId, String karirEmail, String karirTelepon, String userNama){
         this.karirnama=karirnama;
         this.karirdetail=karirdetail;
         this.karirImage=karirImage;
@@ -30,6 +31,7 @@ public class AllCareer implements Parcelable {
         this.karirId=karirId;
         this.karirEmail=karirEmail;
         this.karirTelepon = karirTelepon;
+        this.userNama = userNama;
     }
 
     public AllCareer(Parcel source){
@@ -42,6 +44,7 @@ public class AllCareer implements Parcelable {
         karirId=source.readString();
         karirEmail=source.readString();
         karirTelepon=source.readString();
+        userNama=source.readString();
     }
 
 
@@ -62,6 +65,7 @@ public class AllCareer implements Parcelable {
         dest.writeString(karirId);
         dest.writeString(karirEmail);
         dest.writeString(karirTelepon);
+        dest.writeString(userNama);
     }
 
     private void applyDefaultValues() {
@@ -91,6 +95,8 @@ public class AllCareer implements Parcelable {
         }
         if(karirTelepon==null){
             karirTelepon="";
+        }if(userNama==null){
+            userNama="";
         }
     }
 
@@ -179,4 +185,11 @@ public class AllCareer implements Parcelable {
         this.karirTelepon = karirTelepon;
     }
 
+    public String getUserNama() {
+        return userNama;
+    }
+
+    public void setUserNama(String userNama) {
+        this.userNama = userNama;
+    }
 }

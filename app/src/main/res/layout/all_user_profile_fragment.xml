@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
             android:layout_toRightOf="@id/UserProfileImage"
             android:layout_toEndOf="@id/UserProfileImage"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
             <TextView
             android:id="@+id/usernameStatus"

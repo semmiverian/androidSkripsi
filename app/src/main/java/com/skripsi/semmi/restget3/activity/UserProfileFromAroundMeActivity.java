@@ -44,6 +44,7 @@ public class UserProfileFromAroundMeActivity extends AppCompatActivity implement
     private int to_id;
     public static final String extraUsername="extraUsername";
     public static final String extraImage="extraImage";
+    public static final String extraNama="extraNama";
 
     public static final String extraStatus = "extraStatus";
     private String userName;
@@ -67,7 +68,7 @@ public class UserProfileFromAroundMeActivity extends AppCompatActivity implement
             if(getIntent().getExtras().containsKey(extraUsername)){
                 Log.d("retrofit", getIntent().getExtras().getString(extraUsername));
                 Log.d("retrofit", getIntent().getExtras().getString(extraStatus));
-                mUsername.setText(getIntent().getExtras().getString(extraUsername).toUpperCase());
+                mUsername.setText(getIntent().getExtras().getString(extraNama).toUpperCase());
                 mStatus.setText(getIntent().getExtras().getString(extraStatus));
                 Picasso.with(UserProfileFromAroundMeActivity.this)
                     .load(getIntent().getExtras().getString(extraImage))

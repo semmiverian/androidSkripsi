@@ -231,6 +231,7 @@ public class AroundMeActivity extends AppCompatActivity implements
                                                     userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraUsername, allUser.getUsername());
                                                     userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraImage, allUser.getImage());
                                                     userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraStatus, allUser.getStatus());
+                                                    userProfileIntent.putExtra(UserProfileFromAroundMeActivity.extraNama, allUser.getNama());
                                                     userProfileIntent.putExtra("IDValue", allUser.getId());
                                                     startActivity(userProfileIntent);
 

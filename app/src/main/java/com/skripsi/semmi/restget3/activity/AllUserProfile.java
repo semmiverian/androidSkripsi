@@ -63,7 +63,7 @@ public class AllUserProfile extends AppCompatActivity implements View.OnClickLis
         // ambil data yang udah di parse dari list fragment
         AllUser allUser= getIntent().getExtras().getParcelable(extra);
 
-        mUsername.setText(allUser.getUsername().toUpperCase());
+        mUsername.setText(allUser.getNama().toUpperCase());
         mStatus.setText(allUser.getStatus());
         Picasso.with(AllUserProfile.this)
                 .load(allUser.getImage())
