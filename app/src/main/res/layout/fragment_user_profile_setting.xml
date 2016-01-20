@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/margin_top_navigation"
-    android:padding="0dp">
+    android:padding="0dp"
+    android:background="#fdfdfd">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -77,19 +78,6 @@
                     android:text="@string/ProfileImage"
                     android:gravity="center"
                     android:textColor="#ffffff" />-->
-
-                <com.skripsi.semmi.restget3.Font.RobotoTextButton
-                    app:typeface="robotoRegular"
-                    android:id="@+id/messageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#0ab6dd"
-                    android:drawableTop="@drawable/ic_pesan1"
-                    android:paddingTop="3dp"
-                    android:textColor="#ffffff"
-                    android:text="Message"
-                    android:paddingBottom="3dp"
-                    android:textSize="12sp" />
 
                 <com.skripsi.semmi.restget3.Font.RobotoTextButton
                     app:typeface="robotoRegular"
