@@ -52,6 +52,8 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         setContentView(R.layout.home_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.hasExpandedActionView();
+
         displayFirstFragment();
 
         // Drawer layout responding code
@@ -59,6 +61,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
+
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -80,7 +83,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
                 openCareerFragment();
                 navigationView.getMenu().getItem(2).setChecked(true);
                 // TODO find way to change the Title at Toolbar
-
+                toolbar.setTitle("Career");
             }
         }
 
@@ -90,6 +93,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
                 openUserSettingFragment();
                 navigationView.getMenu().getItem(1).setChecked(true);
                 // TODO find way to change the Title at Toolbar
+                toolbar.setTitle("Profile");
 
             }
         }
@@ -100,6 +104,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
                 openProductFragment();
                 navigationView.getMenu().getItem(2).setChecked(true);
                 // TODO find way to change the Title at Toolbar
+                toolbar.setTitle("Product");
             }
         }
 //        String nama = sharedPreferences.getString("usernameSession", "username");
