@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.skripsi.semmi.restget3.activity.AroundMeActivity"
     android:id="@+id/coordinatorLayout"
-    android:background="#ffffff"
+    android:background="#fdfdfd"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"

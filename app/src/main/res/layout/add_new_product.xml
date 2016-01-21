@@ -4,17 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:padding="0dp">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+    android:padding="20dp"
+    android:background="#fdfdfd">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -143,6 +135,5 @@
             android:id="@+id/submitNewProduk"
             android:background="#ff5050" />
     </LinearLayout>
-    </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>

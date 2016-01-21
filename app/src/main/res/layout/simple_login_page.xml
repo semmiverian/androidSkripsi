@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
-                android:hint=" Username"
+                android:hint="Username"
                 android:background="#ffffff"
                 android:padding="10dp"
                 android:textSize="15sp" />

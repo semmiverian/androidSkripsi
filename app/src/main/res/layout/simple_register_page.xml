@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/dobRegis"
             android:inputType="number"
-            android:hint="Date of birth"
+            android:hint="Date of birth (DD/MM/YYYY)"
             android:background="#ffffff"
             android:padding="12dp"
             android:textSize="15sp"
