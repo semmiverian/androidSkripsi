@@ -52,17 +52,28 @@
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
 
-        <com.skripsi.semmi.restget3.Font.RobotoEditText
-            app:typeface="robotoLight"
+        <!--<com.skripsi.semmi.restget3.Font.RobotoEditText-->
+            <!--app:typeface="robotoLight"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/dobRegis"-->
+            <!--android:inputType="number"-->
+            <!--android:hint="Date of birth (DD/MM/YYYY)"-->
+            <!--android:background="#ffffff"-->
+            <!--android:padding="12dp"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_marginTop="15dp" />-->
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoRegular"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dobRegis"
-            android:inputType="number"
-            android:hint="Date of birth (DD/MM/YYYY)"
+            android:layout_height="40dp"
+            android:text="Birth of Date"
+            android:textAlignment="center"
+            android:id="@+id/btnBOD"
+            android:layout_gravity="right"
             android:background="#ffffff"
-            android:padding="12dp"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp" />
+            android:textColor="#3b3a3a"
+            android:layout_marginTop="10dp"/>
 
         <com.skripsi.semmi.restget3.Font.RobotoEditText
             app:typeface="robotoLight"

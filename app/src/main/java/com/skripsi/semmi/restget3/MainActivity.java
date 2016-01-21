@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void failure(RetrofitError error) {
                 Log.d("post Error", "from Retrofit" + error.getMessage());
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, "Error Username atau Password salah", Toast.LENGTH_SHORT).show();
             }
         });
     }

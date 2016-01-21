@@ -1,6 +1,7 @@
 package com.skripsi.semmi.restget3.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,9 @@ import com.skripsi.semmi.restget3.MainActivity;
 import com.skripsi.semmi.restget3.Model.Register;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.home_activity;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -28,14 +32,15 @@ import retrofit.client.Response;
 /**
  * Created by semmi on 13/10/2015.
  */
-public class RegisterFragment extends Fragment implements View.OnClickListener {
+public class RegisterFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
     private Button mButton;
     private EditText mUsername;
-    private EditText mDob;
+//    private EditText mDob;
     private EditText mEmail;
     private EditText mName;
     private EditText mJurusan;
     private CheckBox mCheckBox;
+    private Button mDob;
     private String username;
     private String dob;
     private String email;
@@ -52,13 +57,13 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         View view= inflater.inflate(R.layout.simple_register_page, container, false);
         mButton= (Button) view.findViewById(R.id.btnRegister);
         mUsername= (EditText) view.findViewById(R.id.usernameRegis);
-        mDob= (EditText) view.findViewById(R.id.dobRegis);
+        mDob= (Button) view.findViewById(R.id.btnBOD);
         mEmail= (EditText) view.findViewById(R.id.emailRegis);
         mName= (EditText) view.findViewById(R.id.nameRegis);
         mJurusan = (EditText) view.findViewById(R.id.jurusanRegis);
         mCheckBox= (CheckBox) view.findViewById(R.id.checkBoxTOS);
         mButton.setOnClickListener(this);
-        mJurusan.setOnClickListener(this);
+        mDob.setOnClickListener(this);
         return view;
     }
 
@@ -67,35 +72,35 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
-            case R.id.jurusanRegis:
-//                Toast.makeText(getActivity(),"Jurusan DI klik ",Toast.LENGTH_LONG).show();
-                    // TODO : set dialog for jurusan list
-                String[] jurusans =new String[10];
-                jurusans[0] = "Teknik Informatika";
-                jurusans[1]="Sistem Informasi";
-                jurusans[2]="Sistem Komputer";
-                jurusans[3]="Other";
-                new MaterialDialog.Builder(getActivity())
-                        .title("Pilih Jurusan")
-                        .items(jurusans)
-                        .itemsCallback(new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                if(which == 0){
-                                    Toast.makeText(getActivity(), "Pilih nomer", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        })
-                        .show();
-                break;
+//            case R.id.jurusanRegis:
+//               Toast.makeText(getActivity(),"Jurusan DI klik ",Toast.LENGTH_LONG).show();
+//                    TODO : set dialog for jurusan list
+//                String[] jurusans =new String[10];
+//                jurusans[0] = "Teknik Informatika";
+//                jurusans[1]="Sistem Informasi";
+//                jurusans[2]="Sistem Komputer";
+//                jurusans[3]="Other";
+//                new MaterialDialog.Builder(getActivity())
+//                        .title("Pilih Jurusan")
+//                        .items(jurusans)
+//                        .itemsCallback(new MaterialDialog.ListCallback() {
+//                            @Override
+//                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+//                                if(which == 0){
+//                                    Toast.makeText(getActivity(), "Pilih nomer", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        })
+//                        .show();
+//                break;
             case R.id.btnRegister:
                 dialog = new MaterialDialog.Builder(getActivity())
                         .title("Proses")
                         .content("Connecting to server")
-                        .progress(true,0)
+                        .progress(true, 0)
                         .show();
                 username=mUsername.getText().toString();
-                dob=mDob.getText().toString();
+//                dob=mDob.getText().toString();
                 email=mEmail.getText().toString();
                 name=mName.getText().toString();
                 jurusan=mJurusan.getText().toString();
@@ -115,7 +120,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                         }
                         else if(register.getKode().equals("1")){
                             mUsername.setText("");
-                            mDob.setText("");
+//                            mDob.setText("");
                             mEmail.setText("");
                             mName.setText("");
                             dialog.setContent("Gagal Register");
@@ -136,8 +141,26 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 break;
+            case R.id.btnBOD:
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.setThemeDark(true);
+                dpd.setAccentColor(Color.parseColor("#0064a5"));
+                dpd.setTitle("Date of Birth");
+//                dpd.show(getTargetFragment(),"asd");
+                break;
         }
 
+
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
     }
 }
