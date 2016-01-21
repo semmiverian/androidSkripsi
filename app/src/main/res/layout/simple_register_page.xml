@@ -63,17 +63,6 @@
             <!--android:padding="12dp"-->
             <!--android:textSize="15sp"-->
             <!--android:layout_marginTop="15dp" />-->
-        <com.skripsi.semmi.restget3.Font.RobotoTextButton
-            app:typeface="robotoRegular"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Birth of Date"
-            android:textAlignment="center"
-            android:id="@+id/btnBOD"
-            android:layout_gravity="right"
-            android:background="#ffffff"
-            android:textColor="#3b3a3a"
-            android:layout_marginTop="10dp"/>
 
         <com.skripsi.semmi.restget3.Font.RobotoEditText
             app:typeface="robotoLight"
@@ -86,6 +75,19 @@
             android:padding="12dp"
             android:textSize="15sp"
             android:layout_marginTop="15dp" />
+
+        <com.skripsi.semmi.restget3.Font.RobotoTextButton
+            app:typeface="robotoLight"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/btnBOD"
+            android:background="#ffffff"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"
+            android:hint="Birth of Date"
+            android:padding="12dp"
+            android:textAlignment="textStart" />
+
         <com.skripsi.semmi.restget3.Font.RobotoEditText
             app:typeface="robotoLight"
             android:layout_width="match_parent"
