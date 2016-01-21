@@ -96,10 +96,10 @@ public class UserProductDetailActivity extends AppCompatActivity implements View
         String telepon = allProduct.getProdukTelepon();
         switch( v.getId()){
             case R.id.imageProfile:
-                goToUserProfile(username);
+//                goToUserProfile(username);
                 break;
             case R.id.userNameProduk:
-                goToUserProfile(username);
+//                goToUserProfile(username);
                 break;
             case R.id.fab:
                 showContactDialog(email ,telepon);

@@ -89,7 +89,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
 
         if(getIntent()!= null && getIntent().getExtras()!=null){
             if(getIntent().getExtras().containsKey("code2")){
-                Log.d("kode", "dari add new Career");
+                Log.d("kode", "dari profile");
                 openUserSettingFragment();
                 navigationView.getMenu().getItem(1).setChecked(true);
                 // TODO find way to change the Title at Toolbar
@@ -102,7 +102,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
             if(getIntent().getExtras().containsKey("code3")){
                 Log.d("kode", "dari delete produk");
                 openProductFragment();
-                navigationView.getMenu().getItem(2).setChecked(true);
+                navigationView.getMenu().getItem(3).setChecked(true);
                 // TODO find way to change the Title at Toolbar
                 toolbar.setTitle("Product");
             }

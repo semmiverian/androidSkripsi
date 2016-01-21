@@ -126,7 +126,8 @@ public class UserCareerDetailActivity extends AppCompatActivity {
             @Override
             public void success(DeleteData deleteData, Response response) {
                 dialog.setContent("Berhasil Delete Data");
-                Intent userProfileIntent = new Intent(UserCareerDetailActivity.this , UserProfileNewActivity.class);
+                Intent userProfileIntent = new Intent(UserCareerDetailActivity.this , home_activity.class);
+                userProfileIntent.putExtra("kode","delete Career");
                 startActivity(userProfileIntent);
             }
 
