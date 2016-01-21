@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="#f6f6f6">
         <ImageView
             android:id="@+id/UserProdukImage"
             android:layout_width="150dp"
@@ -24,7 +24,6 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
             android:textSize="18sp"
             android:layout_gravity="center|center_vertical"
             android:gravity="center|center_vertical"

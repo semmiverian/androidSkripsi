@@ -16,7 +16,7 @@
         android:layout_height="64dp"
         android:id="@+id/userImageNavigation"
         app:siBorderWidth="1dp"
-        app:siBorderColor="@color/white_overlay"/>
+        app:siBorderColor="#ffffff"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

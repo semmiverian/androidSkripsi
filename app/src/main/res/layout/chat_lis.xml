@@ -11,8 +11,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:id="@+id/userImageReceive"
-        app:siBorderWidth="2dp"
-        app:siBorderColor="@color/colorPrimary"
+        app:siBorderWidth="1dp"
+        app:siBorderColor="#ffffff"
         android:layout_marginRight="10dp" />
     <TextView
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:id="@+id/userImageSend"
-        app:siBorderWidth="2dp"
-        app:siBorderColor="@color/colorPrimary"
+        app:siBorderWidth="1dp"
+        app:siBorderColor="#ffffff"
         android:layout_marginLeft="-64dp"/>
 
 </LinearLayout>

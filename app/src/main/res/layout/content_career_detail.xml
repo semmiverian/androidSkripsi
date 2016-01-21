@@ -14,10 +14,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp">
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:id="@+id/careerJudul"
             android:layout_marginTop="10dp" />
@@ -26,26 +27,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:baselineAligned="false">
+            android:layout_marginBottom="10dp">
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/imageProfile"
                 app:siBorderWidth="1dp"
-                app:siBorderColor="@color/colorPrimaryDarkRegister"/>
-            <TextView
+                app:siBorderColor="#ffffff"/>
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                app:typeface="robotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="18dp"
                 android:id="@+id/userNameCareer"
                 android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:textColor="#9FA8DA"/>
+                android:layout_marginStart="10dp" />
         </LinearLayout>
         <View style="@style/Divider"/>
 
-        <TextView
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/carerDetail"

@@ -4,147 +4,159 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:background="#fdfdfd">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:padding="0dp">
+        android:id="@+id/scrollView2" >
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/previewImageUpload"/>
-    </LinearLayout>
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                app:typeface="robotoMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Product" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
 
-        <com.skripsi.semmi.restget3.Font.RobotoEditText
-            app:typeface="robotoLight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/addJudulProduk"
-            android:singleLine="true"
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addJudulProduk"
+                    android:singleLine="true"
 
-            android:hint="Product Name"
-            android:padding="10dp"
-            android:textSize="15sp" />
+                    android:hint="Product Name"
+                    android:padding="10dp"
+                    android:textSize="15sp" />
 
-        <com.skripsi.semmi.restget3.Font.RobotoEditText
-            app:typeface="robotoLight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/addDeskProduk"
-            android:inputType="textMultiLine"
-            android:hint="Details"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp" />
-    </LinearLayout>
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addDeskProduk"
+                    android:inputType="textMultiLine"
+                    android:hint="Details"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextButton
-            app:typeface="robotoRegular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose Image"
-            android:id="@+id/addImageProduk"
-            android:textSize="12sp"
-            android:textColor="#ffffff"
-            android:background="#333333" />
+                <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/previewImageUpload"
+                    android:background="#f5f5f5" />
+            </LinearLayout>
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextButton
-            app:typeface="robotoRegular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Take Picture"
-            android:id="@+id/captureImageProduk"
-            android:background="#0a7edd"
-            android:drawableTop="@drawable/ic_image"
-            android:paddingTop="3dp"
-            android:textColor="#ffffff"
-            android:paddingBottom="3dp"
-            android:textSize="12sp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Image"
+                    android:id="@+id/addImageProduk"
+                    android:textColor="#ffffff"
+                    android:background="#ff5050" />
+
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Take Picture"
+                    android:id="@+id/captureImageProduk"
+                    android:background="#0a7edd"
+                    android:drawableTop="@drawable/ic_image2"
+                    android:paddingTop="3dp"
+                    android:textColor="#ffffff"
+                    android:paddingBottom="3dp"
+                    android:textSize="12sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
 
 
-    </LinearLayout>
-    <com.skripsi.semmi.restget3.Font.RobotoTextView
-        app:typeface="robotoMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="Contact Info"
-        android:textColor="#ffffff" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+            </LinearLayout>
 
-        <com.skripsi.semmi.restget3.Font.RobotoEditText
-            app:typeface="robotoLight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:id="@+id/addKontakEmail"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:hint="E-mail"
-            android:padding="10dp" />
+            <com.skripsi.semmi.restget3.Font.RobotoTextView
+                app:typeface="robotoMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Contact Info" />
 
-        <com.skripsi.semmi.restget3.Font.RobotoEditText
-            app:typeface="robotoLight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:id="@+id/addKontakTelepon"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:hint="Phone Number"
-            android:layout_marginTop="10dp"
-            android:padding="10dp" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/addKontakEmail"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:hint="E-mail"
+                    android:padding="10dp" />
 
-        <com.skripsi.semmi.restget3.Font.RobotoTextButton
-            app:typeface="robotoRegular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:text="Submit New Product"
-            android:id="@+id/submitNewProduk"
-            android:background="#ff5050" />
-    </LinearLayout>
-    </LinearLayout>
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:id="@+id/addKontakTelepon"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:hint="Phone Number"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Submit New Product"
+                    android:id="@+id/submitNewProduk"
+                    android:background="#333333" />
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

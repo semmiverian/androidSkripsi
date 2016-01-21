@@ -15,7 +15,7 @@
     <string name="TOS">Our Term Of Services</string>
     <string name="profile_action">Profile</string>
     <string name="aroundme">Around Me</string>
-    <string name="profile">Youre Profile</string>
+    <string name="profile">Your Profile</string>
     <string name="avatarDefaultString">http://alumnispace.org/androidapi/upload/usertes.png</string>
     <string name="profileMessage">Message</string>
     <string name="ProfileImage">Update Image</string>
@@ -25,12 +25,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="UserCareer">Career</string>
+    <string name="UserCareer">Job Vacancy</string>
     <string name="userSetting">Profile</string>
     <string name="userProduct">Product</string>
     <string name="userLogout">Logout</string>
     <string name="userHome">Home</string>
-    <string name="karirUpdate">Update Career</string>
+    <string name="karirUpdate">Update Job Vacancy</string>
     <string name="karirChangeImage">Change Image</string>
     <string name="changePassword">Change Password</string>
     <string name="confirmPass">Confirm Change Password</string>
@@ -39,7 +39,7 @@
     <string name="menu_search_user">Search User</string>
     <string name="dummy_text">Dummy text</string>
     <string name="search_header">Search User by username or name</string>
-    <string name="update_produk">Update Produk</string>
+    <string name="update_produk">Update Product</string>
     <string name="app_name_alumni">Alumni Space</string>
     <string name="about_us">About Us</string>
 </resources>

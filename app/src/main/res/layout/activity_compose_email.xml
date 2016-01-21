@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Send"
         android:layout_marginTop="10dp"
-        android:background="#ff5050"
+        android:background="#3b3a3a"
         android:id="@+id/sendEmail"
         android:textColor="#ffffff" />
 

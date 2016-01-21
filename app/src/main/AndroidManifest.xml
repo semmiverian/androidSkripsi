@@ -6,14 +6,16 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22" />
+        android:maxSdkVersion="23" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22" />
+        android:maxSdkVersion="23" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
 
     
     <application
@@ -100,7 +102,7 @@
         </activity>
 
         <activity android:name=".activity.CareerDetailActivity"
-            android:label="Career"
+            android:label="Job Vacancy"
             android:parentActivityName=".activity.CareerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -108,7 +110,7 @@
                 android:value=".activity.CareerActivity" />
         </activity>
         <activity android:name=".activity.AddNewCareerActivity"
-            android:label="Add New Career"
+            android:label="Add New Job"
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.AllUserActivity"
@@ -131,7 +133,7 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.AllProductActivity"
-            android:label="All Produk"
+            android:label="All Product"
             android:theme="@style/GoogleCard"
             android:parentActivityName=".activity.home_activity">
             <meta-data
@@ -139,7 +141,7 @@
                 android:value=".activity.home_activity" />
         </activity>
         <activity android:name=".activity.ProductDetailActivity"
-            android:label="Produk"
+            android:label="Product"
             android:parentActivityName=".activity.AllProductActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -155,14 +157,14 @@
             android:theme="@style/MyMaterialTheme"/>
 
         <activity android:name=".activity.UserCareerDetailActivity"
-            android:label="Customize Career"
+            android:label="Job Vacancy"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.UserCareerActivity"
-            android:label="Your Career"
+            android:label="Your Job Vacancy"
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.CareerEditActivity"
-            android:label="Edit Career"
+            android:label="Edit Job Vacancy"
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.ChangePasswordActivity"
@@ -184,7 +186,7 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activity.UserProductDetailActivity"
-            android:label="Produk Detail"
+            android:label="Product Detail"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".activity.ProductEditActivity"

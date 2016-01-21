@@ -4,14 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="#fdfdfd"
+    android:background="#f6f6f6"
     android:layout_marginTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#ffffff">
+        android:background="#f6f6f6">
         <ImageView
             android:id="@+id/UserCareerImage"
             android:layout_marginTop="5dp"
@@ -24,7 +24,6 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
             android:textSize="18sp"/>
     </LinearLayout>
 

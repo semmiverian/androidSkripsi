@@ -10,8 +10,8 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/userImage"
-        app:siBorderWidth="2dp"
-        app:siBorderColor="@color/colorPrimary"
+        app:siBorderWidth="1dp"
+        app:siBorderColor="#ffffff"
         android:layout_marginRight="10dp" />
 
         <TextView

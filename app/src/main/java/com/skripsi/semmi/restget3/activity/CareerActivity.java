@@ -35,7 +35,7 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("Career List");
+        collapsingToolbar.setTitle("Job List");
 
 
 
