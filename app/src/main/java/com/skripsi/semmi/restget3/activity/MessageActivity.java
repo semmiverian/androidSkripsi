@@ -125,7 +125,7 @@ public class MessageActivity extends AppCompatActivity  {
                         if(serverSize == localSize){
                              flag = 1;
                         }
-                        if(localSize < serverSize){
+                        if(localSize != serverSize){
                             // delete all local data
                             deleteLocalData();
                             // Refresh the data with the latest version

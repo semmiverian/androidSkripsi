@@ -1,7 +1,10 @@
 package com.skripsi.semmi.restget3.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
 import com.skripsi.semmi.restget3.R;
 
@@ -74,6 +79,24 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab:
+                SharedPreferences sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+                String currentSession =sharedPreferences.getString("statusSession", "Session");
+
+                if(currentSession.equals("mahasiswa")){
+                    MaterialDialog dialog2 = new MaterialDialog.Builder(this)
+                            .title("Not Allowed")
+                            .content("Mahasiswa not allowed to add new Career")
+                            .positiveText("Ok")
+                            .positiveColorRes(R.color.teal_400)
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog materialDialog, @NonNull DialogAction dialogAction) {
+                                    materialDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    return;
+                }
                 Intent intent = new Intent(this, AddNewCareerActivity.class);
                 startActivity(intent);
                 break;

@@ -1,7 +1,10 @@
 package com.skripsi.semmi.restget3.activity;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -64,6 +67,8 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
         //fab related code
         mFloatingActionButton= (FloatingActionButton) findViewById(R.id.fab);
         mFloatingActionButton.setOnClickListener(this);
+
+
 
         // define on click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -135,6 +140,24 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab :
+                SharedPreferences sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+                String currentSession =sharedPreferences.getString("statusSession", "Session");
+
+                if(currentSession.equals("mahasiswa")){
+                    MaterialDialog dialog2 = new MaterialDialog.Builder(this)
+                            .title("Not Allowed")
+                            .content("Mahasiswa not allowed to add new Product")
+                            .positiveText("Ok")
+                            .positiveColorRes(R.color.teal_400)
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog materialDialog, @NonNull DialogAction dialogAction) {
+                                    materialDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    return;
+                }
                     addNewProduct();
                 break;
         }
