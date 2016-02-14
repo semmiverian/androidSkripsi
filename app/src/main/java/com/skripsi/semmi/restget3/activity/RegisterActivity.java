@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.LoginFragment;
 import com.skripsi.semmi.restget3.Fragment.RegisterFragment;
@@ -119,6 +121,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void failure(RetrofitError error) {
                         Log.d("register Error","from Retrofit"+error.getMessage());
+                        MaterialDialog dialog2 = new MaterialDialog.Builder(RegisterActivity.this)
+                                .title("Error")
+                                .content("Error while connecting to server")
+                                .positiveText("Try Again")
+                                .positiveColorRes(R.color.teal_400)
+                                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog materialDialog, @NonNull DialogAction dialogAction) {
+                                        mUsername.setText("");
+                                        mEmail.setText("");
+                                        mName.setText("");
+                                        dialog.setContent("Gagal Register");
+                                        materialDialog.dismiss();
+                                    }
+                                })
+                                .show();
                     }
                 });
                 break;
