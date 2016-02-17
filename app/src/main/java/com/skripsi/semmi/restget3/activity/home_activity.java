@@ -67,6 +67,17 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        String session = sharedPreferences.getString("statusSession","DummyOne");
+
+        if(session.equals("mahasiswa")){
+            navigationView.getMenu().getItem(2).setVisible(false);
+            navigationView.getMenu().getItem(3).setVisible(false);
+        }
+
+
+
         // define data from navigation header
         View headerLayout = navigationView.getHeaderView(0);
         userImage = (ImageView) headerLayout.findViewById(R.id.userImageNavigation);

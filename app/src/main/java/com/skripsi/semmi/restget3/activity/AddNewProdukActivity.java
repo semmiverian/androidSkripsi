@@ -86,9 +86,11 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.captureImageProduk:
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                uri = gdph.getOutputMediaFileUri(10);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                startActivityForResult(cameraIntent, camera_code);
+                if((cameraIntent.resolveActivity(getPackageManager()) != null)){
+                    uri = gdph.getOutputMediaFileUri(10);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                    startActivityForResult(cameraIntent, camera_code);
+                }
                 break;
             case R.id.submitNewProduk:
                 // pasang dialog
@@ -139,6 +141,7 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
                         Intent intentCareer= new Intent(AddNewProdukActivity.this, AllProductActivity.class);
                         intentCareer.putExtra(CareerActivity.refresh_code, "3");
                         startActivity(intentCareer);
+                        Log.d("sd", "success: " + newProduk.getInfo());
                     }
                     @Override
                     public void failure(RetrofitError error) {
@@ -176,15 +179,18 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
 
 
         // kalau ga ada image yang dipilih bakal tampilin null
-        if(uri== null)
-            return;
         if(resultCode == RESULT_OK){
+
+
             if(requestCode==upload_code){
-                uri=data.getData();
+                uri=data.getData(); uri=data.getData();
+
+                if(uri== null)
+                    return;
+
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     previewImageUpload.setImageBitmap(bitmap);
-
                     gdph.getPath(getApplicationContext(), uri);
                 }catch (IOException e){
                     e.printStackTrace();
@@ -192,10 +198,16 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
             }
             if(requestCode==camera_code){
 
+                if(uri== null){
+
+                    Log.d("askdkasd", "onActivityResult: URI ERROR");
+                    return;
+
+                }
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     previewImageUpload.setImageBitmap(bitmap);
-                    gdph.getPath(getApplicationContext(), uri);
+//                    gdph.getPath(getApplicationContext(), uri);
                 }catch (IOException e){
                     e.printStackTrace();
                 }

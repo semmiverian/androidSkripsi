@@ -164,7 +164,9 @@ public class GetDataPathHelper {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                "Alumni Space Picture");
+                "");
+
+
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 Log.d("failed", "Oops! Failed create "
@@ -188,4 +190,5 @@ public class GetDataPathHelper {
 
 
     }
+
 }
