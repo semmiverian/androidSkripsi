@@ -13,6 +13,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -73,6 +74,18 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_career,menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       switch(item.getItemId()){
+           case R.id.action_search:
+               Intent searchCareerIntent = new Intent(this, SearchCareerActivity.class);
+               startActivity(searchCareerIntent);
+               break;
+       }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
