@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.skripsi.semmi.restget3.Interface.ChangeStatusInterface;
 import com.skripsi.semmi.restget3.Interface.UserImageInterface;
+import com.skripsi.semmi.restget3.Model.DeleteData;
 import com.skripsi.semmi.restget3.Model.UserImage;
 import com.skripsi.semmi.restget3.R;
 import com.skripsi.semmi.restget3.activity.ChangePasswordActivity;
@@ -47,6 +52,8 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
     private TextView dobDetail;
     private TextView majorDetail;
     private TextView statusDetail;
+    private Button changeStatusButton;
+    private MaterialDialog dialog;
 
     public static  UserProfileSettingFragment getInstance(){
         UserProfileSettingFragment fragment = new UserProfileSettingFragment();
@@ -74,8 +81,10 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
         dobDetail = (TextView) view.findViewById(R.id.bodDetail);
         majorDetail = (TextView) view.findViewById(R.id.majorDetail);
         statusDetail = (TextView) view.findViewById(R.id.statusDetail);
+        changeStatusButton  = (Button) view.findViewById(R.id.changeStatus);
         mButton.setOnClickListener(this);
         changePasswordButton.setOnClickListener(this);
+        changeStatusButton.setOnClickListener(this);
 
         String defaultImage=getString(R.string.avatarDefaultString);
         sharedPreferences= this.getActivity().getSharedPreferences("Session Check", Context.MODE_PRIVATE);
@@ -86,7 +95,6 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
         String bod = sharedPreferences.getString("dobSession","1111111");
         String currentMajor = sharedPreferences.getString("jurusanSession","IT");
         String currentStatus = sharedPreferences.getString("statusSession","alumni");
-
         usernameDetail.setText(currentUser);
         emailDetail.setText(currentEmail);
         namaDetail.setText(currentName);
@@ -101,6 +109,10 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
         Status.setText(sharedPreferences.getString("statusSession", "Status"));
         user=sharedPreferences.getString("usernameSession","Username");
         fetchUserImage();
+
+        if(currentStatus.equals("alumni")){
+            changeStatusButton.setVisibility(View.INVISIBLE);
+        }
         return view;
     }
 
@@ -156,6 +168,71 @@ public class UserProfileSettingFragment extends Fragment implements View.OnClick
                 Intent changePasswordIntent = new Intent(getActivity(), ChangePasswordActivity.class);
                 startActivity(changePasswordIntent);
                 break;
+            case R.id.changeStatus:
+                new MaterialDialog.Builder(getActivity())
+                        .title("Change My Status")
+                        .content("I Have Been Graduated, Please change my status from Student to Alumni")
+                        .positiveText("confirm")
+                        .negativeText("dismiss")
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                materialDialog.dismiss();
+                                dialog = new MaterialDialog.Builder(getActivity())
+                                        .title("Proses")
+                                        .content("Connecting to server")
+                                        .progress(true,0)
+                                        .show();
+                                changeMyStatusRequest(dialog);
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                materialDialog.dismiss();
+
+                            }
+                        })
+                        .positiveColorRes(R.color.teal_400)
+                        .negativeColorRes(R.color.teal_400)
+                        .show();
+                break;
         }
+    }
+
+    private void changeMyStatusRequest(final MaterialDialog dialog2) {
+        int id = sharedPreferences.getInt("idSession", 0);
+        if(id == 0){
+            Toast.makeText(getActivity(), "ID ERROR", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        RestAdapter restAdapter=new RestAdapter.Builder()
+                .setEndpoint(getString(R.string.api))
+                .build();
+        ChangeStatusInterface changeStatusInterface = restAdapter.create(ChangeStatusInterface.class);
+        changeStatusInterface.changeStatus(id, new Callback<DeleteData>() {
+            @Override
+            public void success(DeleteData deleteData, Response response) {
+                dialog2.dismiss();
+                new MaterialDialog.Builder(getActivity())
+                        .title("Success")
+                        .content("Congratulations your request is being process by our admin please wait our confirmation email.")
+                        .positiveText("got it")
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                                materialDialog.dismiss();
+                            }
+                        })
+                        .positiveColorRes(R.color.teal_400)
+                        .show();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("error", "failure: "+error.getMessage());
+            }
+        });
+
     }
 }

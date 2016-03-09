@@ -89,6 +89,17 @@
                     android:gravity="center"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
+                <com.skripsi.semmi.restget3.Font.RobotoTextButton
+                    app:typeface="robotoRegular"
+                    android:id="@+id/changeStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#AB47BC"
+                    android:text="@string/changeMyStatus"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:layout_marginTop="20dp"/>
 
             </LinearLayout>
 
