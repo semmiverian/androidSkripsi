@@ -26,6 +26,9 @@ import java.util.TimerTask;
 import android.os.Handler;
 
 
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -65,6 +68,9 @@ public class CareerListFragment extends ListFragment  {
                 .content("Mengambil data dari server")
                 .progress(true,0)
                 .show();
+
+
+        showIntro(getListView(),"ListViewIntro2222","This is career you can Click to see the detail of the Career");
     }
 
 //    @Override
@@ -175,5 +181,20 @@ public class CareerListFragment extends ListFragment  {
         // Taruh Extra biar bisa parsing detail data dari server ke detail tampilan
         CareerDetailIntent.putExtra(CareerDetailActivity.EXTRA,mAdapater.getItem(position));
         startActivity(CareerDetailIntent);
+    }
+
+    private void showIntro(View view,String ID,String content){
+        new MaterialIntroView.Builder(getActivity())
+//                .enableDotAnimation(true)
+                //.enableIcon(false)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText(content)
+                .setTarget(view)
+                .setUsageId(ID) //THIS SHOULD BE UNIQUE ID
+                .show();
     }
 }

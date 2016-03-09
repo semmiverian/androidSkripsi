@@ -36,12 +36,12 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:8.1.0'
     compile 'com.google.android.gms:play-services-maps:8.1.0'
 
-
+//    compile 'com.cleveroad:slidingtutorial:0.9.4'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:23.1.1'
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 //    compile 'com.android.support:recyclerview-v7:23.1.0'
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.0@aar') {
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.6@aar'){
         transitive = true
     }
     compile 'com.github.rey5137:material:1.2.1'
@@ -51,6 +51,6 @@ dependencies {
     compile 'net.steamcrafted:materialiconlib:1.0.7'
     compile 'io.realm:realm-android:0.84.1'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'
-
+    compile 'com.github.iammert:MaterialIntroView:1.5'
 
 }

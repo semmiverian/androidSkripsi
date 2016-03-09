@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,14 +25,12 @@ import com.skripsi.semmi.restget3.Fragment.UserProfileCareerFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileProductListFragment;
 import com.skripsi.semmi.restget3.Fragment.UserProfileSettingFragment;
 import com.skripsi.semmi.restget3.MainActivity;
-import com.skripsi.semmi.restget3.Model.LocalMessage;
 import com.skripsi.semmi.restget3.R;
 import com.squareup.picasso.Picasso;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmMigration;
-import io.realm.RealmResults;
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 /**
  * Created by semmi on 15/10/2015.
@@ -52,6 +51,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
         setContentView(R.layout.home_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.hasExpandedActionView();
 
         displayFirstFragment();
@@ -124,6 +124,7 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
 //        Intent serviceIntent = new Intent(this, UpdateDataLocationServices.class);
 //        startService(serviceIntent);
 
+        showIntro(getDrawerView(toolbar),"toolbarIntroduction31122","This is Drawer You can slide or Click to Open the Drawer");
 
 
 
@@ -249,6 +250,31 @@ public class home_activity extends AppCompatActivity implements  NavigationView.
 
     private void openAboutUsFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, AboutUsFragment.getInstance()).commit();
+    }
+
+
+    private void showIntro(View view,String ID,String content){
+        new MaterialIntroView.Builder(this)
+//                .enableDotAnimation(true)
+                //.enableIcon(false)
+                .setFocusGravity(FocusGravity.LEFT)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText(content)
+                .setTarget(view)
+                .setUsageId(ID) //THIS SHOULD BE UNIQUE ID
+                .show();
+    }
+
+
+    private View getDrawerView(Toolbar toolbar) {
+        for (int i = 0; i < toolbar.getChildCount(); i++) {
+            if (toolbar.getChildAt(i) instanceof ImageButton)
+                return toolbar.getChildAt(i);
+        }
+        return null;
     }
 
 

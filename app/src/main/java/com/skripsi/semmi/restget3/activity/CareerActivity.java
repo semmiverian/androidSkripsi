@@ -15,11 +15,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.skripsi.semmi.restget3.Fragment.CareerListFragment;
 import com.skripsi.semmi.restget3.R;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 /**
  * Created by semmi on 01/11/2015.
@@ -28,6 +33,10 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
     private FloatingActionButton mFloatingActionButton;
     public static String refresh_code="1";
     private SwipeRefreshLayout swipeRefreshLayout;
+    private SharedPreferences sharedPreferences;
+    private String currentSession;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +62,15 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
 
         CareerListFragment fragobj = new CareerListFragment();
         fragobj.setArguments(bundle);
+        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        currentSession = sharedPreferences.getString("statusSession", "Session");
+
+
+        if(!currentSession.equals("mahasiswa")){
+            showIntro(mFloatingActionButton,"fabIntro22","You can Add new Career by touch this button");
+        }
+        
+
     }
 
 
@@ -72,7 +90,7 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_career,menu);
+        getMenuInflater().inflate(R.menu.menu_career, menu);
         return true;
     }
 
@@ -92,8 +110,6 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab:
-                SharedPreferences sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-                String currentSession =sharedPreferences.getString("statusSession", "Session");
 
                 if(currentSession.equals("mahasiswa")){
                     MaterialDialog dialog2 = new MaterialDialog.Builder(this)
@@ -121,6 +137,20 @@ public class CareerActivity extends AppCompatActivity implements View.OnClickLis
         super.onBackPressed();
         Intent backIntent = new Intent(this,home_activity.class);
         startActivity(backIntent);
+    }
+
+
+    private void showIntro(View view,String ID,String content){
+        new MaterialIntroView.Builder(this)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText(content)
+                .setTarget(view)
+                .setUsageId(ID) //THIS SHOULD BE UNIQUE ID
+                .show();
     }
 
 

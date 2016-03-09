@@ -30,6 +30,9 @@ import com.skripsi.semmi.restget3.adapter.AllProductAdapter;
 
 import java.util.List;
 
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -45,6 +48,8 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
     public static String refresh_code="1";
     private FloatingActionButton mFloatingActionButton;
     private MaterialDialog dialog;
+    private SharedPreferences sharedPreferences;
+    private  String currentSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +67,7 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
 
         // Google card design
         ListViewHelper listViewHelper = new ListViewHelper();
-        listViewHelper.googleCardslistViewDesign(getResources(),listView);
+        listViewHelper.googleCardslistViewDesign(getResources(), listView);
 
         //fab related code
         mFloatingActionButton= (FloatingActionButton) findViewById(R.id.fab);
@@ -74,10 +79,10 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent ProdukDetailIntent = new Intent (AllProductActivity.this, ProductDetailActivity.class);
+                Intent ProdukDetailIntent = new Intent(AllProductActivity.this, ProductDetailActivity.class);
                 ProdukDetailIntent.putExtra(ProductDetailActivity.extra, mAdapter.getItem(position));
                 startActivity(ProdukDetailIntent);
-                Log.d("onClick",""+position);
+                Log.d("onClick", "" + position);
             }
         });
 
@@ -87,6 +92,13 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
                 .content("Mengambil data dari server")
                 .progress(true,0)
                 .show();
+        // Intro Card
+        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+        currentSession = sharedPreferences.getString("statusSession", "Session");
+//        showIntro(listView, "ListviewProduct", "This is a Collection of Product that already post in our application, Hit to Open the detail");
+        if(!currentSession.equals("mahasiswa")){
+            showIntro(mFloatingActionButton,"fabIntroProduct","You can Add new Product by touch this button");
+        }
 
     }
 
@@ -103,11 +115,11 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
                 if(allProducts == null || allProducts.isEmpty()){
                     return;
                 }
+                listView.invalidate();
 
                 for(AllProduct allProduct : allProducts){
                     mAdapter.add(allProduct);
                 }
-                listView.invalidate();
                 listView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 
@@ -140,8 +152,8 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab :
-                SharedPreferences sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
-                String currentSession =sharedPreferences.getString("statusSession", "Session");
+
+
 
                 if(currentSession.equals("mahasiswa")){
                     MaterialDialog dialog2 = new MaterialDialog.Builder(this)
@@ -223,14 +235,14 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
             @Override
             public void success(List<AllProduct> allProducts, Response response) {
                 // TODO SET adapter to reset LIST VIEW
-                Log.d("query",query);
+                Log.d("query", query);
                 listView.invalidate();
                 mAdapter.clear();
-                if(allProducts == null || allProducts.isEmpty()){
+                if (allProducts == null || allProducts.isEmpty()) {
                     Toast.makeText(AllProductActivity.this, "Tidak ada barang dengan query tersebut", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(AllProductActivity.this, "Ada data dengan " +query, Toast.LENGTH_LONG).show();
-                for(AllProduct allProduct : allProducts){
+                Toast.makeText(AllProductActivity.this, "Ada data dengan " + query, Toast.LENGTH_LONG).show();
+                for (AllProduct allProduct : allProducts) {
                     mAdapter.add(allProduct);
                 }
                 listView.setAdapter(mAdapter);
@@ -243,5 +255,19 @@ public class AllProductActivity extends AppCompatActivity implements  View.OnCli
 
             }
         });
+    }
+
+
+    private void showIntro(View view,String ID,String content){
+        new MaterialIntroView.Builder(this)
+                .setFocusGravity(FocusGravity.CENTER)
+                .setFocusType(Focus.MINIMUM)
+                .setDelayMillis(500)
+                .enableFadeAnimation(true)
+                .performClick(true)
+                .setInfoText(content)
+                .setTarget(view)
+                .setUsageId(ID) //THIS SHOULD BE UNIQUE ID
+                .show();
     }
 }
