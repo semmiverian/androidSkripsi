@@ -66,10 +66,12 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         ImageView gambar= (ImageView) findViewById(R.id.produkImage);
         ImageView profilepict = (ImageView) findViewById(R.id.imageProfile);
         TextView user = (TextView) findViewById(R.id.userNameProduk);
+        TextView priceText = (TextView) findViewById(R.id.detailPrice);
 
         //  ambil data dari server terus di tampilin
         judul.setText(allProduct.getProduknama());
         detail.setText(allProduct.getProdukdetail());
+        priceText.setText("Rp."+allProduct.getProdukPrice());
         Picasso.with(this)
                 .load(allProduct.getProdukImage())
                 .into(gambar);

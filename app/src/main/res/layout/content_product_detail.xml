@@ -44,7 +44,16 @@
                 android:id="@+id/userNameProduk"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp" />
+
         </LinearLayout>
+        <com.skripsi.semmi.restget3.Font.RobotoTextView
+            app:typeface="robotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:id="@+id/detailPrice"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
         <View style="@style/Divider"/>
 
         <com.skripsi.semmi.restget3.Font.RobotoTextView

@@ -17,6 +17,15 @@ public class AllProduct implements Parcelable {
     private String produkEmail;
     private String produkTelepon;
     private String produkId;
+    private String produkPrice;
+
+    public String getProdukPrice() {
+        return produkPrice;
+    }
+
+    public void setProdukPrice(String produkPrice) {
+        this.produkPrice = produkPrice;
+    }
 
     public AllProduct() {
     }
@@ -43,6 +52,7 @@ public class AllProduct implements Parcelable {
         produkEmail = source.readString();
         produkTelepon = source.readString();
         produkId = source.readString();
+        produkPrice = source.readString();
 
     }
 
@@ -111,6 +121,7 @@ public class AllProduct implements Parcelable {
         dest.writeString(produkEmail);
         dest.writeString(produkTelepon);
         dest.writeString(produkId);
+        dest.writeString(produkPrice);
     }
 
     private void defaultValues() {

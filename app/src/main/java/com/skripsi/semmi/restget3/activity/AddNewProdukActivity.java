@@ -38,7 +38,7 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
     private TextView addJudulProduk;
     private TextView addDeskProduk;
     private TextView addKontakEmail;
-    private TextView addKontakTelepon;
+    private TextView addKontakTelepon,priceAdd;
     private Button addImageProduk;
     private Button captureImageProduk;
     private ImageView previewImageUpload;
@@ -66,6 +66,7 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
         captureImageProduk = (Button) findViewById(R.id.captureImageProduk);
         previewImageUpload= (ImageView) findViewById(R.id.previewImageUpload);
         submit= (Button) findViewById(R.id.submitNewProduk);
+        priceAdd = (TextView) findViewById(R.id.addPrice);
         sharedPreferences= this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
         // set onclick listener
         addImageProduk.setOnClickListener(this);
@@ -129,11 +130,12 @@ public class AddNewProdukActivity extends AppCompatActivity implements View.OnCl
                 String detail=addDeskProduk.getText().toString();
                 String email=addKontakEmail.getText().toString();
                 String telepon =addKontakTelepon.getText().toString();
+                String price = priceAdd.getText().toString();
                 RestAdapter restAdapter=new RestAdapter.Builder()
                         .setEndpoint(getString(R.string.api))
                         .build();
                 NewProductInterface newProductInterface=restAdapter.create(NewProductInterface.class);
-                newProductInterface.postProduk(username, judul, detail, typedFile,email,telepon, new Callback<NewProduk>() {
+                newProductInterface.postProduk(username, judul, detail, typedFile,email,telepon,price, new Callback<NewProduk>() {
                     @Override
                     public void success(NewProduk newProduk, Response response) {
                         dialog.setContent("Sukses Add Data");

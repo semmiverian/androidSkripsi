@@ -52,6 +52,16 @@
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:textSize="15sp" />
+                <com.skripsi.semmi.restget3.Font.RobotoEditText
+                    app:typeface="robotoLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addPrice"
+                    android:inputType="number"
+                    android:hint="Price"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
