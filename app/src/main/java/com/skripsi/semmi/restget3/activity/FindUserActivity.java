@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.skripsi.semmi.restget3.Font.RobotoTextView;
 import com.skripsi.semmi.restget3.Helper.ListViewHelper;
 import com.skripsi.semmi.restget3.Interface.SearchUserInterface;
@@ -37,40 +39,95 @@ public class FindUserActivity extends AppCompatActivity {
     private ListView mListView;
     private SearchUserAdapter mAdapter;
     private SharedPreferences sharedPreferences;
+    private FloatingSearchView floatingSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_user);
         mSearchView = (SearchView) findViewById(R.id.searchView);
-
+        mAdapter = new SearchUserAdapter(FindUserActivity.this, 0);
         resultSearch = (RobotoTextView) findViewById(R.id.querySearchResult);
         mListView = (ListView) findViewById(R.id.FindUserListView);
 
-        ListViewHelper listViewHelper = new ListViewHelper();
-        listViewHelper.googleCardslistViewDesign(getResources(),mListView);
+//        ListViewHelper listViewHelper = new ListViewHelper();
+//        listViewHelper.googleCardslistViewDesign(getResources(),mListView);
+//
+//        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
+//
+//        resultSearch.setText("# no query defined");
+//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                if(!query.equals("")){
+//                    resultSearch.setText(query);
+//                    String currentUser =sharedPreferences.getString("usernameSession", "Username");
+//                    findUser(query,currentUser);
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
 
-        sharedPreferences = this.getSharedPreferences("Session Check", Context.MODE_PRIVATE);
 
-        resultSearch.setText("# no query defined");
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // Testing predictive text
+        floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
+        floatingSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                if(!query.equals("")){
-                    resultSearch.setText(query);
-                    String currentUser =sharedPreferences.getString("usernameSession", "Username");
-                    findUser(query,currentUser);
+            public void onSearchTextChanged(String oldQuery, String newQuery) {
+                if(!oldQuery.equals("") && newQuery.equals("")){
+                    floatingSearchView.clearSuggestions();
+                    return;
                 }
-                return true;
-            }
+                floatingSearchView.showProgress();
+                RestAdapter restAdapter=new RestAdapter.Builder()
+                        .setEndpoint(getString(R.string.api))
+                        .build();
+                SearchUserInterface sui = restAdapter.create(SearchUserInterface.class);
+                sui.findUser(newQuery, new Callback<List<AllUser>>() {
+                    @Override
+                    public void success(List<AllUser> allUsers, Response response) {
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+                        floatingSearchView.swapSuggestions(allUsers);
+                        floatingSearchView.hideProgress();
+                        for(AllUser allUser : allUsers){
+                            //  set adapter for the exist data
+                            Log.d("data exist", allUser.getUsername());
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
             }
         });
 
+        floatingSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+                AllUser userClicked = (AllUser) searchSuggestion;
+                Log.d("onclick", "onSuggestionClicked: "+userClicked.getNama());
+                Intent UserProfileIntent = new Intent(FindUserActivity.this, AllUserProfile.class);
+                UserProfileIntent.putExtra(AllUserProfile.extra,userClicked);
+                startActivity(UserProfileIntent);
+//                mAdapter.clear();
+//                mListView.invalidate();
+//
+//                mAdapter.add(userClicked);
+//                mListView.setAdapter(mAdapter);
+            }
 
+            @Override
+            public void onSearchAction() {
+
+            }
+        });
 
 
     }

@@ -52,5 +52,6 @@ dependencies {
     compile 'io.realm:realm-android:0.84.1'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'
     compile 'com.github.iammert:MaterialIntroView:1.5'
+    compile 'com.github.arimorty:floatingsearchview:1.1.2'
 
 }

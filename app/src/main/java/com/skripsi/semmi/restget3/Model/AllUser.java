@@ -3,10 +3,12 @@ package com.skripsi.semmi.restget3.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+
 /**
  * Created by semmi on 09/11/2015.
  */
-public class AllUser  implements Parcelable{
+public class AllUser implements Parcelable, SearchSuggestion {
     private String username;
     private String image;
     private String nama;
@@ -114,5 +116,15 @@ public class AllUser  implements Parcelable{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String getBody() {
+        return this.nama;
+    }
+
+    @Override
+    public Creator getCreator() {
+        return CREATOR;
     }
 }
